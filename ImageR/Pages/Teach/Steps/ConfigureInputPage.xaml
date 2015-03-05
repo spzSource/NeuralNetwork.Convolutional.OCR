@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DigitR.Pages.Teach.Steps.ConfigureInputPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:controls="clr-namespace:DigitR.Pages.Teach.Steps.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="700"
+             DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Input configuration" Style="{StaticResource Heading2}" />
+                <Grid 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,50,0,0">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel
+                        Orientation="Vertical">
+                        
+                        <controls:OpenFileControl
+                            OpenLabel="Open images:"
+                            OpenCommand="{Binding OpenImagesCommand}"
+                            Path="{Binding InputImagesPath}">
+                        </controls:OpenFileControl>
+
+                        <controls:OpenFileControl
+                            OpenLabel="Open labels:"
+                            OpenCommand="{Binding OpenLabelsCommand}"
+                            Path="{Binding InputLabelsPath}">
+                        </controls:OpenFileControl>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

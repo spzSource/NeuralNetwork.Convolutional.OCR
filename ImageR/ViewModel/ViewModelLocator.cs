@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using DigitR.Model;
+using DigitR.ViewModel.Teach;
 
 namespace DigitR.ViewModel
 {
@@ -39,6 +40,7 @@ namespace DigitR.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
         }
 
         /// <summary>
@@ -52,6 +54,14 @@ namespace DigitR.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public ConfigureInputPageViewModel ConfigureInputPageViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
             }
         }
 
