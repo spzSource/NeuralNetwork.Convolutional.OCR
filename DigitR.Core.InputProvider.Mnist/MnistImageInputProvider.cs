@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 
 using DigitR.Core.InputProvider.Image;
@@ -15,14 +16,8 @@ namespace DigitR.Core.InputProvider.Mnist
             string labelPath,
             string sourcePath)
         {
-            if (String.IsNullOrEmpty(labelPath))
-            {
-                throw new ArgumentNullException("labelPath");
-            }
-            if (String.IsNullOrEmpty(sourcePath))
-            {
-                throw new ArgumentNullException("sourcePath");
-            }
+            Contract.Requires<ArgumentException>(labelPath != null);
+            Contract.Requires<ArgumentException>(sourcePath != null);
 
             this.labelPath = labelPath;
             this.sourcePath = sourcePath;
@@ -35,14 +30,13 @@ namespace DigitR.Core.InputProvider.Mnist
             using (BinaryReader labelsReader = new BinaryReader(labelsStream))
             using (BinaryReader sourceReader = new BinaryReader(sourceStream))
             {
-                const int batchSize = MnistImagePattern.MnistSideSize * MnistImagePattern.MnistSideSize;
-
                 MnistHeaderInfo header = ReadHeader(sourceReader, labelsReader);
+
                 for (int imageIndex = 0; imageIndex < header.ImagesCount; imageIndex++)
                 {
                     yield return new MnistImagePattern(
-                        labelsReader.ReadByte(), 
-                        sourceReader.ReadBytes(batchSize));
+                        labelsReader.ReadByte(),
+                        sourceReader.ReadBytes(MnistImagePattern.MnistPatternSizeInBytes));
                 }
             }
         }
@@ -51,22 +45,22 @@ namespace DigitR.Core.InputProvider.Mnist
         {
             sourceReader.BaseStream.Seek(4, SeekOrigin.Begin);
 
-            int imagesCount  = ReverseBytes(sourceReader.ReadInt32());
-            int rowsCount    = ReverseBytes(sourceReader.ReadInt32());
+            int imagesCount = ReverseBytes(sourceReader.ReadInt32());
+            int rowsCount = ReverseBytes(sourceReader.ReadInt32());
             int columnsCount = ReverseBytes(sourceReader.ReadInt32());
 
             labelsReader.BaseStream.Seek(4, SeekOrigin.Begin);
 
-            int labelsCount  = ReverseBytes(labelsReader.ReadInt32());
+            int labelsCount = ReverseBytes(labelsReader.ReadInt32());
 
             return new MnistHeaderInfo(imagesCount, rowsCount, columnsCount, labelsCount);
         }
 
         private static int ReverseBytes(int number)
         {
-            return (number & 0x000000FF) << 24 
-                | (number & 0x0000FF00) << 8 
-                | (number & 0x00FF0000) >> 8 
+            return (number & 0x000000FF) << 24
+                | (number & 0x0000FF00) << 8
+                | (number & 0x00FF0000) >> 8
                 | ((int)(number & 0xFF000000)) >> 24;
         }
     }

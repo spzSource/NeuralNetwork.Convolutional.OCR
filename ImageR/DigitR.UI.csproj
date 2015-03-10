@@ -101,15 +101,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Design\DesignDataService.cs" />
-    <Compile Include="Model\DataItem.cs" />
-    <Compile Include="Model\DataService.cs" />
-    <Compile Include="Model\IDataService.cs" />
     <Compile Include="Pages\Teach\Steps\ConfigureInputPage.xaml.cs">
       <DependentUpon>ConfigureInputPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Teach\Steps\Controls\OpenFileControl.xaml.cs">
       <DependentUpon>OpenFileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Teach\Steps\StartTeachingPage.xaml.cs">
+      <DependentUpon>StartTeachingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Teach\TeachPage.xaml.cs">
       <DependentUpon>TeachPage.xaml</DependentUpon>
@@ -117,7 +116,6 @@
     <Compile Include="Pages\WelcomeScreen\WelcomeScreen.xaml.cs">
       <DependentUpon>WelcomeScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Teach\ConfigureInputPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -137,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Teach\Steps\Controls\OpenFileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Teach\Steps\StartTeachingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +199,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>DigitR.Core.InputProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

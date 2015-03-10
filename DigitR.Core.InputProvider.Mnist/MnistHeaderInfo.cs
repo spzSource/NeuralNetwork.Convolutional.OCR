@@ -2,6 +2,18 @@
 {
     internal class MnistHeaderInfo
     {
+        public MnistHeaderInfo(
+            int imagesCount,
+            int rowsCount,
+            int columnsCount,
+            int labelsCount)
+        {
+            ImagesCount = imagesCount;
+            RowsCount = rowsCount;
+            ColumnsCount = columnsCount;
+            LabelsCount = labelsCount;
+        }
+
         public int ImagesCount
         {
             get;
@@ -24,18 +36,6 @@
         {
             get;
             private set;
-        }
-
-        public MnistHeaderInfo(
-            int imagesCount, 
-            int rowsCount, 
-            int columnsCount, 
-            int labelsCount)
-        {
-            ImagesCount = imagesCount;
-            RowsCount = rowsCount;
-            ColumnsCount = columnsCount;
-            LabelsCount = labelsCount;
         }
     }
 }

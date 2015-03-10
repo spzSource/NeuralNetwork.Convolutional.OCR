@@ -6,11 +6,10 @@
         xmlns:ignore="http://www.ignore.com"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         mc:Ignorable="d ignore"
-        Height="300"
-        Width="300"
+        Height="700"
+        Width="900"
         Title="DigitR - Digital Recognizer"
-        DataContext="{Binding Main, Source={StaticResource Locator}}"
-        ContentSource="../Pages/WelcomeScreen/WelcomeScreen.xaml">
+        ContentSource="../Pages/Teach/Steps/ConfigureInputPage.xaml">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -30,7 +29,7 @@
         <mui:LinkGroup DisplayName="Teaching" >
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Configure input" Source="Pages/Teach/Steps/ConfigureInputPage.xaml"/>
-                <mui:Link DisplayName="Recognize phase" />
+                <mui:Link DisplayName="Teaching" Source="Pages/Teach/Steps/StartTeachingPage.xaml"/>
                 <mui:Link DisplayName="Result phase" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

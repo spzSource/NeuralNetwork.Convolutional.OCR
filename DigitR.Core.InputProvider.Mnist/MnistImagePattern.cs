@@ -1,10 +1,14 @@
-﻿using DigitR.Core.InputProvider.Image;
+﻿using System;
+using System.Diagnostics.Contracts;
+
+using DigitR.Core.InputProvider.Image;
 
 namespace DigitR.Core.InputProvider.Mnist
 {
     public class MnistImagePattern : IImagePattern<byte, byte[]>
     {
-        public const int MnistSideSize = 28;
+        private const int MnistPatternSize = 28;
+        public  const int MnistPatternSizeInBytes = MnistPatternSize * MnistPatternSize;
 
         private readonly byte label;
         private readonly byte[] source;
@@ -13,6 +17,9 @@ namespace DigitR.Core.InputProvider.Mnist
             byte label,
             byte[] source)
         {
+            Contract.Requires<ArgumentException>(source != null);
+            Contract.Requires<ArgumentException>(source.Length > 0);
+
             this.label = label;
             this.source = source;
         }
@@ -21,7 +28,7 @@ namespace DigitR.Core.InputProvider.Mnist
         {
             get
             {
-                return MnistSideSize;
+                return MnistPatternSize;
             }
         }
 
@@ -29,7 +36,7 @@ namespace DigitR.Core.InputProvider.Mnist
         {
             get
             {
-                return MnistSideSize;
+                return MnistPatternSize;
             }
         }
 

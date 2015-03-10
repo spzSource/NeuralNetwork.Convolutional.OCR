@@ -4,6 +4,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
+using Microsoft.Win32;
+
 namespace DigitR.ViewModel.Teach
 {
     public class ConfigureInputPageViewModel : ViewModelBase
@@ -16,9 +18,11 @@ namespace DigitR.ViewModel.Teach
             inputImagesPath = String.Empty;
             inputLabelsPath = String.Empty;
 
-            OpenImagesCommand = new RelayCommand(OpenImages);
-            OpenLabelsCommand = new RelayCommand(OpenLabels);
+            OpenImagesCommand = new RelayCommand(() => SetInputFilePath(selectedFilePath => InputImagesPath = selectedFilePath));
+            OpenLabelsCommand = new RelayCommand(() => SetInputFilePath(selectedFilePath => InputLabelsPath = selectedFilePath));
         }
+
+        #region Properties
 
         public ICommand OpenImagesCommand
         {
@@ -58,14 +62,20 @@ namespace DigitR.ViewModel.Teach
             }
         }
 
-        private void OpenLabels()
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
 
-        private void OpenImages()
+        private void SetInputFilePath(Action<string> setAction)
         {
-            throw new System.NotImplementedException();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+            };
+
+            bool? dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == true)
+            {
+                setAction(openFileDialog.FileName);
+            }
         }
     }
 }

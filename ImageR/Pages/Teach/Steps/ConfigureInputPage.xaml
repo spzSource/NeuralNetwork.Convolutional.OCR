@@ -7,7 +7,8 @@
              xmlns:controls="clr-namespace:DigitR.Pages.Teach.Steps.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700"
-             DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}">
+             DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}"
+             Name="Root">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel>
@@ -36,6 +37,20 @@
                             OpenCommand="{Binding OpenLabelsCommand}"
                             Path="{Binding InputLabelsPath}">
                         </controls:OpenFileControl>
+
+                        <Button 
+                            Content="Go to next"
+                            Width="100"
+                            Command="NavigationCommands.NextPage">
+                        </Button>
+
+                        <!--<Button 
+                            Content="Go to next"
+                            Width="100"
+                            Command="NavigationCommands.GoToPage"
+                            CommandParameter="Pages/Teach/Steps/StartTeachingPage.xaml"
+                            CommandTarget="{Binding ElementName=Root}">
+                        </Button>-->
                     </StackPanel>
 
                 </Grid>
