@@ -1,7 +1,7 @@
 ﻿namespace DigitR.Core.InputProvider.Image
 {
-    public interface IImageInputProvider<out TLable, out TSource> 
-        : IAppInputProvider<TLable, TSource>
+    public interface IImageInputProvider<out TLabel, out TSource> 
+        : IAppInputProvider<TLabel, TSource>
     {
     }
 }

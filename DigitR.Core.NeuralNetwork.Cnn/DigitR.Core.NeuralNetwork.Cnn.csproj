@@ -39,7 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Primitives\CnnConnection.cs" />
+    <Compile Include="Primitives\CnnLayer.cs" />
+    <Compile Include="Primitives\CnnNeuron.cs" />
+    <Compile Include="Primitives\CnnWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
+      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
+      <Name>DigitR.Core.NeuralNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
