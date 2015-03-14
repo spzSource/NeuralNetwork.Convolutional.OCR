@@ -41,6 +41,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
+      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
+      <Name>DigitR.Core.NeuralNetwork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

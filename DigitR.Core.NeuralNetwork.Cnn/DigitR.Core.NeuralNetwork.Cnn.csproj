@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CnnNeuralNetwork.cs" />
+    <Compile Include="CnnNeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\CnnConnection.cs" />
     <Compile Include="Primitives\CnnLayer.cs" />
     <Compile Include="Primitives\CnnNeuron.cs" />
@@ -46,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>DigitR.Core.NeuralNetwork</Name>

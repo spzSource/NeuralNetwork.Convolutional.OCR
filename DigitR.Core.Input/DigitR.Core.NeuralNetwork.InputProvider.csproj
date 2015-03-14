@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}</ProjectGuid>
+    <ProjectGuid>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core.InputProvider.Image</RootNamespace>
-    <AssemblyName>DigitR.Core.InputProvider.Image</AssemblyName>
+    <RootNamespace>DigitR.Core.InputProvider</RootNamespace>
+    <AssemblyName>DigitR.Core.InputProvider</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
@@ -83,15 +83,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IImageInputProvider.cs" />
-    <Compile Include="IImagePattern.cs" />
+    <Compile Include="IInputProvider.cs" />
+    <Compile Include="IInputPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.InputProvider.csproj">
-      <Project>{76abc8ad-ef75-4c78-91b3-5e95962c9f8b}</Project>
-      <Name>DigitR.Core.InputProvider</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

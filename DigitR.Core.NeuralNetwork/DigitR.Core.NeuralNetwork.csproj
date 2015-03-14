@@ -39,11 +39,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INeuralNetwork.cs" />
+    <Compile Include="INeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
     <Compile Include="Primitives\ILayer.cs" />
     <Compile Include="Primitives\INeuron.cs" />
     <Compile Include="Primitives\IWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.Output\DigitR.Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>DigitR.Core.NeuralNetwork.OutputProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
