@@ -1,26 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
     public class CnnNeuron : INeuron<double, CnnConnection>
     {
-        private readonly IOutputAlgorithm<double, CnnConnection> outputAlgorithm;
-
-        public CnnNeuron(IOutputAlgorithm<double, CnnConnection> outputAlgorithm)
-        {
-            if (outputAlgorithm == null)
-            {
-                throw new ArgumentNullException("outputAlgorithm");
-            }
-
-            this.outputAlgorithm = outputAlgorithm;
-        }
-
         private readonly IList<CnnConnection> connections = new List<CnnConnection>(); 
 
         public IList<CnnConnection> Inputs
@@ -42,7 +27,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         /// </summary>
         public double Calculate()
         {
-            return outputAlgorithm.Calculate(Inputs.ToList());
+            throw new System.NotImplementedException();
         }
     }
 }

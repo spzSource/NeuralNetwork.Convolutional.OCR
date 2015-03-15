@@ -36,6 +36,17 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 
         public void Calculate()
         {
+            foreach (CnnNeuron neuron in Neurons)
+            {
+                neuron.Output = neuron.Calculate();
+            }
+        }
+
+        /// <summary>
+        /// Connects this layer to layer passed as parameter.
+        /// </summary>
+        public void ConnectToLayer(ILayer<CnnNeuron, CnnWeight> layer)
+        {
             throw new NotImplementedException();
         }
     }

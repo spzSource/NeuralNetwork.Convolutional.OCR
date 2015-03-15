@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\IActivationAlgorithm.cs" />
+    <Compile Include="Algorithms\IOutputAlgorithm.cs" />
     <Compile Include="INeuralNetwork.cs" />
     <Compile Include="INeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
@@ -57,6 +59,7 @@
       <Name>DigitR.Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

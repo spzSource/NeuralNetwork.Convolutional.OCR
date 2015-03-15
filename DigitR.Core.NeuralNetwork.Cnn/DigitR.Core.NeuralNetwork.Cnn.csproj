@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
+    <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\CnnConnection.cs" />

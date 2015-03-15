@@ -1,0 +1,6 @@
+﻿namespace DigitR.Core.NeuralNetwork.Algorithms
+{
+    public interface IOutputAlgorithm<out TObject>
+    {
+    }
+}

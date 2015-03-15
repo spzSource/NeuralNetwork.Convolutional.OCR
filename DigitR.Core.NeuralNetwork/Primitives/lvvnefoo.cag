@@ -21,6 +21,11 @@ namespace DigitR.Core.NeuralNetwork.Primitives
         /// <summary>
         /// Performs output calculation for this neuron.
         /// </summary>
-        TOutput Calculate();
+        void PreCalculate();
+
+        /// <summary>
+        /// Performs back propagation for inputs (neurons) of this neurons.
+        /// </summary>
+        void PostCalculate();
     }
 }
