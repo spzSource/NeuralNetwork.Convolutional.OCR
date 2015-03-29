@@ -1,4 +1,4 @@
-﻿namespace DigitR.Core.InputProvider.Mnist
+﻿namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
     internal class MnistHeaderInfo
     {

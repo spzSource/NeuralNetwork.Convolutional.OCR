@@ -15,13 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork", "DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj", "{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.InputProvider.Image.Mnist", "DigitR.Core.InputProvider.Mnist\DigitR.Core.NeuralNetwork.InputProvider.Image.Mnist.csproj", "{970D5E43-4C7A-4598-AD75-7D9C6E84D411}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist", "DigitR.Core.InputProvider.Mnist\DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist.csproj", "{970D5E43-4C7A-4598-AD75-7D9C6E84D411}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Logging", "DigitR.Common.Logging\DigitR.Common.Logging.csproj", "{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Dependencies", "DigitR.Common.Dependencies\DigitR.Common.Dependencies.csproj", "{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.InputProvider.Image", "DigitR.Core.InputProvider.Image\DigitR.Core.NeuralNetwork.InputProvider.Image.csproj", "{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.InputProvider.Image", "DigitR.Core.NeuralNetwork.InputProvider.Image\DigitR.Core.NeuralNetwork.InputProvider.Image.csproj", "{140A9A1C-B035-4D44-A95F-4FF08FDD48A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,10 @@ Global
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FBF7D71-38BA-49E5-AF98-8C83E804C14A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140A9A1C-B035-4D44-A95F-4FF08FDD48A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140A9A1C-B035-4D44-A95F-4FF08FDD48A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140A9A1C-B035-4D44-A95F-4FF08FDD48A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140A9A1C-B035-4D44-A95F-4FF08FDD48A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

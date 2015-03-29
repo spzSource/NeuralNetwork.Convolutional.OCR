@@ -1,0 +1,56 @@
+﻿using System;
+
+using DigitR.Core.InputProvider;
+using DigitR.Core.Output;
+
+namespace DigitR.Core.NeuralNetwork.Cnn
+{
+    public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor
+    {
+        private readonly IInputProvider trainingInputProvider;
+        private readonly IOutputProvider outputProvider;
+        private readonly INeuralNetwork<byte[], byte> network;
+
+        public CnnNeuralNetworkProcessor(
+            IInputProvider inputProvider,
+            IInputProvider trainingInputProvider,
+            IOutputProvider outputProvider,
+            INeuralNetwork<byte[], byte> network)
+        {
+            if (network == null)
+            {
+                throw new ArgumentNullException("network");
+            }
+            if (outputProvider == null)
+            {
+                throw new ArgumentNullException("outputProvider");
+            }
+            if (trainingInputProvider == null)
+            {
+                throw new ArgumentNullException("trainingInputProvider");
+            }
+            
+            this.trainingInputProvider = trainingInputProvider;
+            this.outputProvider = outputProvider;
+            this.network = network;
+        }
+
+        public bool Process()
+        {
+            
+            outputProvider.Push(network.Process(trainingInputProvider.Retrieve()));
+        }
+
+        public bool Train()
+        {
+            bool result = false;
+
+            foreach (IInputPattern<byte[], byte> trainingPattern in trainingInputProvider.Retrieve())
+            {
+                result |= network.ProcessTraining(trainingPattern);
+            }
+
+            return result;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 using DigitR.Core.InputProvider;
 
@@ -11,7 +11,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// </summary>
         public void Initialize()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// </summary>
         public void Deinitialize()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -28,18 +28,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// </summary>
         /// <param name="inputPattern">The input pattern for determine.</param>
         /// <returns>The result successful flag.</returns>
-        public bool Process(IInputPattern<byte[], byte> inputPattern)
+        public byte Process(IInputPattern<byte[]> inputPattern)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Provides a training logic according to passed as parameters patterns.
         /// </summary>
         /// <returns>The result successful flag.</returns>
-        public bool ProcessTraining(IEnumerable<IInputPattern<byte[], byte>> trainingPatterns)
+        public bool ProcessTraining(IInputPattern<byte[]> inputPattern)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

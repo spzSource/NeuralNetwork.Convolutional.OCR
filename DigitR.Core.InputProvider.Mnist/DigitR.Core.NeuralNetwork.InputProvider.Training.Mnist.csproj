@@ -7,8 +7,8 @@
     <ProjectGuid>{970D5E43-4C7A-4598-AD75-7D9C6E84D411}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core.InputProvider.Mnist</RootNamespace>
-    <AssemblyName>DigitR.Core.InputProvider.Mnist</AssemblyName>
+    <RootNamespace>DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist</RootNamespace>
+    <AssemblyName>DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
@@ -89,10 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitR.Core.InputProvider.Image\DigitR.Core.NeuralNetwork.InputProvider.Image.csproj">
-      <Project>{5fbf7d71-38ba-49e5-af98-8c83e804c14a}</Project>
-      <Name>DigitR.Core.NeuralNetwork.InputProvider.Image</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>

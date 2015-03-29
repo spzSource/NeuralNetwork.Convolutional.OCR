@@ -42,7 +42,8 @@
     <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
     <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />
-    <Compile Include="CnnNeuralNetworkBuilder.cs" />
+    <Compile Include="CnnNeuralNetworkProcessorBuilder.cs" />
+    <Compile Include="CnnNeuralNetworkProcessor.cs" />
     <Compile Include="Primitives\CnnConnection.cs" />
     <Compile Include="Primitives\CnnLayer.cs" />
     <Compile Include="Primitives\CnnNeuron.cs" />
@@ -57,6 +58,10 @@
     <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>DigitR.Core.NeuralNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.Output\DigitR.Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>DigitR.Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

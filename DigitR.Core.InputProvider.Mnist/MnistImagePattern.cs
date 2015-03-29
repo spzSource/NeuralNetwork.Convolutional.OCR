@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-using DigitR.Core.InputProvider.Image;
+using DigitR.Core.InputProvider;
 
-namespace DigitR.Core.InputProvider.Mnist
+namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
-    public class MnistImagePattern : IImagePattern<byte, byte[]>
+    public class MnistImagePattern : IInputTrainingPattern<byte, byte[]>
     {
         private const int MnistPatternSize = 28;
         public  const int MnistPatternSizeInBytes = MnistPatternSize * MnistPatternSize;

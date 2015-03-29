@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 
-using DigitR.Core.InputProvider;
-
-namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
+namespace DigitR.Core.InputProvider.Mnist
 {
-    public class MnistImageInputProvider : IInputProvider
+    public class MnistImageInputProvider : IImageInputProvider<byte, byte[]>
     {
         private readonly string labelPath;
         private readonly string sourcePath;
