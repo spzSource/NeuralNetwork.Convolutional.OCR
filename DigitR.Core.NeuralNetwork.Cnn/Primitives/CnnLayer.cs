@@ -5,7 +5,7 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
-    public class CnnLayer : ILayer<CnnNeuron, CnnWeight>
+    public class CnnLayer : ILayer<CnnNeuron>
     {
         private readonly CnnNeuron[] neurons;
         private readonly CnnWeight[] weights;
@@ -16,6 +16,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 
             neurons = new CnnNeuron[neuronsCount];
             weights = new CnnWeight[neuronsCount];
+        }
+
+        public bool IsFirst
+        {
+            get;
+            private set;
+        }
+
+        public bool IsLast
+        {
+            get;
+            private set;
         }
 
         public CnnNeuron[] Neurons
@@ -36,16 +48,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 
         public void Calculate()
         {
-            foreach (CnnNeuron neuron in Neurons)
-            {
-                neuron.Output = neuron.Calculate();
-            }
         }
 
-        /// <summary>
-        /// Connects this layer to layer passed as parameter.
-        /// </summary>
-        public void ConnectToLayer(ILayer<CnnNeuron, CnnWeight> layer)
+        public void ConnectToLayer(ILayer<CnnNeuron> layer)
         {
             throw new NotImplementedException();
         }

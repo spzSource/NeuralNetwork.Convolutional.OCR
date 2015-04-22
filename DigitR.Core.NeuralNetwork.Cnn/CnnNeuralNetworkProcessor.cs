@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using DigitR.Core.InputProvider;
 using DigitR.Core.Output;
 
@@ -10,13 +11,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private readonly IInputProvider inputProvider;
         private readonly IInputProvider trainingInputProvider;
         private readonly IOutputProvider outputProvider;
-        private readonly INeuralNetwork<byte[], byte> network;
+        private readonly IMultiLayerNeuralNetwork<double[], double[]> network;
 
         public CnnNeuralNetworkProcessor(
             IInputProvider inputProvider,
             IInputProvider trainingInputProvider,
             IOutputProvider outputProvider,
-            INeuralNetwork<byte[], byte> network)
+            IMultiLayerNeuralNetwork<double[], double[]> network)
         {
             if (network == null)
             {
@@ -43,7 +44,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public bool Process()
         {
-            foreach (IInputPattern<byte[]> input in inputProvider.Retrieve())
+            foreach (IInputPattern<double[]> input in inputProvider.Retrieve())
             {
                 outputProvider.Push(network.Process(input));
             }
@@ -53,10 +54,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public bool Train()
         {
-            foreach (IInputTrainingPattern<byte, byte[]> trainingPattern in trainingInputProvider.Retrieve())
-            {
-                network.ProcessTraining(trainingPattern);
-            }
+            IEnumerable<IInputTrainingPattern<double[], double[]>> patterns = trainingInputProvider
+                .Retrieve()
+                .Cast<IInputTrainingPattern<double[], double[]>>();
+                
+            network.ProcessTraining(patterns);
 
             return true;
         }

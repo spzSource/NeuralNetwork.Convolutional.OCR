@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.Core.NeuralNetwork.Behaviours;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<byte[], byte>, ITrainable<byte, byte[]>
+    public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double[], double[]>
     {
         private readonly IOutputAlgorithm<double, CnnConnection> outputAlgorithm;
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
-        private readonly ITrainingAlgorithm<IMultiLayerNeuralNetwork<byte[], byte>, IInputTrainingPattern<byte, byte[]>> trainingAlgorithm;
+        private readonly ITrainingAlgorithm<IMultiLayerNeuralNetwork<double[], double[]>, IInputTrainingPattern<double[], double[]>> trainingAlgorithm;
 
         public CnnNeuralNetwork(
             IOutputAlgorithm<double, CnnConnection> outputAlgorithm, 
             IActivationAlgorithm<double, double> activationAlgorithm,
-            ITrainingAlgorithm<IMultiLayerNeuralNetwork<byte[], byte>, IInputTrainingPattern<byte, byte[]>> trainingAlgorithm)
+            ITrainingAlgorithm<IMultiLayerNeuralNetwork<double[], double[]>, 
+            IInputTrainingPattern<double[], double[]>> trainingAlgorithm)
         {
             if (outputAlgorithm == null)
             {
@@ -47,6 +46,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                 return null;
             }
         }
+        
+        public void ProcessTraining(IEnumerable<IInputTrainingPattern<double[], double[]>> patterns)
+        {
+            trainingAlgorithm.ProcessTraining(this, patterns);
+        }
 
         /// <summary>
         /// Provides a determination logic according to input pattern 
@@ -54,14 +58,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// </summary>
         /// <param name="inputPattern">The input pattern for determine.</param>
         /// <returns>The result successful flag.</returns>
-        public byte Process(IInputPattern<byte[]> inputPattern)
+        public double[] Process(IInputPattern<double[]> inputPattern)
         {
             throw new NotImplementedException();
-        }
-
-        public void ProcessTraining(IEnumerable<IInputTrainingPattern<byte, byte[]>> patterns)
-        {
-            trainingAlgorithm.ProcessTraining(this, patterns);
         }
     }
 }

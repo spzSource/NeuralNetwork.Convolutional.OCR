@@ -1,4 +1,6 @@
 ﻿// Creator: Popitich Aleksandr Date: 20 04 2015 17:32
+
+using DigitR.Core.NeuralNetwork.Behaviours;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork
@@ -8,7 +10,7 @@ namespace DigitR.Core.NeuralNetwork
     /// </summary>
     /// <typeparam name="TInput"></typeparam>
     /// <typeparam name="TOutput"></typeparam>
-    public interface IMultiLayerNeuralNetwork<in TInput, out TOutput> : INeuralNetwork<TInput, TOutput>
+    public interface IMultiLayerNeuralNetwork<in TInput, out TOutput> : INeuralNetwork<TInput, TOutput>, ITrainable<double[], double[]>
     {
         /// <summary>
         /// All layers.
