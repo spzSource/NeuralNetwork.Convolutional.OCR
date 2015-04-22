@@ -3,7 +3,7 @@
     /// <summary>
     /// Provides a abstract primitive for neuron connection.
     /// </summary>
-    public interface IConnection<out TNeuronOutput, TWeightValue>
+    public interface IConnection<TNeuronOutput, TWeightValue>
     {
         INeuron<TNeuronOutput> Neuron
         {
@@ -13,6 +13,12 @@
         IWeight<TWeightValue> Weight
         {
             get;
+        }
+
+        object AditionalInfo
+        {
+            get;
+            set;
         }
     }
 }

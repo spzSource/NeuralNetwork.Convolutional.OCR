@@ -5,14 +5,19 @@ namespace DigitR.Core.NeuralNetwork.Primitives
     /// <summary>
     /// Provides an interface for abstract neuron.
     /// </summary>
-    public interface INeuron<TOutput>
+    public interface INeuron<TValue>
     {
-        IList<IConnection<TOutput, TOutput>> Inputs
+        IList<IConnection<TValue, TValue>> Inputs
+        {
+            get;
+        }
+
+        IList<IConnection<TValue, TValue>> Outputs
         {
             get;
         }
             
-        TOutput Output
+        TValue Output
         {
             get;
             set;

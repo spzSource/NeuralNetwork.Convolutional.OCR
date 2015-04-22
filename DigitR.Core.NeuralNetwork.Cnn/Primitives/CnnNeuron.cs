@@ -7,7 +7,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
     public class CnnNeuron : INeuron<double>
     {
         private readonly bool isBias;
-        private readonly IList<IConnection<double, double>> connections = 
+        private readonly IList<IConnection<double, double>> inputConnections = 
+            new List<IConnection<double, double>>();
+        private readonly IList<IConnection<double, double>> outputConnections =
             new List<IConnection<double, double>>();
 
         public CnnNeuron(bool isBias)
@@ -16,7 +18,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             
             if (isBias)
             {
-                connections = null;
+                outputConnections = null;
                 Output = 1;
             }
         }
@@ -25,7 +27,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         {
             get
             {
-                return connections;
+                return inputConnections;
+            }
+        }
+
+        public IList<IConnection<double, double>> Outputs
+        {
+            get
+            {
+                return outputConnections;
             }
         }
 

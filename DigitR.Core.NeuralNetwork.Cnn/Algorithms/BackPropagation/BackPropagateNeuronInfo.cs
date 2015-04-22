@@ -1,6 +1,6 @@
 ﻿namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 {
-    public class BackPropagateInfo
+    public class BackPropagateNeuronInfo
     {
         public double LastInducesLocalAreaValue
         {

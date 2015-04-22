@@ -5,14 +5,14 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
-    public class CnnConnection : IConnection<CnnNeuron, CnnWeight>
+    public class CnnConnection : IConnection<double, double>
     {
-        private readonly CnnNeuron neuron;
-        private readonly CnnWeight weight;
+        private readonly INeuron<double> neuron;
+        private readonly IWeight<double> weight;
 
         public CnnConnection(
-            CnnNeuron neuron,
-            CnnWeight weight)
+            INeuron<double> neuron,
+            IWeight<double> weight)
         {
             Contract.Requires<ArgumentException>(neuron != null);
             Contract.Requires<ArgumentException>(weight != null);
@@ -21,7 +21,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             this.weight = weight;
         }
 
-        public CnnNeuron Neuron
+        public INeuron<double> Neuron
         {
             get
             {
@@ -29,12 +29,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public CnnWeight Weight
+        public IWeight<double> Weight
         {
             get
             {
                 return weight;
             }
+        }
+
+        public object AditionalInfo
+        {
+            get;
+            set;
         }
     }
 }
