@@ -5,9 +5,9 @@ namespace DigitR.Core.NeuralNetwork.Primitives
     /// <summary>
     /// Provides an interface for abstract neuron.
     /// </summary>
-    public interface INeuron<TOutput, TConnection>
+    public interface INeuron<TOutput>
     {
-        IList<TConnection> Inputs
+        IList<IConnection<TOutput, TOutput>> Inputs
         {
             get;
         }
@@ -18,9 +18,20 @@ namespace DigitR.Core.NeuralNetwork.Primitives
             set;
         }
 
+        bool IsBiasNeuron
+        {
+            get;
+        }
+
+        object AditionalInfo
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Performs output calculation for this neuron.
         /// </summary>
-        TOutput Calculate();
+        void CalculateOutput();
     }
 }

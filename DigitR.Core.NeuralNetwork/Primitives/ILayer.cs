@@ -4,21 +4,22 @@
     /// The layer for specific neural network.
     /// </summary>
     /// <typeparam name="TNeuron">The type of neuron for this layer.</typeparam>
-    /// <typeparam name="TWeight">The type of weight for this layer.</typeparam>
-    public interface ILayer<TNeuron, TWeight>
+    public interface ILayer<TNeuron>
     {
-        /// <summary>
-        /// All neurons for this layer.
-        /// </summary>
-        TNeuron[] Neurons
+        bool IsFirst
+        {
+            get;
+        }
+
+        bool IsLast
         {
             get;
         }
 
         /// <summary>
-        /// All weights for this layer.
+        /// All neurons for this layer.
         /// </summary>
-        TWeight[] Weights
+        TNeuron[] Neurons
         {
             get;
         }
@@ -31,6 +32,6 @@
         /// <summary>
         /// Connects this layer to layer passed as parameter.
         /// </summary>
-        void ConnectToLayer(ILayer<TNeuron, TWeight> layer);
+        void ConnectToLayer(ILayer<TNeuron> layer);
     }
 }

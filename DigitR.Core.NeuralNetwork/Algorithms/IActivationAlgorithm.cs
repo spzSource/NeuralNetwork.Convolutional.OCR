@@ -12,5 +12,12 @@
         /// </summary>
         /// <returns></returns>
         TOutput Calculate(TInducedArea inducedArea);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inducedArea"></param>
+        /// <returns></returns>
+        TOutput CalculateFirstDerivative(TInducedArea inducedArea);
     }
 }

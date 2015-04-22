@@ -6,12 +6,26 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms
 {
     public class SigmoidActivationAlgorithm : IActivationAlgorithm<double, double>
     {
+        private const double Alpha = 1;
+
         /// <summary>
         /// Calculates a sigmoid function.
         /// </summary>
         public double Calculate(double inducedArea)
         {
-            return 1.0 / (1 + Math.Exp(-1 * inducedArea));
+            return CalculateSigmoid(inducedArea);
+        }
+
+        public double CalculateFirstDerivative(double inducedArea)
+        {
+            double activationValue = CalculateSigmoid(inducedArea);
+
+            return Alpha * activationValue * (1 - activationValue);
+        }
+
+        private double CalculateSigmoid(double source)
+        {
+            return 1.0 / (1 + Math.Exp(-1 * Alpha * source));
         }
     }
 }

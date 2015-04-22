@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
-    public class CnnNeuron : INeuron<double, CnnConnection>
+    public class CnnNeuron : INeuron<double>
     {
-        private readonly IOutputAlgorithm<double, CnnConnection> outputAlgorithm;
+        private readonly bool isBias;
+        private readonly IList<IConnection<double, double>> connections = 
+            new List<IConnection<double, double>>();
 
-        public CnnNeuron(IOutputAlgorithm<double, CnnConnection> outputAlgorithm)
+        public CnnNeuron(bool isBias)
         {
-            if (outputAlgorithm == null)
+            this.isBias = isBias;
+            
+            if (isBias)
             {
-                throw new ArgumentNullException("outputAlgorithm");
+                connections = null;
+                Output = 1;
             }
-
-            this.outputAlgorithm = outputAlgorithm;
         }
 
-        private readonly IList<CnnConnection> connections = new List<CnnConnection>(); 
-
-        public IList<CnnConnection> Inputs
+        public IList<IConnection<double, double>> Inputs
         {
             get
             {
@@ -37,12 +35,25 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             set;
         }
 
+        public bool IsBiasNeuron
+        {
+            get
+            {
+                return isBias;
+            }
+        }
+
+        public object AditionalInfo
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Performs output calculation for this neuron.
         /// </summary>
-        public double Calculate()
+        public void CalculateOutput()
         {
-            return outputAlgorithm.Calculate(Inputs.ToList());
         }
     }
 }

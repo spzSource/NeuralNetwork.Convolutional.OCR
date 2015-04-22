@@ -41,8 +41,9 @@
   <ItemGroup>
     <Compile Include="Algorithms\IActivationAlgorithm.cs" />
     <Compile Include="Algorithms\IOutputAlgorithm.cs" />
-    <Compile Include="Behaviours\IPersistable.cs" />
+    <Compile Include="Algorithms\ITrainingAlgorithm.cs" />
     <Compile Include="Behaviours\ITrainable.cs" />
+    <Compile Include="IMultiLayerNeuralNetwork.cs" />
     <Compile Include="INeuralNetworkProcessor.cs" />
     <Compile Include="INeuralNetwork.cs" />
     <Compile Include="INeuralNetworkProcessorBuilder.cs" />

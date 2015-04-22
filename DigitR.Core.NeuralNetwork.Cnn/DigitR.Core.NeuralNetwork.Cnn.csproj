@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\BackPropagation\BackPropagateInfo.cs" />
+    <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
     <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
     <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />

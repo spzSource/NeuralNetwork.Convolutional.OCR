@@ -1,12 +1,11 @@
 ﻿using DigitR.Core.InputProvider;
-using DigitR.Core.NeuralNetwork.Behaviours;
 
 namespace DigitR.Core.NeuralNetwork
 {
     /// <summary>
     /// Provides an interface of neural network.
     /// </summary>
-    public interface INeuralNetwork<in TInput, out TOuput> : ITrainable<TInput>, IPersistable
+    public interface INeuralNetwork<in TInput, out TOuput>
     {
         /// <summary>
         /// Provides a determination logic according to input pattern 
