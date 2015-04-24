@@ -3,12 +3,12 @@
     /// <summary>
     /// Provides a specific neural network building.
     /// </summary>
-    public interface INeuralNetworkProcessorBuilder
+    public interface INeuralNetworkBuilder<in TInput, out TOutput>
     {
         /// <summary>
         /// Performs building specific neural network instance.
         /// </summary>
         /// <returns>The instance of specific neural network.</returns>
-        INeuralNetworkProcessor Build();
+        INeuralNetwork<TInput, TOutput> Build();
     }
 }

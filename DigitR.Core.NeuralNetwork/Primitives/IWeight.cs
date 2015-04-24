@@ -11,5 +11,13 @@
             get;
             set;
         }
+
+        object AdditionalInfo
+        {
+            get;
+            set;
+        }
+
+        TInfo GetInfo<TInfo>();
     }
 }

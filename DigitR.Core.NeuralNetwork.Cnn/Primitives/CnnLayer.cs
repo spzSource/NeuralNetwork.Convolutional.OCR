@@ -7,27 +7,41 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
     public class CnnLayer : ILayer<CnnNeuron>
     {
-        private readonly CnnNeuron[] neurons;
-        private readonly CnnWeight[] weights;
+        private readonly bool isFirst;
+        private readonly bool isLast;
 
-        public CnnLayer(int neuronsCount)
+        private readonly CnnNeuron[] neurons;
+
+        public CnnLayer(int neuronsCount, bool isFirst, bool isLast)
         {
             Contract.Requires<ArgumentException>(neuronsCount > 0);
 
-            neurons = new CnnNeuron[neuronsCount];
-            weights = new CnnWeight[neuronsCount];
+            this.isFirst = isFirst;
+            this.isLast = isLast;
+
+            neurons = new CnnNeuron[neuronsCount + 1];
+            
+            neurons[0] = new CnnNeuron(isBias: true);
+            for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
+            {
+                neurons[neuronIndex] = new CnnNeuron(isBias: false);
+            }
         }
 
         public bool IsFirst
         {
-            get;
-            private set;
+            get
+            {
+                return isFirst;
+            }
         }
 
         public bool IsLast
         {
-            get;
-            private set;
+            get
+            {
+                return isLast;
+            }
         }
 
         public CnnNeuron[] Neurons
@@ -38,21 +52,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public CnnWeight[] Weights
-        {
-            get
-            {
-                return weights;
-            }
-        }
-
         public void Calculate()
         {
         }
 
-        public void ConnectToLayer(ILayer<CnnNeuron> layer)
+        public void ConnectToLayer(ILayer<CnnNeuron> layer, IConnectionScheme<CnnNeuron> connectionScheme)
         {
-            throw new NotImplementedException();
+            connectionScheme.Apply(Neurons, layer.Neurons);
         }
     }
 }

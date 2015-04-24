@@ -9,5 +9,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             get;
             set;
         }
+
+        public object AdditionalInfo
+        {
+            get;
+            set;
+        }
+
+        public TInfo GetInfo<TInfo>()
+        {
+            return (TInfo)AdditionalInfo;
+        }
     }
 }

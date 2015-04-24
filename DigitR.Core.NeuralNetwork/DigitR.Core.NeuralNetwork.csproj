@@ -43,10 +43,11 @@
     <Compile Include="Algorithms\IOutputAlgorithm.cs" />
     <Compile Include="Algorithms\ITrainingAlgorithm.cs" />
     <Compile Include="Behaviours\ITrainable.cs" />
+    <Compile Include="IConnectionScheme.cs" />
     <Compile Include="IMultiLayerNeuralNetwork.cs" />
     <Compile Include="INeuralNetworkProcessor.cs" />
     <Compile Include="INeuralNetwork.cs" />
-    <Compile Include="INeuralNetworkProcessorBuilder.cs" />
+    <Compile Include="INeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
     <Compile Include="Primitives\ILayer.cs" />
     <Compile Include="Primitives\INeuron.cs" />

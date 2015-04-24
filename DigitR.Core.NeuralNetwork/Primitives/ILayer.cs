@@ -32,6 +32,6 @@
         /// <summary>
         /// Connects this layer to layer passed as parameter.
         /// </summary>
-        void ConnectToLayer(ILayer<TNeuron> layer);
+        void ConnectToLayer(ILayer<TNeuron> layer, IConnectionScheme<TNeuron> connectionScheme);
     }
 }

@@ -20,12 +20,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         public BackPropagationAlgorithm(
             IActivationAlgorithm<double, double> activationAlgorithm)
         {
+            WeightCorrectionApplier weightCorrectionsApplier = new WeightCorrectionApplier(TrainingSpeed);
+
             algorithmSteps = new ReadOnlyCollection<IPropagationStep>(new List<IPropagationStep>
             {
                 new SetNetworkInputStep(),
                 new ForwardPropagateLayersStep(activationAlgorithm),
-                new BackPropagateOutputLayerStep(activationAlgorithm, new WeightCorrectionCalculator(TrainingSpeed)),
-                new BackPropagateHiddenLayersStep(activationAlgorithm, new WeightCorrectionCalculator(TrainingSpeed)),
+                new BackPropagateOutputLayerStep(activationAlgorithm, weightCorrectionsApplier),
+                new BackPropagateHiddenLayersStep(activationAlgorithm, weightCorrectionsApplier),
                 new CommitWeightCorrectionsStep()
             });
         }

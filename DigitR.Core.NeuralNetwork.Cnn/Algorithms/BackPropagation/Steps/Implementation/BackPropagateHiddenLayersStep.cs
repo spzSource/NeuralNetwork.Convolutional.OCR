@@ -11,22 +11,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
     internal class BackPropagateHiddenLayersStep : IPropagationStep
     {
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
-        private readonly WeightCorrectionCalculator weightCorrectionCalculator;
+        private readonly WeightCorrectionApplier weightCorrectionApplier;
 
         public BackPropagateHiddenLayersStep(
             IActivationAlgorithm<double, double> activationAlgorithm,
-            WeightCorrectionCalculator weightCorrectionCalculator)
+            WeightCorrectionApplier weightCorrectionApplier)
         {
             if (activationAlgorithm == null)
             {
                 throw new ArgumentNullException("activationAlgorithm");
             }
-            if (weightCorrectionCalculator == null)
+            if (weightCorrectionApplier == null)
             {
-                throw new ArgumentNullException("weightCorrectionCalculator");
+                throw new ArgumentNullException("weightCorrectionApplier");
             }
             this.activationAlgorithm = activationAlgorithm;
-            this.weightCorrectionCalculator = weightCorrectionCalculator;
+            this.weightCorrectionApplier = weightCorrectionApplier;
         }
 
         public void Process(IMultiLayerNeuralNetwork<double[], double[]> network, IInputTrainingPattern<double[], double[]> pattern)
@@ -48,14 +48,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
                     currentNeuronInfo.LocalGradient = localGradient;
 
-                    foreach (IConnection<double, double> inputConnections in currentNeuron.Inputs)
-                    {
-                        inputConnections.AditionalInfo = new BackPropagateConnectionInfo
-                        {
-                            WeightCorrection = weightCorrectionCalculator
-                                .Calculate(currentNeuronInfo.LocalGradient, inputConnections.Neuron.Output)
-                        };
-                    }
+                    weightCorrectionApplier.Apply(currentNeuron);
                 }
             }
         }
