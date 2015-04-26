@@ -10,7 +10,7 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
-    internal class FirstToSecondConnectionScheme : IConnectionScheme<CnnNeuron>
+    internal class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
     {
         private const int Step = 2;
 
@@ -32,20 +32,20 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         }
 
         public void Apply(
-            ILayer<CnnNeuron> leftLayer,
-            ILayer<CnnNeuron> rightLayer)
+            ILayer<INeuron<double>> leftLayer,
+            ILayer<INeuron<double>> rightLayer)
         {
             FeatureMapWeightsCreator featureMapWeightsCreator = new FeatureMapWeightsCreator();
 
-            FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
-                Step,
-                kernelSize,
-                source2DSize,
-                new ReadOnlyCollection<CnnNeuron>(leftLayer.Neurons));
-
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
-                FeatureMap<CnnNeuron> featureMap = new FeatureMap<CnnNeuron>();
+                FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
+                    Step,
+                    kernelSize,
+                    source2DSize,
+                    new ReadOnlyCollection<INeuron<double>>(leftLayer.Neurons));
+
+                FeatureMap<INeuron<double>> featureMap = new FeatureMap<INeuron<double>>();
 
                 CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(kernelSize * kernelSize + 1);
 
@@ -53,9 +53,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 while (featureMapEnumerator.MoveNext())
                 {
-                    IReadOnlyList<CnnNeuron> kernelNeurons = featureMapEnumerator.Current;
+                    IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
-                    CnnNeuron currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+                    INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
 
                     for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                     {
@@ -77,7 +77,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 ((CnnLayer)rightLayer).AddFeatureMap(featureMap);
 
-                Contract.Assert(neuronsPerFeatureMapCounter.Count(source2DSize, kernelSize, Step) == featureMap.Neuron.Count,
+                int expectedCount = neuronsPerFeatureMapCounter.Count(source2DSize, kernelSize, Step);
+
+                Contract.Assert(expectedCount == featureMap.Neurons.Count,
                     String.Format("Connection scheme {{first-to-second}}. Wrong number of neuron inputs. Possible wrong implementation of enumeartor (type: {0}).",
                         featureMapEnumerator.GetType().Name));
             }

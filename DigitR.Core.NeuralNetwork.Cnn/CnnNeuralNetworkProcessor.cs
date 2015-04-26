@@ -11,17 +11,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private readonly IInputProvider inputProvider;
         private readonly IInputProvider trainingInputProvider;
         private readonly IOutputProvider outputProvider;
-        private readonly IMultiLayerNeuralNetwork<double[], double[]> network;
+        private readonly INeuralNetworkBuilder<double[], double[]> networkBuilder;
+        private readonly IMultiLayerNeuralNetwork<double> network; 
 
         public CnnNeuralNetworkProcessor(
             IInputProvider inputProvider,
             IInputProvider trainingInputProvider,
             IOutputProvider outputProvider,
-            IMultiLayerNeuralNetwork<double[], double[]> network)
+            INeuralNetworkBuilder<double[], double[]> networkBuilder)
         {
-            if (network == null)
+            if (networkBuilder == null)
             {
-                throw new ArgumentNullException("network");
+                throw new ArgumentNullException("networkBuilder");
             }
             if (inputProvider == null)
             {
@@ -39,7 +40,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             this.inputProvider = inputProvider;
             this.trainingInputProvider = trainingInputProvider;
             this.outputProvider = outputProvider;
-            this.network = network;
+            this.networkBuilder = networkBuilder;
+
+            network = networkBuilder.Build() as IMultiLayerNeuralNetwork<double>;
         }
 
         public bool Process()

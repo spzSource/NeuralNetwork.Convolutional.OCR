@@ -6,29 +6,39 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
-    public class CnnLayer : ILayer<CnnNeuron>
+    public class CnnLayer : ILayer<INeuron<double>>
     {
         private readonly bool isFirst;
         private readonly bool isLast;
 
         private readonly CnnNeuron[] neurons;
-        private readonly IList<FeatureMap<CnnNeuron>> innerFeatureMaps; 
+        private readonly IList<FeatureMap<INeuron<double>>> innerFeatureMaps; 
 
         public CnnLayer(int neuronsCount, bool isFirst, bool isLast)
         {
-            Contract.Requires<ArgumentException>(neuronsCount > 0);
-
             this.isFirst = isFirst;
             this.isLast = isLast;
 
-            neurons = new CnnNeuron[neuronsCount + 1];
-            
-            neurons[0] = new CnnNeuron(isBias: true);
-            for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
+            if (!isLast && !isFirst)
             {
-                neurons[neuronIndex] = new CnnNeuron(isBias: false);
+                neurons = new CnnNeuron[neuronsCount + 1];
+
+                neurons[0] = new CnnNeuron(isBias: true);
+                for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
+                {
+                    neurons[neuronIndex] = new CnnNeuron(isBias: false);
+                }
             }
-            innerFeatureMaps = new List<FeatureMap<CnnNeuron>>();
+            else
+            {
+                neurons = new CnnNeuron[neuronsCount];
+
+                for (int neuronIndex = 0; neuronIndex < neurons.Length; neuronIndex++)
+                {
+                    neurons[neuronIndex] = new CnnNeuron(isBias: false);
+                }
+            }
+            innerFeatureMaps = new List<FeatureMap<INeuron<double>>>();
         }
 
         public bool IsFirst
@@ -47,7 +57,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public CnnNeuron[] Neurons
+        public INeuron<double>[] Neurons
         {
             get
             {
@@ -55,15 +65,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public IReadOnlyList<FeatureMap<CnnNeuron>> FeatureMaps
+        public IReadOnlyList<FeatureMap<INeuron<double>>> FeatureMaps
         {
             get
             {
-                return new ReadOnlyCollection<FeatureMap<CnnNeuron>>(innerFeatureMaps);
+                return new ReadOnlyCollection<FeatureMap<INeuron<double>>>(innerFeatureMaps);
             }
         }
 
-        public void AddFeatureMap(FeatureMap<CnnNeuron> featureMap)
+        public void AddFeatureMap(FeatureMap<INeuron<double>> featureMap)
         {
             innerFeatureMaps.Add(featureMap);
         }
@@ -72,7 +82,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         {
         }
 
-        public void ConnectToLayer(ILayer<CnnNeuron> layer, IConnectionScheme<CnnNeuron> connectionScheme)
+        public void ConnectToLayer(ILayer<INeuron<double>> layer, IConnectionScheme<INeuron<double>> connectionScheme)
         {
             connectionScheme.Apply(this, layer);
         }

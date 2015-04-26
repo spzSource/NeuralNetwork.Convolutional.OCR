@@ -10,7 +10,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 {
     public class BackPropagationAlgorithm
         : ITrainingAlgorithm<
-            IMultiLayerNeuralNetwork<double[], double[]>,
+            IMultiLayerNeuralNetwork<double>,
             IInputTrainingPattern<double[], double[]>>
     {
         private const double TrainingSpeed = 0.5;
@@ -33,7 +33,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         }
 
         public void ProcessTraining(
-            IMultiLayerNeuralNetwork<double[], double[]> network,
+            IMultiLayerNeuralNetwork<double> network,
             IEnumerable<IInputTrainingPattern<double[], double[]>> patterns)
         {
             foreach (IInputTrainingPattern<double[], double[]> pattern in patterns)
@@ -43,7 +43,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         }
 
         private void ProcessPattern(
-            IMultiLayerNeuralNetwork<double[], double[]> network,
+            IMultiLayerNeuralNetwork<double> network,
             IInputTrainingPattern<double[], double[]> pattern)
         {
             foreach (IPropagationStep propagationStep in algorithmSteps)

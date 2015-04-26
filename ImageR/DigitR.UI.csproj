@@ -205,6 +205,14 @@
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork.Cnn\DigitR.NeuralNetwork.Cnn.csproj">
+      <Project>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</Project>
+      <Name>DigitR.NeuralNetwork.Cnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
+      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
+      <Name>DigitR.Core.NeuralNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

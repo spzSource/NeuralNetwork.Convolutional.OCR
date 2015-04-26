@@ -18,7 +18,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             
             if (isBias)
             {
-                outputConnections = null;
                 Output = 1;
             }
         }

@@ -6,7 +6,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 {
     internal class CommitWeightCorrectionsStep : IPropagationStep
     {
-        public void Process(IMultiLayerNeuralNetwork<double[], double[]> network, IInputTrainingPattern<double[], double[]> pattern)
+        public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
             foreach (ILayer<object> layer in network.Layers)
             {

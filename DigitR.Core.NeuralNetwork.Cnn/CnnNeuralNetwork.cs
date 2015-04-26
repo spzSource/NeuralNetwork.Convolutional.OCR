@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-using NetworkInterface = DigitR.Core.NeuralNetwork.IMultiLayerNeuralNetwork<double[], double[]>;
+using NetworkInterface = DigitR.Core.NeuralNetwork.IMultiLayerNeuralNetwork<double>;
 using TrainingPatternInterface = DigitR.Core.InputProvider.IInputTrainingPattern<double[], double[]>;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double[], double[]>
+    public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double>
     {
-        private readonly IReadOnlyCollection<ILayer<object>> layers;
+        private readonly IReadOnlyCollection<ILayer<INeuron<double>>> layers;
         private readonly ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm;
 
         public CnnNeuralNetwork(
-            IReadOnlyCollection<CnnLayer> layers,
+            IReadOnlyCollection<ILayer<INeuron<double>>> layers,
             ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm)
         {
             if (layers == null)
@@ -30,15 +27,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             {
                 throw new ArgumentNullException("trainingAlgorithm");
             }
-            this.layers = new ReadOnlyCollection<ILayer<object>>(
-                layers.Cast<ILayer<object>>().ToList());
+            this.layers = layers;
             this.trainingAlgorithm = trainingAlgorithm;
         }
 
         /// <summary>
         /// All layers.
         /// </summary>
-        public IReadOnlyCollection<ILayer<object>> Layers
+        public IReadOnlyCollection<ILayer<INeuron<double>>> Layers
         {
             get
             {
@@ -46,7 +42,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             }
         }
 
-        public void ProcessTraining(IEnumerable<IInputTrainingPattern<double[], double[]>> patterns)
+        public void ProcessTraining(IEnumerable<TrainingPatternInterface> patterns)
         {
             trainingAlgorithm.ProcessTraining(this, patterns);
         }

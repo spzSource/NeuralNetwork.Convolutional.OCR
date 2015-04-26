@@ -12,7 +12,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             internalNeurons = new List<TNeuron>();
         }
 
-        public IReadOnlyCollection<TNeuron> Neuron
+        public IReadOnlyCollection<TNeuron> Neurons
         {
             get
             {

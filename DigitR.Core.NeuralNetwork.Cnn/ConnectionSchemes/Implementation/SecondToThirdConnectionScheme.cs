@@ -7,7 +7,7 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
-    internal class SecondToThirdConnectionScheme : IConnectionScheme<CnnNeuron>
+    internal class SecondToThirdConnectionScheme : IConnectionScheme<INeuron<double>>
     {
         private const int Step = 2;
 
@@ -29,8 +29,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         }
 
         public void Apply(
-            ILayer<CnnNeuron> leftLayer,
-            ILayer<CnnNeuron> rightLayer)
+            ILayer<INeuron<double>> leftLayer,
+            ILayer<INeuron<double>> rightLayer)
         {
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
@@ -46,11 +46,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 while (MoveNext(featureMapEnumerators))
                 {
-                    CnnNeuron currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+                    INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
 
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {
-                        IReadOnlyList<CnnNeuron> kernelNeurons = featureMapEnumerators[enumeratorIndex].Current;
+                        IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerators[enumeratorIndex].Current;
 
                         for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                         {
@@ -81,7 +81,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                     Step,
                     kernelSize,
                     source2DSize,
-                    cnnLeftLayer.FeatureMaps[enumeratorIndex].Neuron);
+                    cnnLeftLayer.FeatureMaps[enumeratorIndex].Neurons);
             }
             
             return featureMapEnumerators;
@@ -101,11 +101,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
         private bool MoveNext(FeatureMapEnumerator[] featureMapEnumerators)
         {
-            bool result = false;
+            bool result = true;
 
             foreach (FeatureMapEnumerator featureMapEnumerator in featureMapEnumerators)
             {
-                result = result || featureMapEnumerator.MoveNext();
+                result = result && featureMapEnumerator.MoveNext();
             }
 
             return result;

@@ -1,8 +1,11 @@
-﻿using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
+﻿using System.Collections.ObjectModel;
+
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
@@ -16,22 +19,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public INeuralNetwork<double[], double[]> Build()
         {
-            CnnLayer firstLayer  = new CnnLayer(FirstLayerSize,  isFirst: true,  isLast: false);
+            ILayer<INeuron<double>> firstLayer = new CnnLayer(FirstLayerSize, isFirst: true, isLast: false);
             CnnLayer secondLayer = new CnnLayer(SecondLayerSize, isFirst: false, isLast: false);
-            CnnLayer thirdLayer  = new CnnLayer(ThirdLayerSize,  isFirst: false, isLast: false);
+            CnnLayer thirdLayer = new CnnLayer(ThirdLayerSize, isFirst: false, isLast: false);
             CnnLayer fourthLayer = new CnnLayer(FourthLayerSize, isFirst: false, isLast: false);
-            CnnLayer fifthsLayer = new CnnLayer(FifthLayerSize,  isFirst: true,  isLast: true);
+            CnnLayer fifthsLayer = new CnnLayer(FifthLayerSize, isFirst: true, isLast: true);
 
             firstLayer.ConnectToLayer(
-                secondLayer, 
+                secondLayer,
                 new FirstToSecondConnectionScheme(
-                    source2DSize: 29, 
-                    featureMapCount: 6, 
+                    source2DSize: 29,
+                    featureMapCount: 6,
                     kernelSize: 5,
                     neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter()));
 
             secondLayer.ConnectToLayer(
-                thirdLayer, 
+                thirdLayer,
                 new SecondToThirdConnectionScheme(
                     source2DSize: 13,
                     featureMapCount: 50,
@@ -39,15 +42,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                     neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter()));
 
             thirdLayer.ConnectToLayer(
-                fourthLayer, 
+                fourthLayer,
                 new FullyConnectedScheme());
 
-            fourthLayer.ConnectToLayer(fifthsLayer, 
+            fourthLayer.ConnectToLayer(fifthsLayer,
                 new FullyConnectedScheme());
 
             return new CnnNeuralNetwork(
-                new [] { fifthsLayer, secondLayer, thirdLayer, fourthLayer, fifthsLayer },
-                new BackPropagationAlgorithm(new SigmoidActivationAlgorithm()) );
+                new [] { firstLayer, secondLayer, thirdLayer, fourthLayer, fifthsLayer },
+                new BackPropagationAlgorithm(new SigmoidActivationAlgorithm()));
         }
     }
 }

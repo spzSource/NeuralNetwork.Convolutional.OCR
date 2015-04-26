@@ -7,15 +7,14 @@ namespace DigitR.Core.NeuralNetwork
     /// <summary>
     /// Provides a multilayer neural network.
     /// </summary>
-    /// <typeparam name="TInput"></typeparam>
-    /// <typeparam name="TOutput"></typeparam>
-    public interface IMultiLayerNeuralNetwork<in TInput, out TOutput>
-        : INeuralNetwork<TInput, TOutput>, ITrainable<double[], double[]>
+    /// <typeparam name="TValue"></typeparam>
+    public interface IMultiLayerNeuralNetwork<TValue>
+        : INeuralNetwork<TValue[], TValue[]>, ITrainable<TValue[], TValue[]>
     {
         /// <summary>
         /// All layers.
         /// </summary>
-        IReadOnlyCollection<ILayer<object>> Layers
+        IReadOnlyCollection<ILayer<INeuron<TValue>>> Layers
         {
             get;
         }

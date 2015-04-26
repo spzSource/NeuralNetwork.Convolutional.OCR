@@ -7,7 +7,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
     internal class SetNetworkInputStep : IPropagationStep
     {
         public void Process(
-            IMultiLayerNeuralNetwork<double[], double[]> network, 
+            IMultiLayerNeuralNetwork<double> network, 
             IInputTrainingPattern<double[], double[]> pattern)
         {
             ILayer<INeuron<double>> inputLayer = network.GetLayer(layer => layer.IsFirst);

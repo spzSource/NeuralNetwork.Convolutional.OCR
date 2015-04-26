@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators
 {
-    internal class FeatureMapEnumerator : IEnumerator<IReadOnlyList<CnnNeuron>>
+    internal class FeatureMapEnumerator : IEnumerator<IReadOnlyList<INeuron<double>>>
     {
         private readonly int source2DSize;
         private readonly int kernelSize;
         private readonly int step;
 
-        private readonly IReadOnlyCollection<CnnNeuron> sourceNeurons;
-        private readonly CnnNeuron[,] sourceNeurons2D;
+        private readonly IReadOnlyCollection<INeuron<double>> sourceNeurons;
+        private readonly INeuron<double>[,] sourceNeurons2D;
 
         private int currentKernelCenterI;
         private int currentKernelCenterJ;
@@ -22,7 +23,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
             int step,
             int kernelSize,
             int source2DSize,
-            IReadOnlyCollection<CnnNeuron> sourceNeurons)
+            IReadOnlyCollection<INeuron<double>> sourceNeurons)
         {
             if (sourceNeurons == null)
             {
@@ -41,7 +42,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
             currentKernelCenterJ = currentKernelCenterI;
         }
 
-        public IReadOnlyList<CnnNeuron> Current
+        public IReadOnlyList<INeuron<double>> Current
         {
             get;
             private set;
@@ -58,22 +59,23 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
             int j = 0;
             int batchCount = 0;
 
-            foreach (CnnNeuron neuron in sourceNeurons)
+            foreach (INeuron<double> neuron in sourceNeurons)
             {
                 if (batchCount == source2DSize)
                 {
-                    sourceNeurons2D[i, j] = neuron;
                     ++i;
                     batchCount = 0;
+                    j = 0;
                 }
+                sourceNeurons2D[i, j] = neuron;
                 ++j;
                 ++batchCount;
             }
         }
 
-        private IList<CnnNeuron> GetCurrentKernel()
+        private IList<INeuron<double>> GetCurrentKernel()
         {
-            IList<CnnNeuron> neurons = new List<CnnNeuron>();
+            IList<INeuron<double>> neurons = new List<INeuron<double>>();
 
             #region Old code
 
@@ -111,7 +113,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
 
             for (int i = -step; i <= step; i++)
             {
-                for (int j = -step; i <= step; i++)
+                for (int j = -step; j <= step; j++)
                 {
                     neurons.Add(sourceNeurons2D[currentKernelCenterI + i, currentKernelCenterJ + j]);
                 }
@@ -122,14 +124,21 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
 
         public bool MoveNext()
         {
-            Current = new ReadOnlyCollection<CnnNeuron>(GetCurrentKernel());
-            currentKernelCenterJ += step;
-            if (currentKernelCenterJ <= sourceNeurons2D.GetLength(1))
+            bool notIsLast = currentKernelCenterI < sourceNeurons2D.GetLength(0) - 1;
+
+            if (notIsLast)
             {
-                currentKernelCenterJ = kernelSize / 2;
-                currentKernelCenterI += step;
+                Current = new ReadOnlyCollection<INeuron<double>>(GetCurrentKernel());
+                currentKernelCenterJ += step;
+
+                if (currentKernelCenterJ >= sourceNeurons2D.GetLength(1) - 1)
+                {
+                    currentKernelCenterJ = kernelSize / 2;
+                    currentKernelCenterI += step;
+                }
             }
-            return currentKernelCenterI <= sourceNeurons2D.GetLength(0);
+
+            return notIsLast;
         }
 
         public void Reset()

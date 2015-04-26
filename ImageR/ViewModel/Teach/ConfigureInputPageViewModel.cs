@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 
+using DigitR.Core.NeuralNetwork.Cnn;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -66,16 +68,8 @@ namespace DigitR.ViewModel.Teach
 
         private void SetInputFilePath(Action<string> setAction)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = false,
-            };
-
-            bool? dialogResult = openFileDialog.ShowDialog();
-            if (dialogResult == true)
-            {
-                setAction(openFileDialog.FileName);
-            }
+            CnnNeuralNetworkBuilder builder = new CnnNeuralNetworkBuilder();
+            builder.Build();
         }
     }
 }

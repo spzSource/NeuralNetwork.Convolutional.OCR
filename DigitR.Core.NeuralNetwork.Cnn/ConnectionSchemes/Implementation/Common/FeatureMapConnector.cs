@@ -25,7 +25,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
 
             while (featureMapEnumerator.MoveNext())
             {
-                IReadOnlyList<CnnNeuron> kernelNeurons = featureMapEnumerator.Current;
+                IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
                 CnnNeuron currentRightNeuron = rightCnnLayer.Neurons[rightLayerNeuronIndex];
 

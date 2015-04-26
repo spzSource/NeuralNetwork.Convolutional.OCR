@@ -14,8 +14,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             INeuron<double> neuron,
             IWeight<double> weight)
         {
-            Contract.Requires<ArgumentException>(neuron != null);
-            Contract.Requires<ArgumentException>(weight != null);
+            //Contract.Requires<ArgumentException>(neuron != null);
+            //Contract.Requires<ArgumentException>(weight != null);
 
             this.neuron = neuron;
             this.weight = weight;

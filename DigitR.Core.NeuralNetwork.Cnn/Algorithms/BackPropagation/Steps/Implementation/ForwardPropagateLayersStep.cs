@@ -19,7 +19,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             this.activationAlgorithm = activationAlgorithm;
         }
 
-        public void Process(IMultiLayerNeuralNetwork<double[], double[]> network, IInputTrainingPattern<double[], double[]> pattern)
+        public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
             foreach (ILayer<object> layer in network.Layers.Where(layer => !layer.IsFirst))
             {
