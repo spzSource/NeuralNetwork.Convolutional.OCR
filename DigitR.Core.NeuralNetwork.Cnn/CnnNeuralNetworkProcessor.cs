@@ -15,7 +15,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private readonly IMultiLayerNeuralNetwork<double> network; 
 
         public CnnNeuralNetworkProcessor(
-            IInputProvider inputProvider,
+            //IInputProvider inputProvider,
             IInputProvider trainingInputProvider,
             IOutputProvider outputProvider,
             INeuralNetworkBuilder<double[], double[]> networkBuilder)
@@ -24,10 +24,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             {
                 throw new ArgumentNullException("networkBuilder");
             }
-            if (inputProvider == null)
-            {
-                throw new ArgumentNullException("inputProvider");
-            }
+            //if (inputProvider == null)
+            //{
+            //    throw new ArgumentNullException("inputProvider");
+            //}
             if (outputProvider == null)
             {
                 throw new ArgumentNullException("outputProvider");

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+﻿using System.Collections.Generic;
 using System.IO;
 
 using DigitR.Core.InputProvider;
@@ -11,17 +9,6 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
     {
         private readonly string labelPath;
         private readonly string sourcePath;
-
-        public MnistImageInputProvider(
-            string labelPath,
-            string sourcePath)
-        {
-            Contract.Requires<ArgumentException>(labelPath != null);
-            Contract.Requires<ArgumentException>(sourcePath != null);
-
-            this.labelPath = labelPath;
-            this.sourcePath = sourcePath;
-        }
 
         public IEnumerable<object> Retrieve()
         {

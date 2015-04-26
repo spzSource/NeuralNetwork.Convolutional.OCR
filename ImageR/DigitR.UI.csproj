@@ -79,6 +79,10 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -201,6 +205,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DigitR.Common.Dependencies\DigitR.Common.Dependencies.csproj">
+      <Project>{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}</Project>
+      <Name>DigitR.Common.Dependencies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.InputProvider.Mnist\DigitR.NeuralNetwork.InputProvider.Training.Mnist.csproj">
+      <Project>{970D5E43-4C7A-4598-AD75-7D9C6E84D411}</Project>
+      <Name>DigitR.NeuralNetwork.InputProvider.Training.Mnist</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
@@ -212,6 +224,14 @@
     <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>DigitR.Core.NeuralNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.Output\DigitR.Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>DigitR.Core.NeuralNetwork.OutputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitRNeuralNetwork.OutputProvider.Text\DigitRNeuralNetwork.OutputProvider.Text.csproj">
+      <Project>{AA87413A-B156-4ED9-970B-4027FD7FAB5A}</Project>
+      <Name>DigitRNeuralNetwork.OutputProvider.Text</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

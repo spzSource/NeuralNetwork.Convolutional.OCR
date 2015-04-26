@@ -9,7 +9,14 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork;
+using DigitR.Core.NeuralNetwork.Cnn;
+using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
+using DigitR.Core.Output;
 using DigitR.ViewModel.Teach;
+
+using DigitRNeuralNetwork.OutputProvider.Text;
 
 using GalaSoft.MvvmLight.Ioc;
 
@@ -29,6 +36,11 @@ namespace DigitR.ViewModel
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            SimpleIoc.Default.Register<IInputProvider, MnistImageInputProvider>();
+            SimpleIoc.Default.Register<IOutputProvider, TextOutputProvider>();
+            SimpleIoc.Default.Register<INeuralNetworkBuilder<double[], double[]>, CnnNeuralNetworkBuilder>();
+            SimpleIoc.Default.Register<INeuralNetworkProcessor, CnnNeuralNetworkProcessor>();
 
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
         }

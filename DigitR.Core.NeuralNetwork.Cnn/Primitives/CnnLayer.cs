@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
+
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
@@ -82,7 +81,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         {
         }
 
-        public void ConnectToLayer(ILayer<INeuron<double>> layer, IConnectionScheme<INeuron<double>> connectionScheme)
+        public void ConnectToLayer(
+            ILayer<INeuron<double>> layer, 
+            IConnectionScheme<INeuron<double>> connectionScheme)
         {
             connectionScheme.Apply(this, layer);
         }

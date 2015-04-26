@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Logging", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Dependencies", "DigitR.Common.Dependencies\DigitR.Common.Dependencies.csproj", "{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitRNeuralNetwork.OutputProvider.Text", "DigitRNeuralNetwork.OutputProvider.Text\DigitRNeuralNetwork.OutputProvider.Text.csproj", "{AA87413A-B156-4ED9-970B-4027FD7FAB5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA87413A-B156-4ED9-970B-4027FD7FAB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA87413A-B156-4ED9-970B-4027FD7FAB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA87413A-B156-4ED9-970B-4027FD7FAB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA87413A-B156-4ED9-970B-4027FD7FAB5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
