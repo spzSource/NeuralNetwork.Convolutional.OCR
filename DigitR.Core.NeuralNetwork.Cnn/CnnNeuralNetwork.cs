@@ -1,52 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
 
+using NetworkInterface = DigitR.Core.NeuralNetwork.IMultiLayerNeuralNetwork<double[], double[]>;
+using TrainingPatternInterface = DigitR.Core.InputProvider.IInputTrainingPattern<double[], double[]>;
+
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
     public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double[], double[]>
     {
-        private readonly IOutputAlgorithm<double, CnnConnection> outputAlgorithm;
-        private readonly IActivationAlgorithm<double, double> activationAlgorithm;
-        private readonly ITrainingAlgorithm<IMultiLayerNeuralNetwork<double[], double[]>, IInputTrainingPattern<double[], double[]>> trainingAlgorithm;
+        private readonly IReadOnlyCollection<ILayer<object>> layers;
+        private readonly ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm;
 
         public CnnNeuralNetwork(
-            IOutputAlgorithm<double, CnnConnection> outputAlgorithm, 
-            IActivationAlgorithm<double, double> activationAlgorithm,
-            ITrainingAlgorithm<IMultiLayerNeuralNetwork<double[], double[]>, 
-            IInputTrainingPattern<double[], double[]>> trainingAlgorithm)
+            IReadOnlyCollection<CnnLayer> layers,
+            ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm)
         {
-            if (outputAlgorithm == null)
+            if (layers == null)
             {
-                throw new ArgumentNullException("outputAlgorithm");
-            }
-            if (activationAlgorithm == null)
-            {
-                throw new ArgumentNullException("activationAlgorithm");
+                throw new ArgumentNullException("layers");
             }
             if (trainingAlgorithm == null)
             {
                 throw new ArgumentNullException("trainingAlgorithm");
             }
-            this.outputAlgorithm = outputAlgorithm;
-            this.activationAlgorithm = activationAlgorithm;
+            this.layers = new ReadOnlyCollection<ILayer<object>>(
+                layers.Cast<ILayer<object>>().ToList());
             this.trainingAlgorithm = trainingAlgorithm;
         }
 
         /// <summary>
         /// All layers.
         /// </summary>
-        public ILayer<object>[] Layers
+        public IReadOnlyCollection<ILayer<object>> Layers
         {
             get
             {
-                return null;
+                return layers;
             }
         }
-        
+
         public void ProcessTraining(IEnumerable<IInputTrainingPattern<double[], double[]>> patterns)
         {
             trainingAlgorithm.ProcessTraining(this, patterns);

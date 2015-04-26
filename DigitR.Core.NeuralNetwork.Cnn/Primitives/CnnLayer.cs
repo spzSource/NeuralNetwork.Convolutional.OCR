@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
-
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
@@ -11,6 +12,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         private readonly bool isLast;
 
         private readonly CnnNeuron[] neurons;
+        private readonly IList<FeatureMap<CnnNeuron>> innerFeatureMaps; 
 
         public CnnLayer(int neuronsCount, bool isFirst, bool isLast)
         {
@@ -26,6 +28,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             {
                 neurons[neuronIndex] = new CnnNeuron(isBias: false);
             }
+            innerFeatureMaps = new List<FeatureMap<CnnNeuron>>();
         }
 
         public bool IsFirst
@@ -52,13 +55,26 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
+        public IReadOnlyList<FeatureMap<CnnNeuron>> FeatureMaps
+        {
+            get
+            {
+                return new ReadOnlyCollection<FeatureMap<CnnNeuron>>(innerFeatureMaps);
+            }
+        }
+
+        public void AddFeatureMap(FeatureMap<CnnNeuron> featureMap)
+        {
+            innerFeatureMaps.Add(featureMap);
+        }
+
         public void Calculate()
         {
         }
 
         public void ConnectToLayer(ILayer<CnnNeuron> layer, IConnectionScheme<CnnNeuron> connectionScheme)
         {
-            connectionScheme.Apply(Neurons, layer.Neurons);
+            connectionScheme.Apply(this, layer);
         }
     }
 }

@@ -57,8 +57,14 @@
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkBuilder.cs" />
     <Compile Include="CnnNeuralNetworkProcessor.cs" />
-    <Compile Include="ConnectionSchemes\Enumerators\FeatureMapEnumerator.cs" />
-    <Compile Include="ConnectionSchemes\FirstToSecondConnectionScheme.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapConnector.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapWeightsCreator.cs" />
+    <Compile Include="Primitives\FeatureMap.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Enumerators\FeatureMapEnumerator.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\NeuronsPerFeatureMapCounter.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\FirstToSecondConnectionScheme.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\SecondToThirdConnectionScheme.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\FullyConnectedScheme.cs" />
     <Compile Include="Primitives\CnnConnection.cs" />
     <Compile Include="Primitives\CnnLayer.cs" />
     <Compile Include="Primitives\CnnNeuron.cs" />
