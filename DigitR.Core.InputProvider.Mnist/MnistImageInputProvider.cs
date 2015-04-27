@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 using DigitR.Core.InputProvider;
@@ -9,6 +10,26 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
     {
         private readonly string labelPath;
         private readonly string sourcePath;
+
+        private readonly InputLabelConverter labelConverter;
+        private readonly ThresholdConverter imageConverter;
+
+        public MnistImageInputProvider(string labelPath, string sourcePath)
+        {
+            if (labelPath == null)
+            {
+                throw new ArgumentNullException("labelPath");
+            }
+            if (sourcePath == null)
+            {
+                throw new ArgumentNullException("sourcePath");
+            }
+            this.labelPath = labelPath;
+            this.sourcePath = sourcePath;
+
+            labelConverter = new InputLabelConverter();
+            imageConverter = new ThresholdConverter(20);
+        }
 
         public IEnumerable<object> Retrieve()
         {
@@ -23,7 +44,9 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
                 {
                     yield return new MnistImagePattern(
                         labelsReader.ReadByte(),
-                        sourceReader.ReadBytes(MnistImagePattern.MnistPatternSizeInBytes));
+                        sourceReader.ReadBytes(MnistImagePattern.MnistPatternSizeInBytes),
+                        labelConverter,
+                        imageConverter);
                 }
             }
         }

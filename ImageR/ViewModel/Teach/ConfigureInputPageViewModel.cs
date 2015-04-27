@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Input;
 
-using DigitR.Core.NeuralNetwork.Cnn;
+using DigitR.Context;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -12,16 +13,45 @@ namespace DigitR.ViewModel.Teach
 {
     public class ConfigureInputPageViewModel : ViewModelBase
     {
+        private readonly IApplicationContext context;
+
         private string inputImagesPath;
         private string inputLabelsPath;
 
-        public ConfigureInputPageViewModel()
+        public ConfigureInputPageViewModel(IApplicationContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+            this.context = context;
             inputImagesPath = String.Empty;
             inputLabelsPath = String.Empty;
 
-            OpenImagesCommand = new RelayCommand(() => SetInputFilePath(selectedFilePath => InputImagesPath = selectedFilePath));
-            OpenLabelsCommand = new RelayCommand(() => SetInputFilePath(selectedFilePath => InputLabelsPath = selectedFilePath));
+            //OpenImagesCommand = new RelayCommand(() =>
+            //{
+            //    SetInputImageFilePath(selectedFilePath => {
+            //        InputImagesPath = selectedFilePath;
+            //        context.InputSettings.SourcePath = selectedFilePath;
+            //    });
+            //});
+            //OpenLabelsCommand = new RelayCommand(() =>
+            //{
+            //    SetInputLabelFilePath(selectedFilePath => {
+            //        InputLabelsPath = selectedFilePath;
+            //        context.InputSettings.LabelPath = selectedFilePath;
+            //    });
+            //});
+            SetInputImageFilePath(selectedFilePath =>
+            {
+                InputImagesPath = selectedFilePath;
+                context.InputSettings.SourcePath = selectedFilePath;
+            });
+            SetInputLabelFilePath(selectedFilePath =>
+            {
+                InputLabelsPath = selectedFilePath;
+                context.InputSettings.LabelPath = selectedFilePath;
+            });
         }
 
         #region Properties
@@ -68,8 +98,25 @@ namespace DigitR.ViewModel.Teach
 
         private void SetInputFilePath(Action<string> setAction)
         {
-            CnnNeuralNetworkBuilder builder = new CnnNeuralNetworkBuilder();
-            builder.Build();
+            OpenFileDialog openFileDialog = new OpenFileDialog { Multiselect = false };
+
+            bool? dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == true)
+            {
+                setAction(openFileDialog.FileName);
+            }
+        }
+
+        private void SetInputImageFilePath(Action<string> setAction)
+        {
+            string path = ConfigurationManager.AppSettings["InputMnistTrainImagesPath"];
+            setAction(path);
+        }
+
+        private void SetInputLabelFilePath(Action<string> setAction)
+        {
+            string path = ConfigurationManager.AppSettings["InputMnistTrainLabelsPath"];
+            setAction(path);
         }
     }
 }

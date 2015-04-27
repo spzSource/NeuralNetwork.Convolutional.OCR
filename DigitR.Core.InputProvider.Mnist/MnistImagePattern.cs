@@ -1,27 +1,33 @@
-﻿using System;
-using System.Diagnostics.Contracts;
-
-using DigitR.Core.InputProvider;
+﻿using DigitR.Core.InputProvider;
 
 namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
-    public class MnistImagePattern : IInputTrainingPattern<byte, byte[]>
+    public class MnistImagePattern : IInputTrainingPattern<double[], double[]>
     {
         private const int MnistPatternSize = 28;
         public  const int MnistPatternSizeInBytes = MnistPatternSize * MnistPatternSize;
 
         private readonly byte label;
         private readonly byte[] source;
+        private readonly InputLabelConverter labelConverter;
+        private readonly ThresholdConverter imageConverter;
+
+        private readonly double[] convertedLabel;
+        private readonly double[] convertedSource;
 
         public MnistImagePattern(
             byte label,
-            byte[] source)
+            byte[] source,
+            InputLabelConverter labelConverter,
+            ThresholdConverter imageConverter)
         {
-            Contract.Requires<ArgumentException>(source != null);
-            Contract.Requires<ArgumentException>(source.Length > 0);
-
             this.label = label;
             this.source = source;
+            this.labelConverter = labelConverter;
+            this.imageConverter = imageConverter;
+
+            convertedLabel = labelConverter.Convert(label);
+            convertedSource = imageConverter.Convert(source);
         }
 
         public int Height
@@ -40,19 +46,19 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
             }
         }
 
-        public byte Label
+        public double[] Label
         {
             get
             {
-                return label;
+                return convertedLabel;
             }
         }
 
-        public byte[] Source
+        public double[] Source
         {
             get
             {
-                return source;
+                return convertedSource;
             }
         }
     }

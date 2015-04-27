@@ -9,6 +9,8 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using DigitR.Context;
+using DigitR.Context.Implementation;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Cnn;
@@ -37,12 +39,16 @@ namespace DigitR.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<IApplicationContext, ApplicationContext>();
+
             SimpleIoc.Default.Register<IInputProvider, MnistImageInputProvider>();
             SimpleIoc.Default.Register<IOutputProvider, TextOutputProvider>();
             SimpleIoc.Default.Register<INeuralNetworkBuilder<double[], double[]>, CnnNeuralNetworkBuilder>();
             SimpleIoc.Default.Register<INeuralNetworkProcessor, CnnNeuralNetworkProcessor>();
 
+            // View-models
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
+            SimpleIoc.Default.Register<StartTeachingViewModel>();
         }
 
         public ConfigureInputPageViewModel ConfigureInputPageViewModel
@@ -50,6 +56,14 @@ namespace DigitR.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
+            }
+        }
+
+        public StartTeachingViewModel StartTeachingViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
             }
         }
 
