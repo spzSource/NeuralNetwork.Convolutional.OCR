@@ -1,5 +1,4 @@
 ﻿using DigitR.Core.InputProvider;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation
@@ -8,14 +7,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
     {
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
-            foreach (ILayer<object> layer in network.Layers)
+            foreach (ILayer<INeuron<double>> layer in network.Layers)
             {
                 foreach (INeuron<double> neuron in layer.Neurons)
                 {
                     foreach (IConnection<double, double> connection in neuron.Inputs)
                     {
                         connection.Weight.Value +=
-                            connection.GetConnectionInfo<BackPropagateWeightInfo>().WeightCorrection;
+                            connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection;
                     }
                 }
             }

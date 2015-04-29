@@ -18,17 +18,17 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             this.isFirst = isFirst;
             this.isLast = isLast;
 
-            if (!isLast && !isFirst)
-            {
-                neurons = new CnnNeuron[neuronsCount + 1];
+            //if (!isLast && !isFirst)
+            //{
+            //    neurons = new CnnNeuron[neuronsCount + 1];
 
-                neurons[0] = new CnnNeuron(isBias: true);
-                for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
-                {
-                    neurons[neuronIndex] = new CnnNeuron(isBias: false);
-                }
-            }
-            else
+            //    neurons[0] = new CnnNeuron(isBias: true);
+            //    for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
+            //    {
+            //        neurons[neuronIndex] = new CnnNeuron(isBias: false);
+            //    }
+            //}
+            //else
             {
                 neurons = new CnnNeuron[neuronsCount];
 

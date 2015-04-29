@@ -31,7 +31,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
-            foreach (ILayer<object> layer in network.Layers.Where(layer => !layer.IsLast))
+            foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsLast && !layer.IsFirst).Reverse())
             {
                 foreach (INeuron<double> currentNeuron in layer.Neurons)
                 {

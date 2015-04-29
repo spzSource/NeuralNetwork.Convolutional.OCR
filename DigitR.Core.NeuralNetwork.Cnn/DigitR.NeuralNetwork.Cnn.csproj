@@ -53,7 +53,9 @@
     <Compile Include="Algorithms\Extensions\NetworkExtensions.cs" />
     <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />
     <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
+    <Compile Include="Algorithms\WeightsSigning\IWeightSigner.cs" />
     <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
+    <Compile Include="Algorithms\WeightsSigning\Implementation\NormalWeightSigner.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkBuilder.cs" />
     <Compile Include="CnnNeuralNetworkProcessor.cs" />

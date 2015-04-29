@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
@@ -15,17 +16,20 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         private readonly int featureMapCount;
         private readonly int kernelSize;
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
+        private readonly IWeightSigner<double> weightSigner;
 
         public SecondToThirdConnectionScheme(
             int source2DSize,
             int featureMapCount,
             int kernelSize,
-            NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter)
+            NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
+            IWeightSigner<double> weightSigner)
         {
             this.source2DSize = source2DSize;
             this.featureMapCount = featureMapCount;
             this.kernelSize = kernelSize;
             this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
+            this.weightSigner = weightSigner;
         }
 
         public void Apply(
@@ -36,7 +40,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             {
                 CnnLayer cnnLeftLayer = (CnnLayer)leftLayer;
 
-                FeatureMapWeightsCreator weightsCreator = new FeatureMapWeightsCreator();
+                FeatureMapWeightsCreator weightsCreator = new FeatureMapWeightsCreator(weightSigner);
 
                 CnnWeight[][] weights = CreateWeights(cnnLeftLayer, weightsCreator);
 
@@ -47,6 +51,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                 while (MoveNext(featureMapEnumerators))
                 {
                     INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+                    if (currentRightNeuron.IsBiasNeuron)
+                    {
+                        rightLayerNeuronIndex++;
+                        currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+                    }
 
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {

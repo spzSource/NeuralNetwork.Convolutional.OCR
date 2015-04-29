@@ -5,7 +5,6 @@ using System.Windows.Input;
 using DigitR.Context;
 
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 
 using Microsoft.Win32;
 

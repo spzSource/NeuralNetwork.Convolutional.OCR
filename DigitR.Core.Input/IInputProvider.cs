@@ -7,6 +7,11 @@ namespace DigitR.Core.InputProvider
     /// </summary>
     public interface IInputProvider
     {
+        object Current
+        {
+            get;
+        }
+
         /// <summary>
         /// Retrieves input data items from specific data source.
         /// </summary>

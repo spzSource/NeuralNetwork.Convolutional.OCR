@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
@@ -18,24 +19,27 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         private readonly int featureMapCount;
         private readonly int kernelSize;
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
+        private readonly IWeightSigner<double> weightSigner;
 
         public FirstToSecondConnectionScheme(
             int source2DSize,
             int featureMapCount,
             int kernelSize,
-            NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter)
+            NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
+            IWeightSigner<double> weightSigner)
         {
             this.source2DSize = source2DSize;
             this.featureMapCount = featureMapCount;
             this.kernelSize = kernelSize;
             this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
+            this.weightSigner = weightSigner;
         }
 
         public void Apply(
             ILayer<INeuron<double>> leftLayer,
             ILayer<INeuron<double>> rightLayer)
         {
-            FeatureMapWeightsCreator featureMapWeightsCreator = new FeatureMapWeightsCreator();
+            FeatureMapWeightsCreator featureMapWeightsCreator = new FeatureMapWeightsCreator(weightSigner);
 
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
@@ -55,8 +59,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                 {
                     IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
+                    // bias neuron must not have inputs
                     INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-
+                    
                     for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                     {
                         currentRightNeuron.Inputs.Add(
