@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+
+using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
@@ -30,7 +32,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
+            Log.Current.Info("Back propagation. BackPropagateOutputLayerStep begin.");
+
             ILayer<INeuron<double>> outputLayer = network.GetLayer(layer => layer.IsLast);
+
+            Log.Current.Info("Layer-4. Start.");
 
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
@@ -45,8 +51,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     errorSignal * activationAlgorithm
                         .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
 
+                Log.Current.Info("Layer-4. Neuron-{0} : errorSignal = {1}, localGradient = {2}",
+                    neuronIndex,
+                    errorSignal,
+                    currentNeuronInfo.LocalGradient);
+
                 weightCorrectionApplier.Apply(currentNeuron);
             }
+
+            Log.Current.Info("Back propagation. BackPropagateOutputLayerStep end.");
         }
     }
 }

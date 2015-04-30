@@ -41,6 +41,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         {
             FeatureMapWeightsCreator featureMapWeightsCreator = new FeatureMapWeightsCreator(weightSigner);
 
+            int rightLayerNeuronIndex = 0;
+
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
                 FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
@@ -53,13 +55,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(kernelSize * kernelSize + 1);
 
-                int rightLayerNeuronIndex = 0;
-
                 while (featureMapEnumerator.MoveNext())
                 {
                     IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
-                    // bias neuron must not have inputs
                     INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
                     
                     for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)

@@ -24,23 +24,10 @@ namespace DigitR.ViewModel.Teach
                 throw new ArgumentNullException("context");
             }
             this.context = context;
+
             inputImagesPath = String.Empty;
             inputLabelsPath = String.Empty;
 
-            //OpenImagesCommand = new RelayCommand(() =>
-            //{
-            //    SetInputImageFilePath(selectedFilePath => {
-            //        InputImagesPath = selectedFilePath;
-            //        context.InputSettings.SourcePath = selectedFilePath;
-            //    });
-            //});
-            //OpenLabelsCommand = new RelayCommand(() =>
-            //{
-            //    SetInputLabelFilePath(selectedFilePath => {
-            //        InputLabelsPath = selectedFilePath;
-            //        context.InputSettings.LabelPath = selectedFilePath;
-            //    });
-            //});
             SetInputImageFilePath(selectedFilePath =>
             {
                 InputImagesPath = selectedFilePath;

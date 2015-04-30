@@ -36,6 +36,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             ILayer<INeuron<double>> leftLayer,
             ILayer<INeuron<double>> rightLayer)
         {
+            int rightLayerNeuronIndex = 0;
+
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
                 CnnLayer cnnLeftLayer = (CnnLayer)leftLayer;
@@ -45,8 +47,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                 CnnWeight[][] weights = CreateWeights(cnnLeftLayer, weightsCreator);
 
                 FeatureMapEnumerator[] featureMapEnumerators = CreateFeatureMapEnumerators(cnnLeftLayer);
-
-                int rightLayerNeuronIndex = 0;
 
                 while (MoveNext(featureMapEnumerators))
                 {

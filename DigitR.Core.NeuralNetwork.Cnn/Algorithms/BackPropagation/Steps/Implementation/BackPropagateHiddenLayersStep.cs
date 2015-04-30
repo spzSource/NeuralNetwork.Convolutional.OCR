@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
+
+using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
@@ -31,8 +33,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
+            Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep begin.");
+
+            int layerIndex = 3;
+
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsLast && !layer.IsFirst).Reverse())
             {
+                Log.Current.Info("Layer-{0}. Start.", layerIndex);
+
+                int neuronIndex = 1;
+
                 foreach (INeuron<double> currentNeuron in layer.Neurons)
                 {
                     BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AditionalInfo;
@@ -48,9 +58,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
                     currentNeuronInfo.LocalGradient = localGradient;
 
+                    Log.Current.Info("Layer-{0} Neuron-{1} : derivative = {2}, weightedGradientSum = {3}, localGradient = {4}",
+                        layerIndex,
+                        neuronIndex,
+                        derivative,
+                        weightedGradientsSum,
+                        localGradient);
+
                     weightCorrectionApplier.Apply(currentNeuron);
+
+                    ++neuronIndex;
                 }
+
+                --layerIndex;
             }
+
+            Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep end.");
         }
     }
 }
