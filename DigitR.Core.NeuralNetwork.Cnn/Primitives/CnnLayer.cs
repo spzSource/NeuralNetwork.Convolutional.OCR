@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
+    [DebuggerDisplay("Layer-{LayerId}")]
     public class CnnLayer : ILayer<INeuron<double>>
     {
         private readonly int layerId;
@@ -20,22 +22,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             this.isFirst = isFirst;
             this.isLast = isLast;
 
-            //if (!isLast && !isFirst)
-            //{
-            //    neurons = new CnnNeuron[neuronsCount + 1];
-
-            //    neurons[0] = new CnnNeuron(isBias: true);
-            //    for (int neuronIndex = 1; neuronIndex < neurons.Length; neuronIndex++)
-            //    {
-            //        neurons[neuronIndex] = new CnnNeuron(isBias: false);
-            //    }
-            //}
             neurons = new CnnNeuron[neuronsCount];
 
             for (int neuronIndex = 0; neuronIndex < neurons.Length; neuronIndex++)
             {
                 neurons[neuronIndex] = new CnnNeuron(neuronIndex, isBias: false);
-            }
+            }    
+            
             innerFeatureMaps = new List<FeatureMap<INeuron<double>>>();
         }
 

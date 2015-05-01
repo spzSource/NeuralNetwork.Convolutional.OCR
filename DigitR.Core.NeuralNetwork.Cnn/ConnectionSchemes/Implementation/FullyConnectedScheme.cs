@@ -10,15 +10,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
     internal class FullyConnectedScheme : IConnectionScheme<INeuron<double>>
     {
         private readonly IWeightSigner<double> weightSigner;
+        private readonly ConnectionsCounter connectionsCounter;
 
         public FullyConnectedScheme(
-            IWeightSigner<double> weightSigner)
+            IWeightSigner<double> weightSigner,
+            ConnectionsCounter connectionsCounter)
         {
             if (weightSigner == null)
             {
                 throw new ArgumentNullException("weightSigner");
             }
             this.weightSigner = weightSigner;
+            this.connectionsCounter = connectionsCounter;
         }
 
         public void Apply(ILayer<INeuron<double>> leftLayer, ILayer<INeuron<double>> rightLayer)
@@ -38,6 +41,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                     currentLeftNeuron.Outputs.Add(new CnnConnection(
                         currentRightNeuron,
                         commonWeight));
+
+                    connectionsCounter.Increment();
                 }
             }
         }

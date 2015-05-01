@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using DigitR.Common.Logging;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
@@ -17,19 +18,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         private readonly int kernelSize;
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
         private readonly IWeightSigner<double> weightSigner;
+        private readonly ConnectionsCounter connectionsCounter;
 
         public SecondToThirdConnectionScheme(
             int source2DSize,
             int featureMapCount,
             int kernelSize,
             NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
-            IWeightSigner<double> weightSigner)
+            IWeightSigner<double> weightSigner,
+            ConnectionsCounter connectionsCounter)
         {
             this.source2DSize = source2DSize;
             this.featureMapCount = featureMapCount;
             this.kernelSize = kernelSize;
             this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
             this.weightSigner = weightSigner;
+            this.connectionsCounter = connectionsCounter;
         }
 
         public void Apply(
@@ -37,6 +41,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             ILayer<INeuron<double>> rightLayer)
         {
             int rightLayerNeuronIndex = 0;
+
+            ConnectionsCounter innerConnectionsCounter = new ConnectionsCounter(0);
 
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
@@ -67,12 +73,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                                 new CnnConnection(
                                     currentRightNeuron,
                                     weights[enumeratorIndex][kernelNeuronIndex]));
+
+                            connectionsCounter.Increment();
+                            innerConnectionsCounter.Increment();
                         }
                     }
 
                     ++rightLayerNeuronIndex;
                 }
             }
+            Log.Current.Info("The total number of created connections between second and third layers.");
         }
 
         private FeatureMapEnumerator[] CreateFeatureMapEnumerators(CnnLayer cnnLeftLayer)

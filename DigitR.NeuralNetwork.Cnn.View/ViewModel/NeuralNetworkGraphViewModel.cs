@@ -73,13 +73,11 @@ namespace DigitR.NeuralNetwork.Cnn.View.ViewModel
                 if (isNewVertex)
                 {
                     graph.AddVertex(currentLeftNeuronVertex);
+
+                    NeuronEdge edge = new NeuronEdge(currentLeftNeuronVertex, rightVertex, connection);
+
+                    graph.AddEdge(edge);
                 }
-
-                NeuronEdge edge = new NeuronEdge(currentLeftNeuronVertex, rightVertex, connection);
-
-                graph.AddEdge(edge);
-
-                Log.Current.Info("Added edge: {0}", edge.ToString());
 
                 BuildNeuron(currentLeftNeuron, layerIndex - 1, cache);
             }

@@ -1,4 +1,5 @@
-﻿using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
+﻿using DigitR.Common.Logging;
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
@@ -23,6 +24,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             CnnLayer fourthLayer = new CnnLayer(3, FourthLayerSize, isFirst: false, isLast: false);
             CnnLayer fifthsLayer = new CnnLayer(4, FifthLayerSize,  isFirst: false,  isLast: true);
 
+            ConnectionsCounter connectionsCounter = new ConnectionsCounter(0);
+
             firstLayer.ConnectToLayer(
                 secondLayer,
                 new FirstToSecondConnectionScheme(
@@ -30,7 +33,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                     featureMapCount: 6,
                     kernelSize: 5,
                     neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
-                    weightSigner: new NormalWeightSigner()));
+                    weightSigner: new NormalWeightSigner(),
+                    connectionsCounter: connectionsCounter));
 
             secondLayer.ConnectToLayer(
                 thirdLayer,
@@ -39,15 +43,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                     featureMapCount: 50,
                     kernelSize: 5,
                     neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
-                    weightSigner: new NormalWeightSigner()));
+                    weightSigner: new NormalWeightSigner(),
+                    connectionsCounter: connectionsCounter));
 
             thirdLayer.ConnectToLayer(
                 fourthLayer,
-                new FullyConnectedScheme(new NormalWeightSigner()));
+                new FullyConnectedScheme(new NormalWeightSigner(), connectionsCounter));
 
             fourthLayer.ConnectToLayer(
                 fifthsLayer,
-                new FullyConnectedScheme(new NormalWeightSigner()));
+                new FullyConnectedScheme(new NormalWeightSigner(), connectionsCounter));
+
+            Log.Current.Error("The total number of created connections : {0}", connectionsCounter.CurrentValue);
 
             return new CnnNeuralNetwork(
                 new []

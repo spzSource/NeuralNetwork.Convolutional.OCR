@@ -33,16 +33,19 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
+            #region 
+
             Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep begin.");
 
-            int layerIndex = 4;
-
+            #endregion
 
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsLast && !layer.IsFirst).Reverse())
             {
-                Log.Current.Info("Layer-{0}. Start.", layerIndex);
+                #region 
 
-                int neuronIndex = 1;
+                Log.Current.Info("Layer-{0}. Start.", layer.LayerId);
+
+                #endregion
 
                 foreach (INeuron<double> currentNeuron in layer.Neurons)
                 {
@@ -59,22 +62,27 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
                     currentNeuronInfo.LocalGradient = localGradient;
 
-                    Log.Current.Info("Layer-{0} Neuron-{1} : derivative = {2}, weightedGradientSum = {3}, localGradient = {4}",
-                        layerIndex,
-                        neuronIndex,
+                    #region 
+
+                    Log.Current.Info(
+                        "Layer-{0} Neuron-{1} : derivative = {2}, weightedGradientSum = {3}, localGradient = {4}",
+                        layer.LayerId,
+                        currentNeuron.NeuronId,
                         derivative,
                         weightedGradientsSum,
                         localGradient);
 
+                    #endregion
+
                     weightCorrectionApplier.Apply(currentNeuron);
-
-                    ++neuronIndex;
                 }
-
-                --layerIndex;
             }
 
+            #region 
+
             Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep end.");
+
+            #endregion
         }
     }
 }

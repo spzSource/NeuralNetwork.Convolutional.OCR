@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
+    [DebuggerDisplay("Neuron = {NeuronId}, Output = {Output}, isBias = {IsBiasNeuron}")]
     public class CnnNeuron : INeuron<double>
     {
         private readonly int neuronId;

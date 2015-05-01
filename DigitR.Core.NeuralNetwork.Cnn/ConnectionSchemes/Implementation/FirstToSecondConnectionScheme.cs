@@ -20,19 +20,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         private readonly int kernelSize;
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
         private readonly IWeightSigner<double> weightSigner;
+        private readonly ConnectionsCounter connectionsCounter;
 
         public FirstToSecondConnectionScheme(
             int source2DSize,
             int featureMapCount,
             int kernelSize,
             NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
-            IWeightSigner<double> weightSigner)
+            IWeightSigner<double> weightSigner,
+            ConnectionsCounter connectionsCounter)
         {
             this.source2DSize = source2DSize;
             this.featureMapCount = featureMapCount;
             this.kernelSize = kernelSize;
             this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
             this.weightSigner = weightSigner;
+            this.connectionsCounter = connectionsCounter;
         }
 
         public void Apply(
@@ -72,6 +75,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                             new CnnConnection(
                                 currentRightNeuron,
                                 weights[kernelNeuronIndex]));
+
+                        connectionsCounter.Increment();
                     }
 
                     ++rightLayerNeuronIndex;

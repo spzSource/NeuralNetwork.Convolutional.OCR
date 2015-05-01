@@ -14,8 +14,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         public void Apply(INeuron<double> neuron)
         {
-            //return trainingSpeed * localGradient * output;
-
             foreach (IConnection<double, double> connections in neuron.Inputs)
             {
                 double weightCorrection = trainingSpeed 
