@@ -17,11 +17,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public INeuralNetwork<double[], double[]> Build()
         {
-            CnnLayer firstLayer  = new CnnLayer(FirstLayerSize,  isFirst: true,  isLast: false);
-            CnnLayer secondLayer = new CnnLayer(SecondLayerSize, isFirst: false, isLast: false);
-            CnnLayer thirdLayer  = new CnnLayer(ThirdLayerSize,  isFirst: false, isLast: false);
-            CnnLayer fourthLayer = new CnnLayer(FourthLayerSize, isFirst: false, isLast: false);
-            CnnLayer fifthsLayer = new CnnLayer(FifthLayerSize,  isFirst: false,  isLast: true);
+            CnnLayer firstLayer  = new CnnLayer(0, FirstLayerSize,  isFirst: true,  isLast: false);
+            CnnLayer secondLayer = new CnnLayer(1, SecondLayerSize, isFirst: false, isLast: false);
+            CnnLayer thirdLayer  = new CnnLayer(2, ThirdLayerSize,  isFirst: false, isLast: false);
+            CnnLayer fourthLayer = new CnnLayer(3, FourthLayerSize, isFirst: false, isLast: false);
+            CnnLayer fifthsLayer = new CnnLayer(4, FifthLayerSize,  isFirst: false,  isLast: true);
 
             firstLayer.ConnectToLayer(
                 secondLayer,

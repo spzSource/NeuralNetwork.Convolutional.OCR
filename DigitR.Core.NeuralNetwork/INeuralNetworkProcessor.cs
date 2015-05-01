@@ -8,6 +8,11 @@ namespace DigitR.Core.NeuralNetwork
     /// </summary>
     public interface INeuralNetworkProcessor
     {
+        object NeuralNetwork
+        {
+            get;
+        }
+
         /// <summary>
         /// 
         /// </summary>

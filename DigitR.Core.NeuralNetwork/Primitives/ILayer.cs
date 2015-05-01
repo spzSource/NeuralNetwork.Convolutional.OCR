@@ -6,6 +6,11 @@
     /// <typeparam name="TNeuron">The type of neuron for this layer.</typeparam>
     public interface ILayer<TNeuron>
     {
+        int LayerId
+        {
+            get;
+        }
+
         bool IsFirst
         {
             get;

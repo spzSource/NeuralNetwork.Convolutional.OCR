@@ -51,12 +51,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                 while (MoveNext(featureMapEnumerators))
                 {
                     INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-                    if (currentRightNeuron.IsBiasNeuron)
-                    {
-                        rightLayerNeuronIndex++;
-                        currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-                    }
-
+                    
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {
                         IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerators[enumeratorIndex].Current;

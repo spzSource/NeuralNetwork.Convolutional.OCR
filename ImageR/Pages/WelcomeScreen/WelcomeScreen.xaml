@@ -4,13 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:control="clr-namespace:DigitR.NeuralNetwork.Cnn.View.Control;assembly=DigitR.NeuralNetwork.Cnn.View"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="700">
+             d:DesignHeight="400" d:DesignWidth="700"
+             DataContext="{Binding Path=WelcomScreenViewModel, Source={StaticResource Locator}}">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
+        <ScrollViewer
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+            
             <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goes here" />
+                
+                <TextBlock Text="Network structure" Style="{StaticResource Heading2}" />
+                
+                <control:NeuralNetworkGraphControl
+                    Height="700"
+                    Width="1000"
+                    DataContext="{Binding Path=NeuralNetworkGraphViewModel}">
+                </control:NeuralNetworkGraphControl>
+                
+                <Button
+                    Content="View"
+                    Command="{Binding Path=BuildNeuralNetworkGraphCommand}">
+                </Button>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

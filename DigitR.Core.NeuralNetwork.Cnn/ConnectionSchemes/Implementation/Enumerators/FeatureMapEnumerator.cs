@@ -34,7 +34,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
             this.kernelSize = kernelSize;
             this.step = step;
 
-            sourceNeurons2D = new CnnNeuron[source2DSize, source2DSize];
+            sourceNeurons2D = new INeuron<double>[source2DSize, source2DSize];
 
             TransformToSource2D();
 

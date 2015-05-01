@@ -7,14 +7,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
     public class CnnLayer : ILayer<INeuron<double>>
     {
+        private readonly int layerId;
         private readonly bool isFirst;
         private readonly bool isLast;
 
         private readonly CnnNeuron[] neurons;
-        private readonly IList<FeatureMap<INeuron<double>>> innerFeatureMaps; 
+        private readonly IList<FeatureMap<INeuron<double>>> innerFeatureMaps;
 
-        public CnnLayer(int neuronsCount, bool isFirst, bool isLast)
+        public CnnLayer(int layerId, int neuronsCount, bool isFirst, bool isLast)
         {
+            this.layerId = layerId;
             this.isFirst = isFirst;
             this.isLast = isLast;
 
@@ -28,16 +30,21 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             //        neurons[neuronIndex] = new CnnNeuron(isBias: false);
             //    }
             //}
-            //else
-            {
-                neurons = new CnnNeuron[neuronsCount];
+            neurons = new CnnNeuron[neuronsCount];
 
-                for (int neuronIndex = 0; neuronIndex < neurons.Length; neuronIndex++)
-                {
-                    neurons[neuronIndex] = new CnnNeuron(isBias: false);
-                }
+            for (int neuronIndex = 0; neuronIndex < neurons.Length; neuronIndex++)
+            {
+                neurons[neuronIndex] = new CnnNeuron(neuronIndex, isBias: false);
             }
             innerFeatureMaps = new List<FeatureMap<INeuron<double>>>();
+        }
+
+        public int LayerId
+        {
+            get
+            {
+                return layerId;
+            }
         }
 
         public bool IsFirst
@@ -82,7 +89,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         }
 
         public void ConnectToLayer(
-            ILayer<INeuron<double>> layer, 
+            ILayer<INeuron<double>> layer,
             IConnectionScheme<INeuron<double>> connectionScheme)
         {
             connectionScheme.Apply(this, layer);

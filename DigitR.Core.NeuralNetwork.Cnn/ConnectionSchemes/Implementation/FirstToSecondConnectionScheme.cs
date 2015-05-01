@@ -45,13 +45,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
             for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
             {
+                FeatureMap<INeuron<double>> featureMap = new FeatureMap<INeuron<double>>();
+                
                 FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
                     Step,
                     kernelSize,
                     source2DSize,
                     new ReadOnlyCollection<INeuron<double>>(leftLayer.Neurons));
-
-                FeatureMap<INeuron<double>> featureMap = new FeatureMap<INeuron<double>>();
 
                 CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(kernelSize * kernelSize + 1);
 

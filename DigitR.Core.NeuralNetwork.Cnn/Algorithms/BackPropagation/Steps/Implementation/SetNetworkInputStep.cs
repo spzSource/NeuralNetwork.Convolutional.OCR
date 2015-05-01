@@ -14,6 +14,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             Log.Current.Info("Back propagation. SetNetworkInputStep begin.");
 
             ILayer<INeuron<double>> inputLayer = network.GetLayer(layer => layer.IsFirst);
+
             for (int neuronIndex = 0; neuronIndex < inputLayer.Neurons.Length; neuronIndex++)
             {
                 inputLayer.Neurons[neuronIndex].Output = pattern.Source[neuronIndex];

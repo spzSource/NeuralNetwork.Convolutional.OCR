@@ -17,6 +17,7 @@ using DigitR.Core.NeuralNetwork.Cnn;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.Output;
 using DigitR.ViewModel.Teach;
+using DigitR.ViewModel.WelcomeScreen;
 
 using DigitRNeuralNetwork.OutputProvider.Text;
 
@@ -49,6 +50,7 @@ namespace DigitR.ViewModel
             // View-models
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
             SimpleIoc.Default.Register<StartTeachingViewModel>();
+            SimpleIoc.Default.Register<WelcomScreenViewModel>();
         }
 
         public ConfigureInputPageViewModel ConfigureInputPageViewModel
@@ -66,6 +68,14 @@ namespace DigitR.ViewModel
                 return ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
             }
         }
+
+        public WelcomScreenViewModel WelcomScreenViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
+            }
+        }   
 
         /// <summary>
         /// Cleans up all the resources.

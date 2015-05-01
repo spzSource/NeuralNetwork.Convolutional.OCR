@@ -229,3 +229,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.settings/launch.json
+.settings/settings.json

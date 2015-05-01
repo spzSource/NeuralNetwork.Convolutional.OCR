@@ -35,7 +35,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
         {
             Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep begin.");
 
-            int layerIndex = 3;
+            int layerIndex = 4;
+
 
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsLast && !layer.IsFirst).Reverse())
             {

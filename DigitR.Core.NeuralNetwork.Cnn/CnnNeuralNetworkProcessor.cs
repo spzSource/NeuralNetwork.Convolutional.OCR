@@ -21,6 +21,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             network = networkBuilder.Build() as IMultiLayerNeuralNetwork<double>;
         }
 
+        public object NeuralNetwork
+        {
+            get
+            {
+                return network;
+            }
+        }
+
         public bool Process(IInputProvider inputProvider, IOutputProvider outputProvider)
         {
             foreach (IInputPattern<double[]> input in inputProvider.Retrieve())

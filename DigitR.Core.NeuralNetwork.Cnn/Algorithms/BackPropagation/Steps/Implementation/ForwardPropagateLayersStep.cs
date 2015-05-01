@@ -49,7 +49,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     Log.Current.Info("Layer-{0} Neuron-{1} : output = {2}, inducedLocalArea = {3}",
                         layerIndex,
                         neuronIndex,
-                        neuron.Output,
+                        neuron.Output,  
                         neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LastInducesLocalAreaValue);
 
                     ++neuronIndex;

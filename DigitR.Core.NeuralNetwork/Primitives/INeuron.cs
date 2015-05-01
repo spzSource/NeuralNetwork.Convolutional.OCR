@@ -7,6 +7,11 @@ namespace DigitR.Core.NeuralNetwork.Primitives
     /// </summary>
     public interface INeuron<TValue>
     {
+        int NeuronId
+        {
+            get;
+        }
+
         IList<IConnection<TValue, TValue>> Inputs
         {
             get;

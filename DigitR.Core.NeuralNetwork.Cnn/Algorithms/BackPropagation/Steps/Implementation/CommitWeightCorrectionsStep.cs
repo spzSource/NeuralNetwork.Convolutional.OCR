@@ -15,6 +15,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     {
                         connection.Weight.Value +=
                             connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection;
+
+                        connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection = 0;
                     }
                 }
             }

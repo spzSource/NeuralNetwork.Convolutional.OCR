@@ -36,7 +36,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
             ILayer<INeuron<double>> outputLayer = network.GetLayer(layer => layer.IsLast);
 
-            Log.Current.Info("Layer-4. Start.");
+            Log.Current.Info("Layer-5. Start.");
 
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
