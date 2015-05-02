@@ -1,4 +1,5 @@
 ﻿using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation
@@ -13,8 +14,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                 {
                     foreach (IConnection<double, double> connection in neuron.Inputs)
                     {
-                        connection.Weight.Value +=
-                            connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection;
+                        double correction = connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection;
+                        connection.Weight.Value += correction;
                     }
                 }
             }

@@ -62,19 +62,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                     weightSigner: weightSigner,
                     connectionsCounter: connectionsCounter,
                     biasAssignee: biasAssignee));
-            //firstLayer.ConnectToLayer(
-            //    secondLayer,
-            //    new FullyConnectedScheme(
-            //        weightSigner,
-            //        connectionsCounter,
-            //        biasAssignee));
-
-            //secondLayer.ConnectToLayer(
-            //    thirdLayer,
-            //    new FullyConnectedScheme(
-            //        weightSigner,
-            //        connectionsCounter,
-            //        biasAssignee));
 
             thirdLayer.ConnectToLayer(
                 fourthLayer,

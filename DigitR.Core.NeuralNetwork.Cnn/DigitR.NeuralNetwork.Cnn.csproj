@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\BackPropagation\BackPropagateWeightInfo.cs" />
-    <Compile Include="Algorithms\BackPropagation\BackPropagateNeuronInfo.cs" />
+    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
+    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateNeuronInfo.cs" />
     <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
     <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateHiddenLayersStep.cs" />
     <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateOutputLayerStep.cs" />
@@ -48,7 +48,7 @@
     <Compile Include="Algorithms\BackPropagation\Steps\Implementation\CommitWeightCorrectionsStep.cs" />
     <Compile Include="Algorithms\BackPropagation\Steps\Implementation\SetNetworkInputStep.cs" />
     <Compile Include="Algorithms\BackPropagation\Steps\IPropagationStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\WeightCorrectionApplier.cs" />
+    <Compile Include="Algorithms\BackPropagation\Common\WeightCorrectionApplier.cs" />
     <Compile Include="Algorithms\Extensions\ConnectionExtensions.cs" />
     <Compile Include="Algorithms\Extensions\NetworkExtensions.cs" />
     <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />

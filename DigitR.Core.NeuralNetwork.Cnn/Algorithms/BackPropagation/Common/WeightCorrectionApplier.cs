@@ -3,7 +3,7 @@
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
+namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common
 {
     internal class WeightCorrectionApplier
     {

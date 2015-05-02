@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 
-using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
 using DigitR.Core.NeuralNetwork.Primitives;
 
@@ -11,15 +10,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 {
     internal class BackPropagateOutputLayerStep : IPropagationStep
     {
+        private const double LearningSpeed = 0.5;
+
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
-        private readonly WeightCorrectionApplier weightCorrectionApplier;
 
         public BackPropagateOutputLayerStep(
-            IActivationAlgorithm<double, double> activationAlgorithm,
-            WeightCorrectionApplier weightCorrectionApplier)
+            IActivationAlgorithm<double, double> activationAlgorithm)
         {
             this.activationAlgorithm = activationAlgorithm;
-            this.weightCorrectionApplier = weightCorrectionApplier;
         }
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
@@ -29,20 +27,33 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
                 INeuron<double> currentNeuron = outputLayer.Neurons[neuronIndex];
-
-                double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
                 BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
 
                 Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
+                Contract.Assert(currentNeuron.Inputs.Count > 0, "Wrong number of inputs.");
 
-                //currentNeuronInfo.LocalGradient =
-                //    errorSignal * activationAlgorithm
-                //        .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
-
-                currentNeuronInfo.LocalGradient = -1 * errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
-
+                double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
+                double currentLocalGradient = -1 * errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
                 
-                weightCorrectionApplier.Apply(currentNeuron);
+                currentNeuronInfo.LocalGradient = currentLocalGradient;
+
+                foreach (IConnection<double, double> connection in currentNeuron.Inputs)
+                {
+                    double correction = LearningSpeed * currentLocalGradient * connection.Neuron.Output;
+                    StoreWeightCorrection(connection, correction);
+                }
+            }
+        }
+
+        private static void StoreWeightCorrection(IConnection<double, double> connection, double correction)
+        {
+            if (connection.Weight.AdditionalInfo == null)
+            {
+                connection.Weight.AdditionalInfo = new BackPropagateWeightInfo { WeightCorrection = correction };
+            }
+            else
+            {
+                connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection += correction;
             }
         }
     }

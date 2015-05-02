@@ -41,11 +41,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public bool Train(IInputProvider trainingInputProvider)
         {
-            IEnumerable<IInputTrainingPattern<double[], double[]>> patterns = trainingInputProvider
-                .Retrieve()
-                .Cast<IInputTrainingPattern<double[], double[]>>();
-                
-            network.ProcessTraining(patterns);
+            bool trained;
+            
+            do
+            {
+                IEnumerable<IInputTrainingPattern<double[], double[]>> patterns = 
+                    trainingInputProvider
+                        .Retrieve()
+                        .Cast<IInputTrainingPattern<double[], double[]>>();
+
+                trained = network.ProcessTraining(patterns);
+
+            } while (!trained);
 
             return true;
         }

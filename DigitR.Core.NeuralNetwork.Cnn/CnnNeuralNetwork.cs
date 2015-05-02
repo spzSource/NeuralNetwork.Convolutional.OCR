@@ -42,9 +42,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             }
         }
 
-        public void ProcessTraining(IEnumerable<TrainingPatternInterface> patterns)
+        public bool ProcessTraining(IEnumerable<TrainingPatternInterface> patterns)
         {
-            trainingAlgorithm.ProcessTraining(this, patterns);
+            return trainingAlgorithm.ProcessTraining(this, patterns);
         }
 
         /// <summary>
