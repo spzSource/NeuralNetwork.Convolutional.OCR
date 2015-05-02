@@ -6,7 +6,7 @@ using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 using NetworkInterface = DigitR.Core.NeuralNetwork.IMultiLayerNeuralNetwork<double>;
-using TrainingPatternInterface = DigitR.Core.InputProvider.IInputTrainingPattern<double[], double[]>;
+using TrainingPatternInterface = DigitR.Core.InputProvider.IInputTrainingPattern<double[]>;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
@@ -42,7 +42,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             }
         }
 
-        public bool ProcessTraining(IEnumerable<TrainingPatternInterface> patterns)
+        public bool ProcessTraining(IEnumerable<IInputTrainingPattern<double[]>> patterns)
         {
             return trainingAlgorithm.ProcessTraining(this, patterns);
         }

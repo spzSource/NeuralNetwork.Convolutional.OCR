@@ -8,7 +8,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
     {
         public void Process(
             IMultiLayerNeuralNetwork<double> network, 
-            IInputTrainingPattern<double[], double[]> pattern)
+            IInputTrainingPattern<double[]> pattern)
         {
             ILayer<INeuron<double>> inputLayer = network.GetLayer(layer => layer.IsFirst);
 

@@ -16,7 +16,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
     public class BackPropagationAlgorithm
         : ITrainingAlgorithm<
             IMultiLayerNeuralNetwork<double>,
-            IInputTrainingPattern<double[], double[]>>
+            IInputTrainingPattern<double[]>>
     {
         private const double ErrorEps = 0.05;
 
@@ -45,12 +45,12 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         public bool ProcessTraining(
             IMultiLayerNeuralNetwork<double> network,
-            IEnumerable<IInputTrainingPattern<double[], double[]>> patterns)
+            IEnumerable<IInputTrainingPattern<double[]>> patterns)
         {
             int patternsCount = 0;
             double energySum = 0;
 
-            foreach (IInputTrainingPattern<double[], double[]> pattern in patterns)
+            foreach (IInputTrainingPattern<double[]> pattern in patterns)
             {
                 Log.Current.Info("Pattern #{0} started to processing.", patternsCount + 1);
 
@@ -85,7 +85,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         private void ProcessPattern(
             IMultiLayerNeuralNetwork<double> network,
-            IInputTrainingPattern<double[], double[]> pattern)
+            IInputTrainingPattern<double[]> pattern)
         {
             foreach (IPropagationStep propagationStep in algorithmSteps)
             {

@@ -1,11 +1,11 @@
 ﻿using DigitR.Common.Dependencies;
-using DigitR.ViewModel;
+using DigitR.Ui.ViewModel;
 
 using FirstFloor.ModernUI.Windows.Controls;
 
 using Ninject;
 
-namespace DigitR
+namespace DigitR.Ui
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

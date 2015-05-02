@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DigitR.Pages.Teach
+namespace DigitR.Ui.Pages.Teach
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml

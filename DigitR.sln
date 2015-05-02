@@ -3,27 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.UI", "ImageR\DigitR.UI.csproj", "{5A9E140B-5BC8-4C0A-BD15-41B9F45AB18F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main.UI", "ImageR\Main.UI.csproj", "{5A9E140B-5BC8-4C0A-BD15-41B9F45AB18F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core", "DigitR.Core\DigitR.Core.csproj", "{139B9822-A9E9-40A6-AECB-0EB31DC8006B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "DigitR.Core\Core.csproj", "{139B9822-A9E9-40A6-AECB-0EB31DC8006B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.InputProvider", "DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj", "{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork.InputProvider", "DigitR.Core.Input\Core.NeuralNetwork.InputProvider.csproj", "{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork.OutputProvider", "DigitR.Core.Output\DigitR.Core.NeuralNetwork.OutputProvider.csproj", "{2CD80329-D61C-4D31-A5E0-51D24A544748}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork.OutputProvider", "DigitR.Core.Output\Core.NeuralNetwork.OutputProvider.csproj", "{2CD80329-D61C-4D31-A5E0-51D24A544748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.NeuralNetwork.Cnn", "DigitR.Core.NeuralNetwork.Cnn\DigitR.NeuralNetwork.Cnn.csproj", "{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn", "DigitR.Core.NeuralNetwork.Cnn\NeuralNetwork.Cnn.csproj", "{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Core.NeuralNetwork", "DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj", "{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork", "DigitR.Core.NeuralNetwork\Core.NeuralNetwork.csproj", "{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.NeuralNetwork.InputProvider.Training.Mnist", "DigitR.Core.InputProvider.Mnist\DigitR.NeuralNetwork.InputProvider.Training.Mnist.csproj", "{970D5E43-4C7A-4598-AD75-7D9C6E84D411}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Training.Mnist", "DigitR.Core.InputProvider.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj", "{970D5E43-4C7A-4598-AD75-7D9C6E84D411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Logging", "DigitR.Common.Logging\DigitR.Common.Logging.csproj", "{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "DigitR.Common.Logging\Common.Logging.csproj", "{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.Common.Dependencies", "DigitR.Common.Dependencies\DigitR.Common.Dependencies.csproj", "{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Dependencies", "DigitR.Common.Dependencies\Common.Dependencies.csproj", "{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitRNeuralNetwork.OutputProvider.Text", "DigitRNeuralNetwork.OutputProvider.Text\DigitRNeuralNetwork.OutputProvider.Text.csproj", "{AA87413A-B156-4ED9-970B-4027FD7FAB5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.OutputProvider.Text", "DigitRNeuralNetwork.OutputProvider.Text\NeuralNetwork.OutputProvider.Text.csproj", "{AA87413A-B156-4ED9-970B-4027FD7FAB5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitR.NeuralNetwork.Cnn.View", "DigitR.NeuralNetwork.Cnn.View\DigitR.NeuralNetwork.Cnn.View.csproj", "{12F2527C-EE0B-4CF6-823B-ED49795D18DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn.View", "DigitR.NeuralNetwork.Cnn.View\NeuralNetwork.Cnn.View.csproj", "{12F2527C-EE0B-4CF6-823B-ED49795D18DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn.Serializer", "NeuralNetwork.Cnn.Serializer\NeuralNetwork.Cnn.Serializer.csproj", "{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork.Serializer", "Core.NeuralNetwork.Serializer\Core.NeuralNetwork.Serializer.csproj", "{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{12F2527C-EE0B-4CF6-823B-ED49795D18DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12F2527C-EE0B-4CF6-823B-ED49795D18DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12F2527C-EE0B-4CF6-823B-ED49795D18DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -77,21 +77,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitR.Common.Logging\DigitR.Common.Logging.csproj">
+    <ProjectReference Include="..\DigitR.Common.Logging\Common.Logging.csproj">
       <Project>{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}</Project>
-      <Name>DigitR.Common.Logging</Name>
+      <Name>Common.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
+    <ProjectReference Include="..\DigitR.Core.Input\Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
-      <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
-      <Name>DigitR.Core.NeuralNetwork</Name>
+      <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DigitR.Core.Output\DigitR.Core.NeuralNetwork.OutputProvider.csproj">
+    <ProjectReference Include="..\DigitR.Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
-      <Name>DigitR.Core.NeuralNetwork.OutputProvider</Name>
+      <Name>Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

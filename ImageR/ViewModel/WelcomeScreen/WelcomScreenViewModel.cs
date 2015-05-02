@@ -7,7 +7,7 @@ using DigitR.NeuralNetwork.Cnn.View.ViewModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace DigitR.ViewModel.WelcomeScreen
+namespace DigitR.Ui.ViewModel.WelcomeScreen
 {
     public class WelcomScreenViewModel : ViewModelBase
     {

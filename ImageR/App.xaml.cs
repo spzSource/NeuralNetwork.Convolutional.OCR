@@ -1,7 +1,8 @@
 ﻿using System.Windows;
+
 using GalaSoft.MvvmLight.Threading;
 
-namespace DigitR
+namespace DigitR.Ui
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,4 +1,4 @@
-﻿namespace DigitR.Context.Implementation
+﻿namespace DigitR.Ui.Context.Implementation
 {
     public class InputSettings
     {

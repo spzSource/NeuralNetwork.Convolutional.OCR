@@ -2,7 +2,7 @@
 
 namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
-    public class MnistImagePattern : IInputTrainingPattern<double[], double[]>
+    public class MnistImagePattern : IInputTrainingPattern<double[]>
     {
         private const int MnistPatternSize = 28;
         public const int MnistPatternSizeInBytes = MnistPatternSize * MnistPatternSize;

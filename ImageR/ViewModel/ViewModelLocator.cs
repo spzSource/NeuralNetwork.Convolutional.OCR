@@ -9,23 +9,22 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
-using DigitR.Context;
-using DigitR.Context.Implementation;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Cnn;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.Output;
-using DigitR.ViewModel.Teach;
-using DigitR.ViewModel.WelcomeScreen;
-
-using DigitRNeuralNetwork.OutputProvider.Text;
+using DigitR.NeuralNetwork.OutputProvider.Text;
+using DigitR.Ui.Context;
+using DigitR.Ui.Context.Implementation;
+using DigitR.Ui.ViewModel.Teach;
+using DigitR.Ui.ViewModel.WelcomeScreen;
 
 using GalaSoft.MvvmLight.Ioc;
 
 using Microsoft.Practices.ServiceLocation;
 
-namespace DigitR.ViewModel
+namespace DigitR.Ui.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -44,7 +43,7 @@ namespace DigitR.ViewModel
 
             SimpleIoc.Default.Register<IInputProvider, MnistImageInputProvider>();
             SimpleIoc.Default.Register<IOutputProvider, TextOutputProvider>();
-            SimpleIoc.Default.Register<INeuralNetworkBuilder<double[], double[]>, CnnNeuralNetworkBuilder>();
+            SimpleIoc.Default.Register<INeuralNetworkBuilder<double>, CnnNeuralNetworkBuilder>();
             SimpleIoc.Default.Register<INeuralNetworkProcessor, CnnNeuralNetworkProcessor>();
 
             // View-models

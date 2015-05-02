@@ -5,7 +5,7 @@ namespace DigitR.Core.NeuralNetwork
     /// <summary>
     /// Provides an interface of neural network.
     /// </summary>
-    public interface INeuralNetwork<in TInput, out TOuput>
+    public interface INeuralNetwork<TData>
     {
         /// <summary>
         /// Provides a determination logic according to input pattern 
@@ -13,6 +13,6 @@ namespace DigitR.Core.NeuralNetwork
         /// </summary>
         /// <param name="inputPattern">The input pattern for determine.</param>
         /// <returns>The result successful flag.</returns>
-        TOuput Process(IInputPattern<TInput> inputPattern);
+        TData Process(IInputPattern<TData> inputPattern);
     }
 }

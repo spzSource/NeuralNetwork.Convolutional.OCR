@@ -91,9 +91,9 @@
     <Compile Include="ThresholdConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitR.Core.Input\DigitR.Core.NeuralNetwork.InputProvider.csproj">
+    <ProjectReference Include="..\DigitR.Core.Input\Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
-      <Name>DigitR.Core.NeuralNetwork.InputProvider</Name>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

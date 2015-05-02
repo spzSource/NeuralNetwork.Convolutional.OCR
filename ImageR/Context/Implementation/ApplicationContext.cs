@@ -2,12 +2,12 @@
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Cnn;
 
-namespace DigitR.Context.Implementation
+namespace DigitR.Ui.Context.Implementation
 {
     public class ApplicationContext : IApplicationContext
     {
         public ApplicationContext(
-            INeuralNetworkBuilder<double[], double[]> networkBuilder)
+            INeuralNetworkBuilder<double> networkBuilder)
         {
             InputSettings = new InputSettings();
             NeuralNetworkProcessor = new CnnNeuralNetworkProcessor(networkBuilder);

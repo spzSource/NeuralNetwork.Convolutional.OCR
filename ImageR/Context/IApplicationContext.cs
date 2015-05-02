@@ -1,8 +1,8 @@
-﻿using DigitR.Context.Implementation;
-using DigitR.Core.InputProvider;
+﻿using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
+using DigitR.Ui.Context.Implementation;
 
-namespace DigitR.Context
+namespace DigitR.Ui.Context
 {
     public interface IApplicationContext
     {

@@ -2,13 +2,13 @@
 using System.Configuration;
 using System.Windows.Input;
 
-using DigitR.Context;
+using DigitR.Ui.Context;
 
 using GalaSoft.MvvmLight;
 
 using Microsoft.Win32;
 
-namespace DigitR.ViewModel.Teach
+namespace DigitR.Ui.ViewModel.Teach
 {
     public class ConfigureInputPageViewModel : ViewModelBase
     {

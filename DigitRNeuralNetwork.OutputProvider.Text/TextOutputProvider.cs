@@ -2,7 +2,7 @@
 
 using DigitR.Core.Output;
 
-namespace DigitRNeuralNetwork.OutputProvider.Text
+namespace DigitR.NeuralNetwork.OutputProvider.Text
 {
     public class TextOutputProvider : IOutputProvider
     {

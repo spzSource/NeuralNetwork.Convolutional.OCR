@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation
@@ -19,7 +17,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             this.activationAlgorithm = activationAlgorithm;
         }
 
-        public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
+        public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[]> pattern)
         {
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsFirst))
             {

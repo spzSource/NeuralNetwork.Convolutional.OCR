@@ -6,6 +6,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps
     {
         void Process(
             IMultiLayerNeuralNetwork<double> network, 
-            IInputTrainingPattern<double[], double[]> pattern);
+            IInputTrainingPattern<double[]> pattern);
     }
 }

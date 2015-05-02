@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-using DigitR.Context;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
-using DigitR.Utils;
+using DigitR.Ui.Context;
+using DigitR.Ui.Utils;
 
 using FirstFloor.ModernUI.Presentation;
 
 using GalaSoft.MvvmLight;
 
-namespace DigitR.ViewModel.Teach
+namespace DigitR.Ui.ViewModel.Teach
 {
     public class StartTeachingViewModel : ViewModelBase
     {

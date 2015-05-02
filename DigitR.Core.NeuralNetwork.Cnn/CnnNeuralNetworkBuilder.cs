@@ -10,7 +10,7 @@ using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetworkBuilder : INeuralNetworkBuilder<double[], double[]>
+    public class CnnNeuralNetworkBuilder : INeuralNetworkBuilder<double>
     {
         private const int FirstLayerSize = 29 * 29;
         private const int SecondLayerSize = 13 * 13 * 6;
@@ -33,7 +33,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             neuronsPerFeatureMapCounter = new NeuronsPerFeatureMapCounter();
         }
 
-        public INeuralNetwork<double[], double[]> Build()
+        public INeuralNetwork<double[]> Build()
         {
             CnnLayer firstLayer  = new CnnLayer(0, FirstLayerSize,  isFirst: true,  isLast: false);
             CnnLayer secondLayer = new CnnLayer(1, SecondLayerSize, isFirst: false, isLast: false);

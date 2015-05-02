@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{139B9822-A9E9-40A6-AECB-0EB31DC8006B}</ProjectGuid>
+    <ProjectGuid>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core</RootNamespace>
-    <AssemblyName>DigitR.Core</AssemblyName>
+    <RootNamespace>DigitR.Core.NeuralNetwork</RootNamespace>
+    <AssemblyName>DigitR.Core.NeuralNetwork</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,12 +39,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\IActivationAlgorithm.cs" />
+    <Compile Include="Algorithms\IOutputAlgorithm.cs" />
+    <Compile Include="Algorithms\ITrainingAlgorithm.cs" />
+    <Compile Include="Behaviours\ITrainable.cs" />
+    <Compile Include="IConnectionScheme.cs" />
+    <Compile Include="IMultiLayerNeuralNetwork.cs" />
+    <Compile Include="INeuralNetworkProcessor.cs" />
+    <Compile Include="INeuralNetwork.cs" />
+    <Compile Include="INeuralNetworkBuilder.cs" />
+    <Compile Include="Primitives\IConnection.cs" />
+    <Compile Include="Primitives\ILayer.cs" />
+    <Compile Include="Primitives\INeuron.cs" />
+    <Compile Include="Primitives\IWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
-      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
-      <Name>DigitR.Core.NeuralNetwork</Name>
+    <ProjectReference Include="..\DigitR.Core.Input\Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitR.Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

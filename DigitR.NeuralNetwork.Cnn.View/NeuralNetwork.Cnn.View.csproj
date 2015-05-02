@@ -107,13 +107,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitR.Common.Logging\DigitR.Common.Logging.csproj">
+    <ProjectReference Include="..\DigitR.Common.Logging\Common.Logging.csproj">
       <Project>{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}</Project>
-      <Name>DigitR.Common.Logging</Name>
+      <Name>Common.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\DigitR.Core.NeuralNetwork.csproj">
+    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
-      <Name>DigitR.Core.NeuralNetwork</Name>
+      <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

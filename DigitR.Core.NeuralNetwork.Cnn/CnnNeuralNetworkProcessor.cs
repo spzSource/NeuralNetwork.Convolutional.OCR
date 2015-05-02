@@ -12,7 +12,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private readonly IMultiLayerNeuralNetwork<double> network; 
 
         public CnnNeuralNetworkProcessor(
-            INeuralNetworkBuilder<double[], double[]> networkBuilder)
+            INeuralNetworkBuilder<double> networkBuilder)
         {
             if (networkBuilder == null)
             {
@@ -45,10 +45,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             
             do
             {
-                IEnumerable<IInputTrainingPattern<double[], double[]>> patterns = 
+                IEnumerable<IInputTrainingPattern<double[]>> patterns = 
                     trainingInputProvider
                         .Retrieve()
-                        .Cast<IInputTrainingPattern<double[], double[]>>();
+                        .Cast<IInputTrainingPattern<double[]>>();
 
                 trained = network.ProcessTraining(patterns);
 
