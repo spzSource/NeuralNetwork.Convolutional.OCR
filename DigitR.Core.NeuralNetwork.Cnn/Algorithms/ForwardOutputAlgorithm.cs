@@ -9,8 +9,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms
 {
     public class ForwardOutputAlgorithm : IOutputAlgorithm<double, IConnection<double, double>>
     {
-        private const int A = 1;
-
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
 
         public ForwardOutputAlgorithm(

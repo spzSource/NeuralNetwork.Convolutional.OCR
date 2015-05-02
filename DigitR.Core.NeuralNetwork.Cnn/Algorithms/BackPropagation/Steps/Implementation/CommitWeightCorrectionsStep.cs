@@ -13,7 +13,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                 {
                     foreach (IConnection<double, double> connection in neuron.Inputs)
                     {
-                        connection.Weight.Value +=
+                        connection.Weight.Value -=
                             connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection;
                     }
                 }
@@ -31,7 +31,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     {
                         connection.Weight.AdditionalInfo = null;
                     }
-                    neuron.AditionalInfo = null;
+                    neuron.AdditionalInfo = null;
                 }
             }
         }

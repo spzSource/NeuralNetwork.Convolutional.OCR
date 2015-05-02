@@ -14,22 +14,27 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         public void Apply(INeuron<double> neuron)
         {
-            foreach (IConnection<double, double> connections in neuron.Inputs)
+            foreach (IConnection<double, double> connection in neuron.Inputs)
             {
+                if (connection.Neuron.IsBiasNeuron)
+                {
+                    int i = 0;
+                }
+
                 double weightCorrection = trainingSpeed 
                     * neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LocalGradient
-                    * connections.Neuron.Output;
+                    * connection.Neuron.Output;
 
-                if (connections.Weight.AdditionalInfo == null)
+                if (connection.Weight.AdditionalInfo == null)
                 {
-                    connections.Weight.AdditionalInfo = new BackPropagateWeightInfo
+                    connection.Weight.AdditionalInfo = new BackPropagateWeightInfo
                     {
                         WeightCorrection = weightCorrection
                     };
                 }
                 else
                 {
-                    connections.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection += weightCorrection;
+                    connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection += weightCorrection;
                 }
             }
         }

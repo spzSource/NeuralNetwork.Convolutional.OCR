@@ -1,6 +1,4 @@
-﻿using System;
-
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
+﻿using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
@@ -11,17 +9,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
     {
         private readonly IWeightSigner<double> weightSigner;
         private readonly ConnectionsCounter connectionsCounter;
+        private readonly IBiasAssignee biasAssignee;
 
         public FullyConnectedScheme(
             IWeightSigner<double> weightSigner,
-            ConnectionsCounter connectionsCounter)
+            ConnectionsCounter connectionsCounter,
+            IBiasAssignee biasAssignee)
         {
-            if (weightSigner == null)
-            {
-                throw new ArgumentNullException("weightSigner");
-            }
             this.weightSigner = weightSigner;
             this.connectionsCounter = connectionsCounter;
+            this.biasAssignee = biasAssignee;
         }
 
         public void Apply(ILayer<INeuron<double>> leftLayer, ILayer<INeuron<double>> rightLayer)
@@ -30,6 +27,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
             foreach (INeuron<double> currentRightNeuron in rightLayer.Neurons)
             {
+                biasAssignee.Assign(currentRightNeuron, weightsCreator.CreateWeight());
+
                 foreach (INeuron<double> currentLeftNeuron in leftLayer.Neurons)
                 {
                     CnnWeight commonWeight = weightsCreator.CreateWeight();

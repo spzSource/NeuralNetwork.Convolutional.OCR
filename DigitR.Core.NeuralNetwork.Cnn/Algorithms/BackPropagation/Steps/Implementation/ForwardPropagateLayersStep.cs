@@ -24,15 +24,19 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
+            #region 
+
             Log.Current.Info("Back propagation. ForwardPropagateLayersStep begin.");
 
-            int layerIndex = 1;
+            #endregion
 
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsFirst))
             {
-                Log.Current.Info("Layer-{0}. Start.", layerIndex);
+                #region 
 
-                int neuronIndex = 1;
+                Log.Current.Info("Layer-{0}. Start.", layer.LayerId);
+
+                #endregion
 
                 foreach (INeuron<double> neuron in layer.Neurons)
                 {
@@ -40,25 +44,29 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                         .Sum(connection => connection.Weight.Value * connection.Neuron.Output);
 
                     neuron.Output = activationAlgorithm.Calculate(inducedLocalArea);
-                    neuron.AditionalInfo = new BackPropagateNeuronInfo
+                    neuron.AdditionalInfo = new BackPropagateNeuronInfo
                     {
                         LocalGradient = Double.NaN,
                         LastInducesLocalAreaValue = inducedLocalArea
                     };
 
+                    #region 
+
                     Log.Current.Info("Layer-{0} Neuron-{1} : output = {2}, inducedLocalArea = {3}",
-                        layerIndex,
-                        neuronIndex,
-                        neuron.Output,  
+                        layer.LayerId,
+                        neuron.NeuronId,
+                        neuron.Output,
                         neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LastInducesLocalAreaValue);
 
-                    ++neuronIndex;
+                    #endregion
                 }
-
-                ++layerIndex;
             }
 
+            #region 
+
             Log.Current.Info("Back propagation. ForwardPropagateLayersStep end.");
+
+            #endregion
         }
     }
 }

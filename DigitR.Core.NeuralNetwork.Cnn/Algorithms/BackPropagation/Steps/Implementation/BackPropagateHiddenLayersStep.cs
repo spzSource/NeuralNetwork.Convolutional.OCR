@@ -49,7 +49,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
                 foreach (INeuron<double> currentNeuron in layer.Neurons)
                 {
-                    BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AditionalInfo;
+                    BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
 
                     double derivative = activationAlgorithm
                         .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);

@@ -33,7 +33,7 @@ namespace DigitR.Core.NeuralNetwork.Primitives
             get;
         }
 
-        object AditionalInfo
+        object AdditionalInfo
         {
             get;
             set;

@@ -59,6 +59,8 @@
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkBuilder.cs" />
     <Compile Include="CnnNeuralNetworkProcessor.cs" />
+    <Compile Include="ConnectionSchemes\IBiasAssignee.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\CnnBiasAssignee.cs" />
     <Compile Include="ConnectionSchemes\Implementation\Common\ConnectionsCounter.cs" />
     <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapConnector.cs" />
     <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapWeightsCreator.cs" />

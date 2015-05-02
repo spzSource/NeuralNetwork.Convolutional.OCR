@@ -8,9 +8,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation
     {
         public void Sign(IWeight<double> weight)
         {
-            Random rand = new Random(DateTime.Now.Millisecond);
+            //Random rand = new Random(DateTime.Now.Millisecond);
 
-            weight.Value = 0.5 - rand.NextDouble();
+            weight.Value = 0;
         }
     }
 }

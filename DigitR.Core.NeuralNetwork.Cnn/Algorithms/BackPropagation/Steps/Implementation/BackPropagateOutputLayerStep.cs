@@ -32,18 +32,26 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
+            #region 
+
             Log.Current.Info("Back propagation. BackPropagateOutputLayerStep begin.");
+
+            #endregion
 
             ILayer<INeuron<double>> outputLayer = network.GetLayer(layer => layer.IsLast);
 
+            #region 
+
             Log.Current.Info("Layer-5. Start.");
+
+            #endregion
 
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
                 INeuron<double> currentNeuron = outputLayer.Neurons[neuronIndex];
 
                 double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
-                BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AditionalInfo;
+                BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
 
                 Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
 
@@ -51,15 +59,23 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     errorSignal * activationAlgorithm
                         .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
 
+                #region 
+
                 Log.Current.Info("Layer-4. Neuron-{0} : errorSignal = {1}, localGradient = {2}",
                     neuronIndex,
                     errorSignal,
                     currentNeuronInfo.LocalGradient);
 
+                #endregion
+
                 weightCorrectionApplier.Apply(currentNeuron);
             }
 
+            #region 
+
             Log.Current.Info("Back propagation. BackPropagateOutputLayerStep end.");
+
+            #endregion
         }
     }
 }

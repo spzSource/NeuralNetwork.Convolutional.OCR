@@ -11,7 +11,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             IMultiLayerNeuralNetwork<double> network, 
             IInputTrainingPattern<double[], double[]> pattern)
         {
+            #region 
+
             Log.Current.Info("Back propagation. SetNetworkInputStep begin.");
+
+            #endregion
 
             ILayer<INeuron<double>> inputLayer = network.GetLayer(layer => layer.IsFirst);
 
@@ -19,12 +23,20 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             {
                 inputLayer.Neurons[neuronIndex].Output = pattern.Source[neuronIndex];
 
-                Log.Current.Info("Layer-1. Neuron-{0} : output = {1}.", 
-                    neuronIndex, 
+                #region 
+
+                Log.Current.Info("Layer-1. Neuron-{0} : output = {1}.",
+                    neuronIndex,
                     inputLayer.Neurons[neuronIndex].Output);
+
+                #endregion
             }
 
+            #region 
+
             Log.Current.Info("Back propagation. SetNetworkInputStep end.");
+
+            #endregion
         }
     }
 }

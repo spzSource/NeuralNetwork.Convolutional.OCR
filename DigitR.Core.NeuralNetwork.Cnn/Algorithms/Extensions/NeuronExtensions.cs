@@ -6,7 +6,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions
     {
         public static TInfo GetNeuronInfo<TInfo>(this INeuron<double> neuron)
         {
-            return (TInfo)neuron.AditionalInfo;
+            return (TInfo)neuron.AdditionalInfo;
         }
     }
 }

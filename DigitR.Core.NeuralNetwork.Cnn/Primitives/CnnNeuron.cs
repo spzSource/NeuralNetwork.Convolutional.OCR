@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork.Primitives;
@@ -17,6 +18,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         private readonly IList<IConnection<double, double>> outputConnections =
             new List<IConnection<double, double>>();
 
+        private double output;
+
         public CnnNeuron(
             int neuronId,
             bool isBias)
@@ -26,7 +29,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             
             if (isBias)
             {
-                Output = 1;
+                output = 1;
             }
         }
 
@@ -42,6 +45,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         {
             get
             {
+                if (isBias)
+                {
+                    throw new NotSupportedException("Bias neuron does not support input connections.");
+                }
                 return inputConnections;
             }
         }
@@ -56,8 +63,18 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 
         public double Output
         {
-            get;
-            set;
+            get
+            {
+                return output;
+            }
+            set
+            {
+                if (isBias)
+                {
+                    throw new NotSupportedException("Bias neuron does not support changing the output.");
+                }
+                output = value;
+            }
         }
 
         public bool IsBiasNeuron
@@ -68,7 +85,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public object AditionalInfo
+        public object AdditionalInfo
         {
             get;
             set;

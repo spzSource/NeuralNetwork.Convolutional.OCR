@@ -19,6 +19,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
         private readonly IWeightSigner<double> weightSigner;
         private readonly ConnectionsCounter connectionsCounter;
+        private readonly IBiasAssignee biasAssignee;
 
         public SecondToThirdConnectionScheme(
             int source2DSize,
@@ -26,7 +27,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             int kernelSize,
             NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
             IWeightSigner<double> weightSigner,
-            ConnectionsCounter connectionsCounter)
+            ConnectionsCounter connectionsCounter,
+            IBiasAssignee biasAssignee)
         {
             this.source2DSize = source2DSize;
             this.featureMapCount = featureMapCount;
@@ -34,6 +36,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
             this.weightSigner = weightSigner;
             this.connectionsCounter = connectionsCounter;
+            this.biasAssignee = biasAssignee;
         }
 
         public void Apply(
@@ -48,19 +51,22 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             {
                 CnnLayer cnnLeftLayer = (CnnLayer)leftLayer;
 
+                INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+
                 FeatureMapWeightsCreator weightsCreator = new FeatureMapWeightsCreator(weightSigner);
 
+                CnnWeight[] biasWeights = weightsCreator.CreateWeights(featureMapCount);
                 CnnWeight[][] weights = CreateWeights(cnnLeftLayer, weightsCreator);
 
                 FeatureMapEnumerator[] featureMapEnumerators = CreateFeatureMapEnumerators(cnnLeftLayer);
 
                 while (MoveNext(featureMapEnumerators))
                 {
-                    INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-                    
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {
                         IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerators[enumeratorIndex].Current;
+
+                        biasAssignee.Assign(currentRightNeuron, biasWeights[enumeratorIndex]);
 
                         for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                         {
@@ -97,7 +103,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                     source2DSize,
                     cnnLeftLayer.FeatureMaps[enumeratorIndex].Neurons);
             }
-            
+
             return featureMapEnumerators;
         }
 
@@ -107,7 +113,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
             for (int weightIndex = 0; weightIndex < cnnLeftLayer.FeatureMaps.Count; weightIndex++)
             {
-                weights[weightIndex] = weightsCreator.CreateWeights(kernelSize*kernelSize + 1);
+                weights[weightIndex] = weightsCreator.CreateWeights(kernelSize * kernelSize);
             }
 
             return weights;
