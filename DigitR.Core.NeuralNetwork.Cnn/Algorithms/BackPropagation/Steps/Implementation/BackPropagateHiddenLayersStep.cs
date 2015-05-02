@@ -33,7 +33,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
-            #region 
+            #region
 
             Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep begin.");
 
@@ -41,7 +41,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
             foreach (ILayer<INeuron<double>> layer in network.Layers.Where(layer => !layer.IsLast && !layer.IsFirst).Reverse())
             {
-                #region 
+                #region
 
                 Log.Current.Info("Layer-{0}. Start.", layer.LayerId);
 
@@ -51,34 +51,24 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                 {
                     BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
 
-                    double derivative = activationAlgorithm
-                        .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
+                    //double derivative = activationAlgorithm
+                    //.CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
+
+                    Contract.Assert(currentNeuron.Outputs.Count > 0, "Wrong number of inputs.");
 
                     double weightedGradientsSum = currentNeuron.Outputs
                         .Sum(connection => connection.Neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LocalGradient * connection.Weight.Value);
 
-                    double localGradient = derivative * weightedGradientsSum;
+                    double localGradient = currentNeuron.Output * (1 - currentNeuron.Output) * weightedGradientsSum;//derivative * weightedGradientsSum;
 
                     Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
                     currentNeuronInfo.LocalGradient = localGradient;
-
-                    #region 
-
-                    Log.Current.Info(
-                        "Layer-{0} Neuron-{1} : derivative = {2}, weightedGradientSum = {3}, localGradient = {4}",
-                        layer.LayerId,
-                        currentNeuron.NeuronId,
-                        derivative,
-                        weightedGradientsSum,
-                        localGradient);
-
-                    #endregion
-
+                   
                     weightCorrectionApplier.Apply(currentNeuron);
                 }
             }
 
-            #region 
+            #region
 
             Log.Current.Info("Back propagation. BackPropagateHiddenLayersStep end.");
 

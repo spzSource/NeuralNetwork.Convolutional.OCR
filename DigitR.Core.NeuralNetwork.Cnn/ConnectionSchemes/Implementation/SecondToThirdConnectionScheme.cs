@@ -51,8 +51,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             {
                 CnnLayer cnnLeftLayer = (CnnLayer)leftLayer;
 
-                INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-
                 FeatureMapWeightsCreator weightsCreator = new FeatureMapWeightsCreator(weightSigner);
 
                 CnnWeight[] biasWeights = weightsCreator.CreateWeights(featureMapCount);
@@ -62,11 +60,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 while (MoveNext(featureMapEnumerators))
                 {
+                    INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+
+                    biasAssignee.Assign(currentRightNeuron, biasWeights[featureMapIndex]);
+
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {
                         IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerators[enumeratorIndex].Current;
-
-                        biasAssignee.Assign(currentRightNeuron, biasWeights[enumeratorIndex]);
 
                         for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                         {
@@ -84,7 +84,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                             innerConnectionsCounter.Increment();
                         }
                     }
-
                     ++rightLayerNeuronIndex;
                 }
             }

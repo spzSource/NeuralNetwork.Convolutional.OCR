@@ -13,7 +13,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             IMultiLayerNeuralNetwork<double>,
             IInputTrainingPattern<double[], double[]>>
     {
-        private const double TrainingSpeed = 0.5;
+        private const double TrainingSpeed = 1;
 
         private readonly IReadOnlyCollection<IPropagationStep> algorithmSteps;
 
@@ -22,14 +22,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         {
             WeightCorrectionApplier weightCorrectionsApplier = new WeightCorrectionApplier(TrainingSpeed);
 
-            algorithmSteps = new ReadOnlyCollection<IPropagationStep>(new List<IPropagationStep>
-            {
-                new SetNetworkInputStep(),
-                new ForwardPropagateLayersStep(activationAlgorithm),
-                new BackPropagateOutputLayerStep(activationAlgorithm, weightCorrectionsApplier),
-                new BackPropagateHiddenLayersStep(activationAlgorithm, weightCorrectionsApplier),
-                new CommitWeightCorrectionsStep()
-            });
+            algorithmSteps = new ReadOnlyCollection<IPropagationStep>(
+                new List<IPropagationStep>
+                {
+                    new SetNetworkInputStep(),
+                    new ForwardPropagateLayersStep(activationAlgorithm),
+                    new BackPropagateOutputLayerStep(activationAlgorithm, weightCorrectionsApplier),
+                    new BackPropagateHiddenLayersStep(activationAlgorithm, weightCorrectionsApplier),
+                    //new CommitWeightCorrectionsStep()
+                });
         }
 
         public void ProcessTraining(

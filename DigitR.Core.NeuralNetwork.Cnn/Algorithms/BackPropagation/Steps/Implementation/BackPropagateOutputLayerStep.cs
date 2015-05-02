@@ -18,33 +18,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
             IActivationAlgorithm<double, double> activationAlgorithm,
             WeightCorrectionApplier weightCorrectionApplier)
         {
-            if (activationAlgorithm == null)
-            {
-                throw new ArgumentNullException("activationAlgorithm");
-            }
-            if (weightCorrectionApplier == null)
-            {
-                throw new ArgumentNullException("weightCorrectionApplier");
-            }
             this.activationAlgorithm = activationAlgorithm;
             this.weightCorrectionApplier = weightCorrectionApplier;
         }
 
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[], double[]> pattern)
         {
-            #region 
-
-            Log.Current.Info("Back propagation. BackPropagateOutputLayerStep begin.");
-
-            #endregion
-
             ILayer<INeuron<double>> outputLayer = network.GetLayer(layer => layer.IsLast);
-
-            #region 
-
-            Log.Current.Info("Layer-5. Start.");
-
-            #endregion
 
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
@@ -55,27 +35,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 
                 Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
 
-                currentNeuronInfo.LocalGradient =
-                    errorSignal * activationAlgorithm
-                        .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
+                //currentNeuronInfo.LocalGradient =
+                //    errorSignal * activationAlgorithm
+                //        .CalculateFirstDerivative(currentNeuronInfo.LastInducesLocalAreaValue);
 
-                #region 
+                currentNeuronInfo.LocalGradient = -1 * errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
 
-                Log.Current.Info("Layer-4. Neuron-{0} : errorSignal = {1}, localGradient = {2}",
-                    neuronIndex,
-                    errorSignal,
-                    currentNeuronInfo.LocalGradient);
-
-                #endregion
-
+                
                 weightCorrectionApplier.Apply(currentNeuron);
             }
-
-            #region 
-
-            Log.Current.Info("Back propagation. BackPropagateOutputLayerStep end.");
-
-            #endregion
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics;
 
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
@@ -14,9 +14,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             INeuron<double> neuron,
             IWeight<double> weight)
         {
-            //Contract.Requires<ArgumentException>(neuron != null);
-            //Contract.Requires<ArgumentException>(weight != null);
-
             this.neuron = neuron;
             this.weight = weight;
         }
@@ -37,10 +34,19 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
             }
         }
 
-        public object AditionalInfo
+        public object AdditionalInfo
         {
             get;
             set;
+        }
+
+        // NOTE : for debug only. Should be removed.
+        private BackPropagateNeuronInfo Info
+        {
+            get
+            {
+                return (BackPropagateNeuronInfo) AdditionalInfo;
+            }
         }
     }
 }

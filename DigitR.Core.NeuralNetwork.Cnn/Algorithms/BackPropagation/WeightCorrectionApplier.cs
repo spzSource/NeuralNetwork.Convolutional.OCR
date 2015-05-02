@@ -1,4 +1,6 @@
-﻿using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
+﻿using System.Diagnostics.Contracts;
+
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
@@ -14,28 +16,28 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         public void Apply(INeuron<double> neuron)
         {
+            Contract.Assert(neuron.Inputs.Count > 0, "Wrong number of inputs.");
+
             foreach (IConnection<double, double> connection in neuron.Inputs)
             {
-                if (connection.Neuron.IsBiasNeuron)
-                {
-                    int i = 0;
-                }
-
+            
                 double weightCorrection = trainingSpeed 
                     * neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LocalGradient
                     * connection.Neuron.Output;
 
-                if (connection.Weight.AdditionalInfo == null)
-                {
-                    connection.Weight.AdditionalInfo = new BackPropagateWeightInfo
-                    {
-                        WeightCorrection = weightCorrection
-                    };
-                }
-                else
-                {
-                    connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection += weightCorrection;
-                }
+                connection.Weight.Value -= weightCorrection;
+
+                //if (connection.Weight.AdditionalInfo == null)
+                //{
+                //    connection.Weight.AdditionalInfo = new BackPropagateWeightInfo
+                //    {
+                //        WeightCorrection = weightCorrection
+                //    };
+                //}
+                //else
+                //{
+                //    connection.Weight.GetInfo<BackPropagateWeightInfo>().WeightCorrection += weightCorrection;
+                //}
             }
         }
     }

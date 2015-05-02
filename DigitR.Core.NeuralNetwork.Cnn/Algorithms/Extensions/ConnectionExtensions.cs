@@ -6,7 +6,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Extensions
     {
         public static TInfo GetConnectionInfo<TInfo>(this IConnection<double, double> connection)
         {
-            return (TInfo)connection.AditionalInfo;
+            return (TInfo)connection.AdditionalInfo;
         }
     }
 }

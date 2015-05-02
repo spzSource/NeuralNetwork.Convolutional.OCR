@@ -15,7 +15,7 @@
             get;
         }
 
-        object AditionalInfo
+        object AdditionalInfo
         {
             get;
             set;

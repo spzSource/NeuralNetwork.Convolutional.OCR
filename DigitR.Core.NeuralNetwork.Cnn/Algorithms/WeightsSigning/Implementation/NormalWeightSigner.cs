@@ -6,11 +6,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation
 {
     internal class NormalWeightSigner : IWeightSigner<double>
     {
+        private readonly Random rand = new Random(DateTime.Now.Millisecond);
+
         public void Sign(IWeight<double> weight)
         {
-            //Random rand = new Random(DateTime.Now.Millisecond);
-
-            weight.Value = 0;
+            weight.Value = 0.5 - rand.NextDouble();
         }
     }
 }

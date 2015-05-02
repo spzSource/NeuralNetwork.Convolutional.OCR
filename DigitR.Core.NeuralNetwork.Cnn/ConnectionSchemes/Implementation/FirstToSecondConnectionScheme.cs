@@ -53,8 +53,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             {
                 FeatureMap<INeuron<double>> featureMap = new FeatureMap<INeuron<double>>();
 
-                INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-
                 FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
                     Step,
                     kernelSize,
@@ -67,6 +65,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                 while (featureMapEnumerator.MoveNext())
                 {
+                    INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
+
                     IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
                     biasAssignee.Assign(currentRightNeuron, biasWeight);
@@ -85,7 +85,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
                         connectionsCounter.Increment();
                     }
-                    
+
                     ++rightLayerNeuronIndex;
 
                     featureMap.AddNeuron(currentRightNeuron);

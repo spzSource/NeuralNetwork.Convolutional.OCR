@@ -8,19 +8,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms
     {
         private const double Alpha = 1;
 
-        /// <summary>
-        /// Calculates a sigmoid function.
-        /// </summary>
         public double Calculate(double inducedArea)
         {
             return CalculateSigmoid(inducedArea);
         }
 
-        public double CalculateFirstDerivative(double inducedArea)
+        public double CalculateFirstDerivative(double output)
         {
-            double activationValue = CalculateSigmoid(inducedArea);
+            //double activationValue = CalculateSigmoid(inducedArea);
 
-            return Alpha * activationValue * (1 - activationValue);
+            return Alpha * output * (1 - output);
         }
 
         private double CalculateSigmoid(double source)
