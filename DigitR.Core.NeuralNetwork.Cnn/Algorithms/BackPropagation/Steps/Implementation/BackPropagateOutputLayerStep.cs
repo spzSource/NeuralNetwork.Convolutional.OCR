@@ -33,7 +33,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                 Contract.Assert(currentNeuron.Inputs.Count > 0, "Wrong number of inputs.");
 
                 double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
-                double currentLocalGradient = -1 * errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
+                double currentLocalGradient = errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
                 
                 currentNeuronInfo.LocalGradient = currentLocalGradient;
 

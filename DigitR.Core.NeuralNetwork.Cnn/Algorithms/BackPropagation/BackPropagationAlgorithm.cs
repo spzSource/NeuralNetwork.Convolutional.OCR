@@ -101,7 +101,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
             for (int outputIndex = 0; outputIndex < realOutput.Length; outputIndex++)
             {
-                errorsSum += desiredOuput[outputIndex] - realOutput[outputIndex];
+                errorsSum += Math.Pow(desiredOuput[outputIndex] - realOutput[outputIndex], 2);
             }
 
             double energy = errorsSum / 2;
