@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}</ProjectGuid>
+    <ProjectGuid>{AA87413A-B156-4ED9-970B-4027FD7FAB5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core.NeuralNetwork.Serializer</RootNamespace>
-    <AssemblyName>DigitR.Core.NeuralNetwork.Serializer</AssemblyName>
+    <RootNamespace>DigitR.NeuralNetwork.OutputProvider.Text</RootNamespace>
+    <AssemblyName>DigitR.NeuralNetwork.OutputProvider.Text</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INeuralNetworkSerializer.cs" />
+    <Compile Include="TextOutputProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
-      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
-      <Name>Core.NeuralNetwork</Name>
+    <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

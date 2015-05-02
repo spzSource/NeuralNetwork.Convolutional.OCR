@@ -47,7 +47,7 @@
       <Project>{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}</Project>
       <Name>Core.NeuralNetwork.Serializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DigitR.Core.NeuralNetwork\Core.NeuralNetwork.csproj">
+    <ProjectReference Include="..\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
     </ProjectReference>

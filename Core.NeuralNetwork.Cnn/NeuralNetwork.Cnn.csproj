@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitR.Core.NeuralNetwork.Cnn</RootNamespace>
+    <AssemblyName>DigitR.Core.NeuralNetwork.Cnn</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
+    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateNeuronInfo.cs" />
+    <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateHiddenLayersStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateOutputLayerStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\ForwardPropagateLayersStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\CommitWeightCorrectionsStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\SetNetworkInputStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Steps\IPropagationStep.cs" />
+    <Compile Include="Algorithms\BackPropagation\Common\WeightCorrectionApplier.cs" />
+    <Compile Include="Algorithms\Extensions\ConnectionExtensions.cs" />
+    <Compile Include="Algorithms\Extensions\NetworkExtensions.cs" />
+    <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />
+    <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
+    <Compile Include="Algorithms\WeightsSigning\IWeightSigner.cs" />
+    <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
+    <Compile Include="Algorithms\WeightsSigning\Implementation\NormalWeightSigner.cs" />
+    <Compile Include="CnnNeuralNetwork.cs" />
+    <Compile Include="CnnNeuralNetworkBuilder.cs" />
+    <Compile Include="CnnNeuralNetworkProcessor.cs" />
+    <Compile Include="ConnectionSchemes\IBiasAssignee.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\CnnBiasAssignee.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\ConnectionsCounter.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapConnector.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\FeatureMapWeightsCreator.cs" />
+    <Compile Include="Primitives\FeatureMap.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Enumerators\FeatureMapEnumerator.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\Common\NeuronsPerFeatureMapCounter.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\FirstToSecondConnectionScheme.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\SecondToThirdConnectionScheme.cs" />
+    <Compile Include="ConnectionSchemes\Implementation\FullyConnectedScheme.cs" />
+    <Compile Include="Primitives\CnnConnection.cs" />
+    <Compile Include="Primitives\CnnLayer.cs" />
+    <Compile Include="Primitives\CnnNeuron.cs" />
+    <Compile Include="Primitives\CnnWeight.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.csproj">
+      <Project>{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}</Project>
+      <Name>Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Input\Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
+      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
+      <Name>Core.NeuralNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
+      <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
+      <Name>Core.NeuralNetwork.OutputProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
