@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DigitR.Ui.Pages.WelcomeScreen
+namespace DigitR.Ui.Views.WelcomeScreen
 {
     /// <summary>
     /// Interaction logic for WelcomeScreen.xaml

@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Ui.Context;
 using DigitR.Ui.Utils;
@@ -12,23 +13,23 @@ using FirstFloor.ModernUI.Presentation;
 
 using GalaSoft.MvvmLight;
 
-namespace DigitR.Ui.ViewModel.Teach
+namespace DigitR.Ui.ViewModels.Teach
 {
     public class StartTeachingViewModel : ViewModelBase
     {
         private readonly IApplicationContext context;
+        private readonly INeuralNetworkProcessor<INeuralNetwork<double[]>> neuralNetworkProcessor;
         private readonly ByteArrayToBitmapConverter byteArrayToBitmapConverter;
         private readonly IInputProvider trainingInputProvider;
 
         private BitmapSource currentInputPatternImageSource;
         
-        public StartTeachingViewModel(IApplicationContext context)
+        public StartTeachingViewModel(
+            IApplicationContext context,
+            INeuralNetworkProcessor<INeuralNetwork<double[]>> neuralNetworkProcessor)
         {
             this.context = context;
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
+            this.neuralNetworkProcessor = neuralNetworkProcessor;
 
             byteArrayToBitmapConverter = new ByteArrayToBitmapConverter();
 
@@ -45,7 +46,7 @@ namespace DigitR.Ui.ViewModel.Teach
 
         private async void ProcessTraining(object state)
         {
-            bool result = await Task.Run(() => context.NeuralNetworkProcessor.Train(trainingInputProvider));
+            bool result = await Task.Run(() => neuralNetworkProcessor.Train(trainingInputProvider));
         }
 
         private void NewInputTrainingPatternRetrievedCallback(object pattern)

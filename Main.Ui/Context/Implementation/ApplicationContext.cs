@@ -1,6 +1,5 @@
 ﻿using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
-using DigitR.Core.NeuralNetwork.Cnn;
 
 namespace DigitR.Ui.Context.Implementation
 {
@@ -10,7 +9,6 @@ namespace DigitR.Ui.Context.Implementation
             INeuralNetworkBuilder<double> networkBuilder)
         {
             InputSettings = new InputSettings();
-            NeuralNetworkProcessor = new CnnNeuralNetworkProcessor(networkBuilder);
         }
 
         public InputSettings InputSettings
@@ -23,12 +21,6 @@ namespace DigitR.Ui.Context.Implementation
         {
             get;
             set;
-        }
-
-        public INeuralNetworkProcessor NeuralNetworkProcessor
-        {
-            get;
-            private set;
         }
     }
 }

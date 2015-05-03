@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace DigitR.Ui.Pages.Teach.Steps.Controls
+namespace DigitR.Ui.Views.Teach.Controls
 {
     /// <summary>
     /// Interaction logic for OpenFileControl.xaml

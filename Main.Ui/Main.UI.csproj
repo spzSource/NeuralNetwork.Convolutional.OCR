@@ -118,26 +118,30 @@
     <Compile Include="Context\Implementation\ApplicationContext.cs" />
     <Compile Include="Context\IApplicationContext.cs" />
     <Compile Include="Context\Implementation\InputSettings.cs" />
-    <Compile Include="Pages\Teach\Steps\ConfigureInputPage.xaml.cs">
+    <Compile Include="Views\Teach\ConfigureInputPage.xaml.cs">
       <DependentUpon>ConfigureInputPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Teach\Steps\Controls\OpenFileControl.xaml.cs">
+    <Compile Include="Views\Teach\Controls\OpenFileControl.xaml.cs">
       <DependentUpon>OpenFileControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Teach\Steps\StartTeachingPage.xaml.cs">
+    <Compile Include="Views\Teach\StartTeachingPage.xaml.cs">
       <DependentUpon>StartTeachingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Teach\TeachPage.xaml.cs">
+    <Compile Include="Views\Teach\StateSavingView.xaml.cs">
+      <DependentUpon>StateSavingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Teach\TeachPage.xaml.cs">
       <DependentUpon>TeachPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\WelcomeScreen\WelcomeScreen.xaml.cs">
+    <Compile Include="Views\WelcomeScreen\WelcomeScreen.xaml.cs">
       <DependentUpon>WelcomeScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ByteArrayToBitmapConverter.cs" />
-    <Compile Include="ViewModel\Teach\ConfigureInputPageViewModel.cs" />
-    <Compile Include="ViewModel\Teach\StartTeachingViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\WelcomeScreen\WelcomScreenViewModel.cs" />
+    <Compile Include="ViewModels\Teach\ConfigureInputPageViewModel.cs" />
+    <Compile Include="ViewModels\Teach\StartTeachingViewModel.cs" />
+    <Compile Include="ViewModels\Teach\StateSavingViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\WelcomeScreen\WelcomScreenViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,23 +154,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Teach\Steps\ConfigureInputPage.xaml">
+    <Page Include="Views\Teach\ConfigureInputPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Teach\Steps\Controls\OpenFileControl.xaml">
+    <Page Include="Views\Teach\Controls\OpenFileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Teach\Steps\StartTeachingPage.xaml">
+    <Page Include="Views\Teach\StartTeachingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Teach\TeachPage.xaml">
+    <Page Include="Views\Teach\StateSavingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\WelcomeScreen\WelcomeScreen.xaml">
+    <Page Include="Views\Teach\TeachPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomeScreen\WelcomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,10 +229,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Dependencies\Common.Dependencies.csproj">
-      <Project>{A7DBF39F-6251-4E2E-A8D2-1FF8A1FF9F80}</Project>
-      <Name>Common.Dependencies</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core.InputProvider.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj">
       <Project>{970D5E43-4C7A-4598-AD75-7D9C6E84D411}</Project>
       <Name>NeuralNetwork.InputProvider.Training.Mnist</Name>
@@ -237,6 +241,10 @@
       <Project>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</Project>
       <Name>NeuralNetwork.Cnn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.NeuralNetwork.Serializer\Core.NeuralNetwork.Serializer.csproj">
+      <Project>{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}</Project>
+      <Name>Core.NeuralNetwork.Serializer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
@@ -244,6 +252,10 @@
     <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork.Cnn.Serializer\NeuralNetwork.Cnn.Serializer.csproj">
+      <Project>{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}</Project>
+      <Name>NeuralNetwork.Cnn.Serializer</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeuralNetwork.Cnn.View\NeuralNetwork.Cnn.View.csproj">
       <Project>{12F2527C-EE0B-4CF6-823B-ED49795D18DF}</Project>
@@ -253,6 +265,9 @@
       <Project>{AA87413A-B156-4ED9-970B-4027FD7FAB5A}</Project>
       <Name>NeuralNetwork.OutputProvider.Text</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Convertes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

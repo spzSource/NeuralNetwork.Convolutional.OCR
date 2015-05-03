@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 
 using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.Output;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor
+    public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double[]>>
     {
-        private readonly IMultiLayerNeuralNetwork<double> network; 
+        private readonly ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm;
+
+        private IMultiLayerNeuralNetwork<double> network; 
 
         public CnnNeuralNetworkProcessor(
-            INeuralNetworkBuilder<double> networkBuilder)
+            INeuralNetworkBuilder<double> networkBuilder,
+            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm)
         {
-            if (networkBuilder == null)
-            {
-                throw new ArgumentNullException("networkBuilder");
-            }
+            this.trainingAlgorithm = trainingAlgorithm;
+            
             network = networkBuilder.Build() as IMultiLayerNeuralNetwork<double>;
         }
-
-        public object NeuralNetwork
+        
+        public INeuralNetwork<double[]> NeuralNetwork
         {
             get
             {
                 return network;
             }
+        }
+
+        public void Initialize(INeuralNetwork<double[]> neuralNetwork)
+        {
+            network = neuralNetwork as IMultiLayerNeuralNetwork<double>;
         }
 
         public bool Process(IInputProvider inputProvider, IOutputProvider outputProvider)
@@ -50,7 +57,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                         .Retrieve()
                         .Cast<IInputTrainingPattern<double[]>>();
 
-                trained = network.ProcessTraining(patterns);
+                trained = network.ProcessTraining(patterns, trainingAlgorithm);
 
             } while (!trained);
 

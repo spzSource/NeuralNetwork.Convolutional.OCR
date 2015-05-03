@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
 
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
+    [Serializable]
     public class CnnConnection : IConnection<double, double>
     {
         private readonly INeuron<double> neuron;

@@ -11,13 +11,14 @@ namespace DigitR.Core.NeuralNetwork.Serializer
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="path"></param>
         /// <param name="network"></param>
-        Task<bool> SerializeAsync(INeuralNetwork<TData> network);
+        Task<bool> SerializeAsync(string path, INeuralNetwork<TData> network);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        Task<INeuralNetwork<TData>> DeserializeAsync();
+        Task<INeuralNetwork<TData>> DeserializeAsync(string path);
     }
 }

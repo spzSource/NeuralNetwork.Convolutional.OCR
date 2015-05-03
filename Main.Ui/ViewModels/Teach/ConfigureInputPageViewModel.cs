@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight;
 
 using Microsoft.Win32;
 
-namespace DigitR.Ui.ViewModel.Teach
+namespace DigitR.Ui.ViewModels.Teach
 {
     public class ConfigureInputPageViewModel : ViewModelBase
     {

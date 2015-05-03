@@ -6,12 +6,14 @@ namespace DigitR.Core.NeuralNetwork
     /// <summary>
     /// 
     /// </summary>
-    public interface INeuralNetworkProcessor
+    public interface INeuralNetworkProcessor<TNetwork>
     {
-        object NeuralNetwork
+        TNetwork NeuralNetwork
         {
             get;
         }
+
+        void Initialize(TNetwork network);
 
         /// <summary>
         /// 

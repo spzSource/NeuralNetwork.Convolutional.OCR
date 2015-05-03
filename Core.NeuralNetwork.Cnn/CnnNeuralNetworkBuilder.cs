@@ -87,8 +87,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                     thirdLayer, 
                     fourthLayer, 
                     fifthsLayer
-                },
-                new BackPropagationAlgorithm(new SigmoidActivationAlgorithm()));
+                });
         }
     }
 }

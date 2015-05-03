@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModel="clr-namespace:DigitR.Ui.ViewModel"
+             xmlns:viewModels="clr-namespace:DigitR.Ui.ViewModels"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d">
 
@@ -12,9 +12,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>
+                <ResourceDictionary Source="Skins/MainSkin.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+            <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>
     </Application.Resources>
 

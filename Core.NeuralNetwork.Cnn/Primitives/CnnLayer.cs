@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -6,6 +7,7 @@ using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
+    [Serializable]
     [DebuggerDisplay("Layer-{LayerId}")]
     public class CnnLayer : ILayer<INeuron<double>>
     {

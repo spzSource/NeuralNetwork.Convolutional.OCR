@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DigitR.Ui.Pages.Teach.Steps
+namespace DigitR.Ui.Views.Teach
 {
     /// <summary>
     /// Interaction logic for ConfigureInputPage.xaml

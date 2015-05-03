@@ -1,5 +1,4 @@
 ﻿using DigitR.Core.InputProvider;
-using DigitR.Core.NeuralNetwork;
 using DigitR.Ui.Context.Implementation;
 
 namespace DigitR.Ui.Context
@@ -15,11 +14,6 @@ namespace DigitR.Ui.Context
         {
             get;
             set;
-        }
-
-        INeuralNetworkProcessor NeuralNetworkProcessor
-        {
-            get;
         }
     }
 }

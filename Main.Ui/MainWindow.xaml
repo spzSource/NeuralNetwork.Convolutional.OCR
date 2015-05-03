@@ -9,7 +9,7 @@
         Height="700"
         Width="900"
         Title="DigitR - Digital Recognizer"
-        ContentSource="../Pages/Teach/Steps/ConfigureInputPage.xaml">
+        ContentSource="Views/Teach/ConfigureInputPage.xaml">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -22,14 +22,15 @@
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Welcome screen" >
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Welcome" Source="../Pages/WelcomeScreen/WelcomeScreen.xaml"/>
+                <mui:Link DisplayName="Welcome" Source="Views/WelcomeScreen/WelcomeScreen.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         
         <mui:LinkGroup DisplayName="Teaching" >
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Configure input" Source="Pages/Teach/Steps/ConfigureInputPage.xaml"/>
-                <mui:Link DisplayName="Teaching" Source="Pages/Teach/Steps/StartTeachingPage.xaml"/>
+                <mui:Link DisplayName="Configure input" Source="Views/Teach/ConfigureInputPage.xaml"/>
+                <mui:Link DisplayName="Teaching" Source="Views/Teach/StartTeachingPage.xaml"/>
+                <mui:Link DisplayName="State saving" Source="Views/Teach/StateSavingView.xaml"/>
                 <mui:Link DisplayName="Result phase" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
 {
+    [Serializable]
     public class FeatureMap<TNeuron>
     {
         private readonly IList<TNeuron> internalNeurons;

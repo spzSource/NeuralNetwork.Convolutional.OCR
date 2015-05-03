@@ -5,30 +5,21 @@ using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-using NetworkInterface = DigitR.Core.NeuralNetwork.IMultiLayerNeuralNetwork<double>;
-using TrainingPatternInterface = DigitR.Core.InputProvider.IInputTrainingPattern<double[]>;
-
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
+    [Serializable]
     public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double>
     {
         private readonly IReadOnlyCollection<ILayer<INeuron<double>>> layers;
-        private readonly ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm;
 
         public CnnNeuralNetwork(
-            IReadOnlyCollection<ILayer<INeuron<double>>> layers,
-            ITrainingAlgorithm<NetworkInterface, TrainingPatternInterface> trainingAlgorithm)
+            IReadOnlyCollection<ILayer<INeuron<double>>> layers)
         {
             if (layers == null)
             {
                 throw new ArgumentNullException("layers");
             }
-            if (trainingAlgorithm == null)
-            {
-                throw new ArgumentNullException("trainingAlgorithm");
-            }
             this.layers = layers;
-            this.trainingAlgorithm = trainingAlgorithm;
         }
 
         /// <summary>
@@ -42,7 +33,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             }
         }
 
-        public bool ProcessTraining(IEnumerable<IInputTrainingPattern<double[]>> patterns)
+        public bool ProcessTraining(
+            IEnumerable<IInputTrainingPattern<double[]>> patterns,
+            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm)
         {
             return trainingAlgorithm.ProcessTraining(this, patterns);
         }

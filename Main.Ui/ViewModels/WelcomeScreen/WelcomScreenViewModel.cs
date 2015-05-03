@@ -7,14 +7,14 @@ using DigitR.NeuralNetwork.Cnn.View.ViewModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace DigitR.Ui.ViewModel.WelcomeScreen
+namespace DigitR.Ui.ViewModels.WelcomeScreen
 {
     public class WelcomScreenViewModel : ViewModelBase
     {
         private readonly NeuralNetworkGraphViewModel networkGraphViewModel;
 
         public WelcomScreenViewModel(
-            INeuralNetworkProcessor networkProcessor)
+            INeuralNetworkProcessor<INeuralNetwork<double[]>> networkProcessor)
         {
             if (networkProcessor == null)
             {

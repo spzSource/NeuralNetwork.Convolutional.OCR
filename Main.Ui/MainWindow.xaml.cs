@@ -1,9 +1,6 @@
-﻿using DigitR.Common.Dependencies;
-using DigitR.Ui.ViewModel;
+﻿using DigitR.Ui.ViewModels;
 
 using FirstFloor.ModernUI.Windows.Controls;
-
-using Ninject;
 
 namespace DigitR.Ui
 {
@@ -18,8 +15,6 @@ namespace DigitR.Ui
         public MainWindow()
         {
             InitializeComponent();
-
-            IKernel kernel = new StandardKernel(new MainNinjectModule());
 
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.Contracts;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 
@@ -11,19 +9,14 @@ namespace DigitR.NeuralNetwork.Cnn.Serializer
 {
     public class CnnNeuralNetworkSerializer : INeuralNetworkSerializer<double[]>
     {
-        private readonly string path;
         private readonly BinaryFormatter binaryFormatter;
 
-        public CnnNeuralNetworkSerializer(
-            string path)
+        public CnnNeuralNetworkSerializer()
         {
-            Contract.Assert(!String.IsNullOrWhiteSpace(path), "Serialization path cannot be null.");
-            this.path = path;
-
             binaryFormatter = new BinaryFormatter();
         }
 
-        public Task<bool> SerializeAsync(INeuralNetwork<double[]> network)
+        public Task<bool> SerializeAsync(string path, INeuralNetwork<double[]> network)
         {
             return Task.Run(() =>
             {
@@ -35,7 +28,7 @@ namespace DigitR.NeuralNetwork.Cnn.Serializer
             });
         }
 
-        public Task<INeuralNetwork<double[]>> DeserializeAsync()
+        public Task<INeuralNetwork<double[]>> DeserializeAsync(string path)
         {
             return Task.Run(() =>
             {

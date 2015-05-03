@@ -15,10 +15,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 {
     public class BackPropagationAlgorithm
         : ITrainingAlgorithm<
-            IMultiLayerNeuralNetwork<double>,
+            INeuralNetwork<double[]>,
             IInputTrainingPattern<double[]>>
     {
-        private const double ErrorEps = 0.05;
+        private const double ErrorEps = 0.00001;
 
         private readonly IReadOnlyCollection<IPropagationStep> algorithmSteps;
 
@@ -44,9 +44,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         }
 
         public bool ProcessTraining(
-            IMultiLayerNeuralNetwork<double> network,
+            INeuralNetwork<double[]> network,
             IEnumerable<IInputTrainingPattern<double[]>> patterns)
         {
+            IMultiLayerNeuralNetwork<double> multiLayerNeuralNetwork = (IMultiLayerNeuralNetwork<double>)network;
+
             int patternsCount = 0;
             double energySum = 0;
 
@@ -54,14 +56,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             {
                 Log.Current.Info("Pattern #{0} started to processing.", patternsCount + 1);
 
-                ProcessPattern(network, pattern);
+                ProcessPattern(multiLayerNeuralNetwork, pattern);
 
-                double[] realOutputs = network.Layers
+                double[] realOutputs = multiLayerNeuralNetwork.Layers
                     .First(layer => layer.IsLast).Neurons
                     .Select(neuron => neuron.Output)
                     .ToArray();
 
-                Log.Current.Info("Desired output = {0}, real output = {1}", 
+                Log.Current.Info("Desired output = {0}, real output = {1}",
                     pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" {0}", element)).ToString(),
                     realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" {0}", element)).ToString());
 
