@@ -19,6 +19,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             IInputTrainingPattern<double[]>>
     {
         private const double ErrorEps = 0.00001;
+        private const double MinErrorEnergy = 10;
 
         private readonly IReadOnlyCollection<IPropagationStep> algorithmSteps;
 
@@ -75,7 +76,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
             currentErrorEnergy = energySum / patternsCount;
 
-            bool trained = Math.Abs(prevErrorEnergy - currentErrorEnergy) <= ErrorEps;
+            bool trained = currentErrorEnergy <= MinErrorEnergy && Math.Abs(prevErrorEnergy - currentErrorEnergy) <= ErrorEps;
 
             Log.Current.Info("Current error energy = {0}, previous error energy = {1}", currentErrorEnergy, prevErrorEnergy);
 

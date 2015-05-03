@@ -22,6 +22,7 @@ using DigitR.NeuralNetwork.Cnn.Serializer;
 using DigitR.NeuralNetwork.OutputProvider.Text;
 using DigitR.Ui.Context;
 using DigitR.Ui.Context.Implementation;
+using DigitR.Ui.ViewModels.Recognition;
 using DigitR.Ui.ViewModels.Teach;
 using DigitR.Ui.ViewModels.WelcomeScreen;
 
@@ -62,6 +63,8 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
             SimpleIoc.Default.Register<StartTeachingViewModel>();
             SimpleIoc.Default.Register<StateSavingViewModel>();
+
+            SimpleIoc.Default.Register<ConfigureRecognitionDataViewModel>();
         }
 
         public WelcomScreenViewModel WelcomScreenViewModel
@@ -93,6 +96,14 @@ namespace DigitR.Ui.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<StateSavingViewModel>();
+            }
+        }
+
+        public ConfigureRecognitionDataViewModel ConfigureRecognitionDataViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ConfigureRecognitionDataViewModel>();
             }
         }
 

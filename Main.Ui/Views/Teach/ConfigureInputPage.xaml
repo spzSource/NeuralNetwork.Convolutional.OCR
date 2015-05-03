@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="DigitR.Ui.Views.Teach.ConfigureInputPage"
+﻿<navigation:ModernPage x:Class="DigitR.Ui.Views.Teach.ConfigureInputPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-             xmlns:controls="clr-namespace:DigitR.Ui.Views.Teach.Controls"
-             mc:Ignorable="d" 
+                       xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
+                       xmlns:controls="clr-namespace:DigitR.Ui.Controls"
+                       mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700"
              DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}"
-             Name="Root">
+             x:Name="Root">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel>
@@ -57,4 +58,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</UserControl>
+</navigation:ModernPage>

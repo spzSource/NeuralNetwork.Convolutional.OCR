@@ -37,6 +37,7 @@
 
         <mui:LinkGroup DisplayName="Recognition" >
             <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Recognition data" Source="Views/Recognition/ConfigureRecognitionDataView.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 

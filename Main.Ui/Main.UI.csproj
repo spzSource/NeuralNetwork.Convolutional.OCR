@@ -90,6 +90,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -118,10 +119,16 @@
     <Compile Include="Context\Implementation\ApplicationContext.cs" />
     <Compile Include="Context\IApplicationContext.cs" />
     <Compile Include="Context\Implementation\InputSettings.cs" />
+    <Compile Include="Navigation\ModernViewModelBase.cs" />
+    <Compile Include="Navigation\StepControl.cs" />
+    <Compile Include="ViewModels\Recognition\ConfigureRecognitionDataViewModel.cs" />
+    <Compile Include="Views\Recognition\ConfigureRecognitionDataView.xaml.cs">
+      <DependentUpon>ConfigureRecognitionDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Teach\ConfigureInputPage.xaml.cs">
       <DependentUpon>ConfigureInputPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Teach\Controls\OpenFileControl.xaml.cs">
+    <Compile Include="Controls\OpenFileControl.xaml.cs">
       <DependentUpon>OpenFileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Teach\StartTeachingPage.xaml.cs">
@@ -154,11 +161,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Recognition\ConfigureRecognitionDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Teach\ConfigureInputPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Teach\Controls\OpenFileControl.xaml">
+    <Page Include="Controls\OpenFileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,9 +277,7 @@
       <Name>NeuralNetwork.OutputProvider.Text</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Convertes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

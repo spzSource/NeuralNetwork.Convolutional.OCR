@@ -1,6 +1,4 @@
-﻿using log4net;
-
-namespace DigitR.Common.Logging
+﻿namespace DigitR.Common.Logging
 {
     public static class Log
     {

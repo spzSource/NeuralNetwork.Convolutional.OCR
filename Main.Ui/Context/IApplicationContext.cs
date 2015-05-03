@@ -15,5 +15,17 @@ namespace DigitR.Ui.Context
             get;
             set;
         }
+
+        bool NetworkAlreadyTrained
+        {
+            get;
+            set;
+        }
+
+        bool UserTrainingCollection
+        {
+            get;
+            set;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using DigitR.Core.InputProvider;
+﻿using System.IO;
+
+using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 
 namespace DigitR.Ui.Context.Implementation
@@ -9,6 +11,7 @@ namespace DigitR.Ui.Context.Implementation
             INeuralNetworkBuilder<double> networkBuilder)
         {
             InputSettings = new InputSettings();
+            NetworkAlreadyTrained = File.Exists(InputSettings.StateFilePath);
         }
 
         public InputSettings InputSettings
@@ -18,6 +21,18 @@ namespace DigitR.Ui.Context.Implementation
         }
 
         public IInputProvider CurrentTrainingInputProvider
+        {
+            get;
+            set;
+        }
+
+        public bool NetworkAlreadyTrained
+        {
+            get;
+            set;
+        }
+
+        public bool UserTrainingCollection
         {
             get;
             set;

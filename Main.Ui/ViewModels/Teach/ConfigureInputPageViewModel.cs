@@ -3,14 +3,11 @@ using System.Configuration;
 using System.Windows.Input;
 
 using DigitR.Ui.Context;
-
-using GalaSoft.MvvmLight;
-
-using Microsoft.Win32;
+using DigitR.Ui.Navigation;
 
 namespace DigitR.Ui.ViewModels.Teach
 {
-    public class ConfigureInputPageViewModel : ViewModelBase
+    public class ConfigureInputPageViewModel : ModernViewModelBase
     {
         private readonly IApplicationContext context;
 
@@ -81,17 +78,6 @@ namespace DigitR.Ui.ViewModels.Teach
         }
 
         #endregion
-
-        private void SetInputFilePath(Action<string> setAction)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog { Multiselect = false };
-
-            bool? dialogResult = openFileDialog.ShowDialog();
-            if (dialogResult == true)
-            {
-                setAction(openFileDialog.FileName);
-            }
-        }
 
         private void SetInputImageFilePath(Action<string> setAction)
         {

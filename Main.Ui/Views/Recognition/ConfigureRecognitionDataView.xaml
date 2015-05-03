@@ -1,0 +1,41 @@
+﻿<navigation:ModernPage x:Class="DigitR.Ui.Views.Recognition.ConfigureRecognitionDataView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Configure Recognition Data"
+      DataContext="{Binding ConfigureRecognitionDataViewModel, Source={StaticResource Locator}}">
+
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        
+        <StackPanel
+            IsEnabled="{Binding Path=AbleToSelectFile}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+        
+            <Image
+                Width="150"
+                Height="150"
+                Source="{Binding Path=SelectedImageSource}">
+            </Image>
+            
+            <Button
+                Style="{StaticResource LargeButtonStyle}"
+                Content="Open"
+                Command="{Binding Path=OpenFileCommand}">
+            </Button>
+            
+        </StackPanel>
+        
+        <CheckBox
+            Content="Use training collection"
+            IsChecked="{Binding Path=UseTrainingCollection, Mode=TwoWay}">
+        </CheckBox>
+        
+    </StackPanel>
+</navigation:ModernPage>

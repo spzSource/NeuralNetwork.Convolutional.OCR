@@ -5,6 +5,7 @@ using System.Windows.Input;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Ui.Context;
+using DigitR.Ui.Navigation;
 
 using FirstFloor.ModernUI.Presentation;
 
@@ -12,7 +13,7 @@ using GalaSoft.MvvmLight;
 
 namespace DigitR.Ui.ViewModels.Teach
 {
-    public class StateSavingViewModel : ViewModelBase
+    public class StateSavingViewModel : ModernViewModelBase
     {
         private bool savingInProgress;
 

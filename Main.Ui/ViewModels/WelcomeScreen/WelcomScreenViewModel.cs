@@ -3,13 +3,14 @@ using System.Windows.Input;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.NeuralNetwork.Cnn.View.ViewModel;
+using DigitR.Ui.Navigation;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
 namespace DigitR.Ui.ViewModels.WelcomeScreen
 {
-    public class WelcomScreenViewModel : ViewModelBase
+    public class WelcomScreenViewModel : ModernViewModelBase
     {
         private readonly NeuralNetworkGraphViewModel networkGraphViewModel;
 

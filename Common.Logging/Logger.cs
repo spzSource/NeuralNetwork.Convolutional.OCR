@@ -14,11 +14,13 @@ namespace DigitR.Common.Logging
         public Logger()
         {
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            
             string configFilePath = configuration.FilePath;
+            string loggerName = configuration.AppSettings.Settings["LoggerName"].Value;
 
-            logger = LogManager.GetLogger("DigitR.Log");
-            FileInfo configFile = new FileInfo(configFilePath);
-            XmlConfigurator.ConfigureAndWatch(configFile);
+            logger = LogManager.GetLogger(loggerName);
+            
+            XmlConfigurator.ConfigureAndWatch(new FileInfo(configFilePath));
         }
 
         public void Info(string message, params object[] objects)
