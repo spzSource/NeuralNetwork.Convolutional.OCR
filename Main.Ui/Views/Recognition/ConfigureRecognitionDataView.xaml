@@ -17,22 +17,42 @@
             IsEnabled="{Binding Path=AbleToSelectFile}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
-        
-            <Image
-                Width="150"
-                Height="150"
-                Source="{Binding Path=SelectedImageSource}">
-            </Image>
-            
-            <Button
-                Style="{StaticResource LargeButtonStyle}"
-                Content="Open"
-                Command="{Binding Path=OpenFileCommand}">
-            </Button>
-            
+
+            <StackPanel Orientation="Vertical">
+                <Image
+                    Width="150"
+                    Height="150"
+                    Source="{Binding Path=SelectedImageSource}">
+                </Image>
+
+                <Grid Margin="30" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Margin="10"  Height="50" FontWeight="Bold" FontSize="16" Width="200" Content="Recognized value: " VerticalAlignment="Center"/>
+                    <Label Grid.Column="1" FontWeight="Bold" FontSize="30" Width="70" Height="50" Foreground="Coral" Content="{Binding Path=RecognizedValue}" VerticalAlignment="Top" />
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Style="{StaticResource LargeButtonStyle}"
+                    Content="Open"
+                    Command="{Binding Path=OpenFileCommand}">
+                </Button>
+
+                <Button
+                    Style="{StaticResource LargeButtonStyle}"
+                    Content="Process"
+                    Command="{Binding Path=ProcessSourceImageCommand}">
+                </Button>
+            </StackPanel>
+
         </StackPanel>
         
         <CheckBox
+            Margin="15"
             Content="Use training collection"
             IsChecked="{Binding Path=UseTrainingCollection, Mode=TwoWay}">
         </CheckBox>

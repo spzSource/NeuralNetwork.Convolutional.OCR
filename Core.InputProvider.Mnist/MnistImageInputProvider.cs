@@ -20,18 +20,6 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
             string sourcePath,
             Action<object> itemRetrievedCallback)
         {
-            if (labelPath == null)
-            {
-                throw new ArgumentNullException("labelPath");
-            }
-            if (sourcePath == null)
-            {
-                throw new ArgumentNullException("sourcePath");
-            }
-            if (itemRetrievedCallback == null)
-            {
-                throw new ArgumentNullException("itemRetrievedCallback");
-            }
             this.labelPath = labelPath;
             this.sourcePath = sourcePath;
             this.itemRetrievedCallback = itemRetrievedCallback;

@@ -272,9 +272,13 @@
       <Project>{12F2527C-EE0B-4CF6-823B-ED49795D18DF}</Project>
       <Name>NeuralNetwork.Cnn.View</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.OutputProvider.Text\NeuralNetwork.OutputProvider.Text.csproj">
+    <ProjectReference Include="..\NeuralNetwork.InputProvider.Processing.File\NeuralNetwork.InputProvider.Processing.Bitmap.csproj">
+      <Project>{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}</Project>
+      <Name>NeuralNetwork.InputProvider.Processing.Bitmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork.OutputProvider.Text\NeuralNetwork.OutputProvider.Gui.csproj">
       <Project>{AA87413A-B156-4ED9-970B-4027FD7FAB5A}</Project>
-      <Name>NeuralNetwork.OutputProvider.Text</Name>
+      <Name>NeuralNetwork.OutputProvider.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

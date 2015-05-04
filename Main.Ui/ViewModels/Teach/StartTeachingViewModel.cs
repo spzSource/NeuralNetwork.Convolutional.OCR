@@ -11,6 +11,7 @@ using DigitR.Ui.Navigation;
 using DigitR.Ui.Utils;
 
 using FirstFloor.ModernUI.Presentation;
+using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace DigitR.Ui.ViewModels.Teach
@@ -38,9 +39,6 @@ namespace DigitR.Ui.ViewModels.Teach
 
             byteArrayToBitmapConverter = new ByteArrayToBitmapConverter();
 
-            //
-            // TODO: need to use IoC instead of explicit instantiation
-            //
             trainingInputProvider = new MnistImageInputProvider(
                 context.InputSettings.LabelPath,
                 context.InputSettings.SourcePath,
@@ -111,6 +109,12 @@ namespace DigitR.Ui.ViewModels.Teach
 
         private async void ProcessTraining(object state)
         {
+            if (NetworkAlreadyTrained)
+            {
+                ModernDialog dialog = new ModernDialog();
+                dialog.Show();
+            }
+
             NetworkOperationInProgress = true;
             try
             {

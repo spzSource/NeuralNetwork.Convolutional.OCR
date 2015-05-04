@@ -8,6 +8,6 @@
         /// <summary>
         /// Push the output results to specific destination output.
         /// </summary>
-        bool Push(object source);
+        bool Push(object data);
     }
 }

@@ -15,11 +15,12 @@ using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Core.Output;
 using DigitR.NeuralNetwork.Cnn.Serializer;
-using DigitR.NeuralNetwork.OutputProvider.Text;
+using DigitR.NeuralNetwork.OutputProvider.Gui;
 using DigitR.Ui.Context;
 using DigitR.Ui.Context.Implementation;
 using DigitR.Ui.ViewModels.Recognition;
@@ -49,13 +50,14 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<IApplicationContext, ApplicationContext>();
 
             SimpleIoc.Default.Register<IInputProvider, MnistImageInputProvider>();
-            SimpleIoc.Default.Register<IOutputProvider, TextOutputProvider>();
+            SimpleIoc.Default.Register<IOutputProvider, GuiTextOutputProvider>();
             SimpleIoc.Default.Register<INeuralNetworkBuilder<double>, CnnNeuralNetworkBuilder>();
             SimpleIoc.Default.Register<INeuralNetworkProcessor<INeuralNetwork<double[]>>, CnnNeuralNetworkProcessor>();
             SimpleIoc.Default.Register<INeuralNetworkSerializer<double[]>, CnnNeuralNetworkSerializer>();
 
             SimpleIoc.Default.Register<IActivationAlgorithm<double, double>, SigmoidActivationAlgorithm>();
             SimpleIoc.Default.Register<ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>>, BackPropagationAlgorithm>();
+            SimpleIoc.Default.Register<IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>>, ForwardPropagationAlgorithm>();
 
             // View-models.
             SimpleIoc.Default.Register<WelcomScreenViewModel>();

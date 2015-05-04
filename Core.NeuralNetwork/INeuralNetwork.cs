@@ -1,4 +1,5 @@
 ﻿using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork.Algorithms;
 
 namespace DigitR.Core.NeuralNetwork
 {
@@ -12,7 +13,10 @@ namespace DigitR.Core.NeuralNetwork
         /// and current state of this instance of neuran network.
         /// </summary>
         /// <param name="inputPattern">The input pattern for determine.</param>
+        /// <param name="processingAlgorithm"></param>
         /// <returns>The result successful flag.</returns>
-        TData Process(IInputPattern<TData> inputPattern);
+        TData Process(
+            IInputPattern<TData> inputPattern, 
+            IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm);
     }
 }

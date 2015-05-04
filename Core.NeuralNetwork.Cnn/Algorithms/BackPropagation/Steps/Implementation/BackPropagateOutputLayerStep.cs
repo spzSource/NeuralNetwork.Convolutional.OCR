@@ -10,7 +10,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 {
     internal class BackPropagateOutputLayerStep : IPropagationStep
     {
-        private const double LearningSpeed = 0.7;
+        private const double LearningSpeed = 0.05;
 
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
 

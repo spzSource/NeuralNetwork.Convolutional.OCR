@@ -45,10 +45,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// and current state of this instance of neuran network.
         /// </summary>
         /// <param name="inputPattern">The input pattern for determine.</param>
+        /// <param name="processingAlgorithm"></param>
         /// <returns>The result successful flag.</returns>
-        public double[] Process(IInputPattern<double[]> inputPattern)
+        public double[] Process(
+            IInputPattern<double[]> inputPattern,
+            IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm)
         {
-            throw new NotImplementedException();
+            return processingAlgorithm.Process(this, inputPattern);
         }
     }
 }

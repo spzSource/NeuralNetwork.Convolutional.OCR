@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace DigitR.Ui.Utils
@@ -43,6 +45,17 @@ namespace DigitR.Ui.Utils
                 result.Freeze();
                 return result;
             }
+        }
+
+        public Bitmap ConvertToBitmap(BitmapSource bitmapSource)
+        {
+            var width = bitmapSource.PixelWidth;
+            var height = bitmapSource.PixelHeight;
+            var stride = width * ((bitmapSource.Format.BitsPerPixel + 7) / 8);
+            var memoryBlockPointer = Marshal.AllocHGlobal(height * stride);
+            bitmapSource.CopyPixels(new Int32Rect(0, 0, width, height), memoryBlockPointer, height * stride, stride);
+            var bitmap = new Bitmap(width, height, stride, PixelFormat.Format32bppPArgb, memoryBlockPointer);
+            return bitmap;
         }
     }
 }

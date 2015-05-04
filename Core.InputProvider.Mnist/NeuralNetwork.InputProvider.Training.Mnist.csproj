@@ -76,11 +76,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InputLabelConverter.cs" />
@@ -88,7 +83,6 @@
     <Compile Include="MnistImageInputProvider.cs" />
     <Compile Include="MnistImagePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThresholdConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Input\Core.NeuralNetwork.InputProvider.csproj">

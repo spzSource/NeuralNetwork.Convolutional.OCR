@@ -1,10 +1,10 @@
-﻿namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
+﻿namespace DigitR.Core.InputProvider
 {
     public class ThresholdConverter
     {
         private readonly byte threshold;
 
-        public ThresholdConverter(byte threshold)
+        public ThresholdConverter(byte threshold = 20)
         {
             this.threshold = threshold;
         }
