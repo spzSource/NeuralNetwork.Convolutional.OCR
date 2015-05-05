@@ -18,7 +18,7 @@
                 MinWidth="200" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center">
-                
+
                 <Image 
                     Visibility="{Binding NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="10" 
@@ -58,7 +58,12 @@
                         Content="Load state"
                         Style="{StaticResource LargeButtonStyle}">
                     </Button>
-                    
+
+                    <Label Content="In case restart training a neural network will be fully retrained using specified training data."
+                       Foreground="LightCoral"
+                       Margin="10"
+                           Visibility="{Binding NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    </Label>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

@@ -109,12 +109,6 @@ namespace DigitR.Ui.ViewModels.Teach
 
         private async void ProcessTraining(object state)
         {
-            if (NetworkAlreadyTrained)
-            {
-                ModernDialog dialog = new ModernDialog();
-                dialog.Show();
-            }
-
             NetworkOperationInProgress = true;
             try
             {

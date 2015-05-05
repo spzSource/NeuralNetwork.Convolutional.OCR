@@ -24,6 +24,7 @@ namespace DigitR.Ui.ViewModels.Recognition
 
         private bool ableToSelectFile;
         private bool useTrainingCollection;
+        private bool networkAlreadyTrained;
         private string recognizedValue;
         private ImageSource selectedImageSource;
 
@@ -38,6 +39,7 @@ namespace DigitR.Ui.ViewModels.Recognition
             ProcessSourceImageCommand = new RelayCommand(ProcessSourceImage);
 
             UseTrainingCollection = false;
+            NetworkAlreadyTrained = context.NetworkAlreadyTrained;
         }
 
         public ICommand OpenFileCommand
@@ -106,6 +108,30 @@ namespace DigitR.Ui.ViewModels.Recognition
             }
         }
 
+        public string OutputSource
+        {
+            get
+            {
+                return RecognizedValue;
+            }
+            set
+            {
+                RecognizedValue = value;
+            }
+        }
+
+        public bool NetworkAlreadyTrained
+        {
+            get
+            {
+                return networkAlreadyTrained;
+            }
+            set
+            {
+                networkAlreadyTrained = value;
+                RaisePropertyChanged(() => NetworkAlreadyTrained);
+            }
+        }
 
         private void OpenFile(object state)
         {
@@ -125,18 +151,6 @@ namespace DigitR.Ui.ViewModels.Recognition
                 neuranNeuralNetworkProcessor.Process(
                     new BitmapInputProvider(sourceBitmap), 
                     new GuiTextOutputProvider(this)));
-        }
-
-        public string OutputSource
-        {
-            get
-            {
-                return RecognizedValue;
-            }
-            set
-            {
-                RecognizedValue = value;
-            }
         }
     }
 }

@@ -39,41 +39,41 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             CnnLayer fourthLayer = new CnnLayer(3, FourthLayerSize, isFirst: false, isLast: false);
             CnnLayer fifthsLayer = new CnnLayer(4, FifthLayerSize,  isFirst: false, isLast: true);
 
-            //firstLayer.ConnectToLayer(
-            //    secondLayer,
-            //    new FirstToSecondConnectionScheme(
-            //        source2DSize: 29,
-            //        featureMapCount: 6,
-            //        kernelSize: 5,
-            //        neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
-            //        weightSigner: weightSigner,
-            //        connectionsCounter: connectionsCounter,
-            //        biasAssignee: biasAssignee));
-
-            //secondLayer.ConnectToLayer(
-            //    thirdLayer,
-            //    new SecondToThirdConnectionScheme(
-            //        source2DSize: 13,
-            //        featureMapCount: 50,
-            //        kernelSize: 5,
-            //        neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
-            //        weightSigner: weightSigner,
-            //        connectionsCounter: connectionsCounter,
-            //        biasAssignee: biasAssignee));
-
             firstLayer.ConnectToLayer(
                 secondLayer,
-                new FullyConnectedScheme(
-                    weightSigner,
-                    connectionsCounter,
-                    biasAssignee));
+                new FirstToSecondConnectionScheme(
+                    source2DSize: 29,
+                    featureMapCount: 6,
+                    kernelSize: 5,
+                    neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
+                    weightSigner: weightSigner,
+                    connectionsCounter: connectionsCounter,
+                    biasAssignee: biasAssignee));
 
             secondLayer.ConnectToLayer(
                 thirdLayer,
-                new FullyConnectedScheme(
-                    weightSigner,
-                    connectionsCounter,
-                    biasAssignee));
+                new SecondToThirdConnectionScheme(
+                    source2DSize: 13,
+                    featureMapCount: 50,
+                    kernelSize: 5,
+                    neuronsPerFeatureMapCounter: new NeuronsPerFeatureMapCounter(),
+                    weightSigner: weightSigner,
+                    connectionsCounter: connectionsCounter,
+                    biasAssignee: biasAssignee));
+
+            //firstLayer.ConnectToLayer(
+            //    secondLayer,
+            //    new FullyConnectedScheme(
+            //        weightSigner,
+            //        connectionsCounter,
+            //        biasAssignee));
+
+            //secondLayer.ConnectToLayer(
+            //    thirdLayer,
+            //    new FullyConnectedScheme(
+            //        weightSigner,
+            //        connectionsCounter,
+            //        biasAssignee));
 
             thirdLayer.ConnectToLayer(
                 fourthLayer,

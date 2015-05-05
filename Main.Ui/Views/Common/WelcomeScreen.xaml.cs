@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using DigitR.Ui.Navigation;
 
-using DigitR.Ui.Navigation;
-
-namespace DigitR.Ui.Views.WelcomeScreen
+namespace DigitR.Ui.Views.Common
 {
     /// <summary>
     /// Interaction logic for WelcomeScreen.xaml

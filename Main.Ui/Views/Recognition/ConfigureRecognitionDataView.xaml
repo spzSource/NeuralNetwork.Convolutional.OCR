@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
+      xmlns:mui="http://firstfloorsoftware.com/ModernUI"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Configure Recognition Data"
       DataContext="{Binding ConfigureRecognitionDataViewModel, Source={StaticResource Locator}}">
 
+    <navigation:ModernPage.Resources>
+        <mui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </navigation:ModernPage.Resources>
     <StackPanel
         HorizontalAlignment="Center"
         VerticalAlignment="Center">
@@ -57,5 +61,8 @@
             IsChecked="{Binding Path=UseTrainingCollection, Mode=TwoWay}">
         </CheckBox>
         
+        <Label Content="First of all need to train neural network before processing."
+               Foreground="Coral"
+               Visibility="{Binding Path=NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}"></Label>
     </StackPanel>
 </navigation:ModernPage>
