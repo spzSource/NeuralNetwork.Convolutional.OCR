@@ -51,15 +51,21 @@
                     Content="Process"
                     Command="{Binding Path=ProcessSourceImageCommand}">
                 </Button>
+
+                <Button
+                    Style="{StaticResource LargeButtonStyle}"
+                    Content="Save"
+                    Command="{Binding Path=SaveOutputCommand}">
+                </Button>
             </StackPanel>
 
         </StackPanel>
         
-        <CheckBox
+        <!--<CheckBox
             Margin="15"
             Content="Use training collection"
             IsChecked="{Binding Path=UseTrainingCollection, Mode=TwoWay}">
-        </CheckBox>
+        </CheckBox>-->
         
         <Label Content="First of all need to train neural network before processing."
                Foreground="Coral"

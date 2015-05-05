@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -37,11 +38,12 @@ namespace DigitR.Ui.ViewModels.Recognition
 
             OpenFileCommand = new RelayCommand(OpenFile);
             ProcessSourceImageCommand = new RelayCommand(ProcessSourceImage);
+            SaveOutputCommand = new RelayCommand(SaveOutput);
 
             UseTrainingCollection = false;
             NetworkAlreadyTrained = context.NetworkAlreadyTrained;
         }
-
+        
         public ICommand OpenFileCommand
         {
             get;
@@ -49,6 +51,12 @@ namespace DigitR.Ui.ViewModels.Recognition
         }
 
         public ICommand ProcessSourceImageCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand SaveOutputCommand
         {
             get;
             set;
@@ -151,6 +159,19 @@ namespace DigitR.Ui.ViewModels.Recognition
                 neuranNeuralNetworkProcessor.Process(
                     new BitmapInputProvider(sourceBitmap), 
                     new GuiTextOutputProvider(this)));
+        }
+        
+        private async void SaveOutput(object state)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream stream = saveFileDialog.OpenFile())
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    await writer.WriteLineAsync(OutputSource);
+                }
+            }
         }
     }
 }
