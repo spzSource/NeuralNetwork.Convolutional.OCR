@@ -5,10 +5,9 @@ using DigitR.Core.NeuralNetwork;
 using DigitR.NeuralNetwork.Cnn.View.ViewModel;
 using DigitR.Ui.Navigation;
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace DigitR.Ui.ViewModels.WelcomeScreen
+namespace DigitR.Ui.ViewModels.Common
 {
     public class WelcomScreenViewModel : ModernViewModelBase
     {

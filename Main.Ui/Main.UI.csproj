@@ -121,7 +121,11 @@
     <Compile Include="Context\Implementation\InputSettings.cs" />
     <Compile Include="Navigation\ModernViewModelBase.cs" />
     <Compile Include="Navigation\StepControl.cs" />
+    <Compile Include="ViewModels\Common\NeuralNetworkSettingsViewModel.cs" />
     <Compile Include="ViewModels\Recognition\ConfigureRecognitionDataViewModel.cs" />
+    <Compile Include="Views\Common\NenuralNetworkSettingsView.xaml.cs">
+      <DependentUpon>NenuralNetworkSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Recognition\ConfigureRecognitionDataView.xaml.cs">
       <DependentUpon>ConfigureRecognitionDataView.xaml</DependentUpon>
     </Compile>
@@ -140,7 +144,7 @@
     <Compile Include="Views\Teach\TeachPage.xaml.cs">
       <DependentUpon>TeachPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WelcomeScreen\WelcomeScreen.xaml.cs">
+    <Compile Include="Views\Common\WelcomeScreen.xaml.cs">
       <DependentUpon>WelcomeScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ByteArrayToBitmapConverter.cs" />
@@ -148,7 +152,7 @@
     <Compile Include="ViewModels\Teach\StartTeachingViewModel.cs" />
     <Compile Include="ViewModels\Teach\StateSavingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="ViewModels\WelcomeScreen\WelcomScreenViewModel.cs" />
+    <Compile Include="ViewModels\Common\WelcomScreenViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,6 +165,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Common\NenuralNetworkSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Recognition\ConfigureRecognitionDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,7 +193,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WelcomeScreen\WelcomeScreen.xaml">
+    <Page Include="Views\Common\WelcomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

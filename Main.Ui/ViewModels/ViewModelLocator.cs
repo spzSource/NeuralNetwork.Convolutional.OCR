@@ -23,9 +23,9 @@ using DigitR.NeuralNetwork.Cnn.Serializer;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
 using DigitR.Ui.Context;
 using DigitR.Ui.Context.Implementation;
+using DigitR.Ui.ViewModels.Common;
 using DigitR.Ui.ViewModels.Recognition;
 using DigitR.Ui.ViewModels.Teach;
-using DigitR.Ui.ViewModels.WelcomeScreen;
 
 using GalaSoft.MvvmLight.Ioc;
 
@@ -61,6 +61,7 @@ namespace DigitR.Ui.ViewModels
 
             // View-models.
             SimpleIoc.Default.Register<WelcomScreenViewModel>();
+            SimpleIoc.Default.Register<NeuralNetworkSettingsViewModel>();
 
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
             SimpleIoc.Default.Register<StartTeachingViewModel>();
@@ -75,7 +76,15 @@ namespace DigitR.Ui.ViewModels
             {
                 return ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
             }
-        }   
+        }
+
+        public NeuralNetworkSettingsViewModel NeuralNetworkSettingsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NeuralNetworkSettingsViewModel>();
+            }
+        }
 
         public ConfigureInputPageViewModel ConfigureInputPageViewModel
         {
