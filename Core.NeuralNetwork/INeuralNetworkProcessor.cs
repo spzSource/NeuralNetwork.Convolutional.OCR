@@ -1,4 +1,6 @@
-﻿using DigitR.Core.InputProvider;
+﻿using System.Threading;
+
+using DigitR.Core.InputProvider;
 using DigitR.Core.Output;
 
 namespace DigitR.Core.NeuralNetwork
@@ -27,7 +29,8 @@ namespace DigitR.Core.NeuralNetwork
         /// 
         /// </summary>
         /// <param name="trainingInputProvider"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        bool Train(IInputProvider trainingInputProvider);
+        bool Train(IInputProvider trainingInputProvider, CancellationToken cancellationToken);
     }
 }

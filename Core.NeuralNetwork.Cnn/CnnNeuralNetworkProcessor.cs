@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
@@ -49,7 +50,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             return true;
         }
 
-        public bool Train(IInputProvider trainingInputProvider)
+        public bool Train(IInputProvider trainingInputProvider, CancellationToken cancellationToken)
         {
             bool trained;
             
@@ -60,11 +61,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                         .Retrieve()
                         .Cast<IInputTrainingPattern<double[]>>();
 
-                trained = network.ProcessTraining(patterns, trainingAlgorithm);
+                trained = network.ProcessTraining(patterns, trainingAlgorithm, cancellationToken);
 
-            } while (!trained);
+            } while (!trained && !cancellationToken.IsCancellationRequested);
 
-            return true;
+            return trained;
         }
     }
 }

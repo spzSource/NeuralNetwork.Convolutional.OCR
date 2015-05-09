@@ -43,6 +43,5 @@
     </mui:ModernWindow.MenuLinkGroups>
 
     <Grid Style="{StaticResource ContentRoot}">
-        <TextBlock Text="Hello Modern UI!" />
     </Grid>
 </mui:ModernWindow>

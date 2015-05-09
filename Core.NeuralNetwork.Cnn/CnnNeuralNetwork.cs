@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
@@ -35,9 +36,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn
 
         public bool ProcessTraining(
             IEnumerable<IInputTrainingPattern<double[]>> patterns,
-            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm)
+            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm,
+            CancellationToken cancellationToken)
         {
-            return trainingAlgorithm.ProcessTraining(this, patterns);
+            return trainingAlgorithm.ProcessTraining(this, patterns, cancellationToken);
         }
 
         /// <summary>

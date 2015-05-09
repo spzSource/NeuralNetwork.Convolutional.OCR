@@ -39,11 +39,11 @@
                             Path="{Binding InputLabelsPath}">
                         </controls:OpenFileControl>
 
-                        <Button 
+                        <!--<Button 
                             Content="Go to next"
                             Width="100"
                             Command="NavigationCommands.NextPage">
-                        </Button>
+                        </Button>-->
 
                         <!--<Button 
                             Content="Go to next"

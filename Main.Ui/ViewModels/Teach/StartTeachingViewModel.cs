@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -24,9 +25,12 @@ namespace DigitR.Ui.ViewModels.Teach
         private readonly ByteArrayToBitmapConverter byteArrayToBitmapConverter;
         private readonly IInputProvider trainingInputProvider;
 
+        private bool stateLoading;
         private bool networkAlreadyTrained;
         private bool networkOperationInProgress;
+        
         private BitmapSource currentInputPatternImageSource;
+        private CancellationTokenSource cancellationTokenSource;
 
         public StartTeachingViewModel(
             IApplicationContext context,
@@ -46,6 +50,7 @@ namespace DigitR.Ui.ViewModels.Teach
 
             ProcessTrainingCommand = new RelayCommand(ProcessTraining);
             LoadNetworkStateCommand = new RelayCommand(LoadNetworkState);
+            CancelTrainingCommand = new RelayCommand(CancelTraining);
         }
 
         public ICommand ProcessTrainingCommand
@@ -58,6 +63,25 @@ namespace DigitR.Ui.ViewModels.Teach
         {
             get;
             private set;
+        }
+
+        public ICommand CancelTrainingCommand
+        {
+            get;
+            private set;
+        }
+
+        public bool StateLoading
+        {
+            get
+            {
+                return stateLoading;
+            }
+            set
+            {
+                stateLoading = value;
+                RaisePropertyChanged(() => StateLoading);
+            }
         }
 
         public bool NetworkAlreadyTrained
@@ -93,7 +117,7 @@ namespace DigitR.Ui.ViewModels.Teach
 
         private async void LoadNetworkState(object obj)
         {
-            NetworkOperationInProgress = true;
+            StateLoading = true;
             try
             {
                 INeuralNetwork<double[]> network =
@@ -103,7 +127,7 @@ namespace DigitR.Ui.ViewModels.Teach
             }
             finally
             {
-                NetworkOperationInProgress = false;
+                StateLoading = false;
             }
         }
 
@@ -112,18 +136,24 @@ namespace DigitR.Ui.ViewModels.Teach
             NetworkOperationInProgress = true;
             try
             {
-                bool trained = await Task.Run(() => neuralNetworkProcessor.Train(trainingInputProvider));
-                if (trained)
-                {
-                    context.NetworkAlreadyTrained = true;
-                    NetworkAlreadyTrained = true;
-                }
+                cancellationTokenSource = new CancellationTokenSource();
+
+                bool trained = await Task.Run(() => neuralNetworkProcessor.Train(trainingInputProvider, cancellationTokenSource.Token));
+                
+                context.NetworkAlreadyTrained = true;
+                NetworkAlreadyTrained = true;
+                
             }
             finally
             {
                 NetworkOperationInProgress = false;
             }
 
+        }
+
+        private void CancelTraining(object state)
+        {
+            cancellationTokenSource.Cancel();
         }
 
         private void NewInputTrainingPatternRetrievedCallback(object pattern)

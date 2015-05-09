@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
@@ -46,7 +47,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         public bool ProcessTraining(
             INeuralNetwork<double[]> network,
-            IEnumerable<IInputTrainingPattern<double[]>> patterns)
+            IEnumerable<IInputTrainingPattern<double[]>> patterns,
+            CancellationToken cancellationToken)
         {
             IMultiLayerNeuralNetwork<double> multiLayerNeuralNetwork = (IMultiLayerNeuralNetwork<double>)network;
 
@@ -55,6 +57,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
             foreach (IInputTrainingPattern<double[]> pattern in patterns)
             {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    break;
+                }
+
                 Log.Current.Info("Pattern #{0} started to processing.", patternsCount + 1);
 
                 ProcessPattern(multiLayerNeuralNetwork, pattern);

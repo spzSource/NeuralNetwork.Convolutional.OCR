@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace DigitR.Core.NeuralNetwork.Algorithms
 {
@@ -6,6 +7,7 @@ namespace DigitR.Core.NeuralNetwork.Algorithms
     {
         bool ProcessTraining(
             TNeuralNetwork network,
-            IEnumerable<TPattern> patterns);
+            IEnumerable<TPattern> patterns,
+            CancellationToken cancellationToken);
     }
 }
