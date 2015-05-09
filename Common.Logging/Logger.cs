@@ -7,10 +7,16 @@ using log4net.Config;
 
 namespace DigitR.Common.Logging
 {
+    /// <summary>
+    /// The wrapper for specific logging framework.
+    /// </summary>
     public class Logger
     {
         private readonly ILog logger;
 
+        /// <summary>
+        /// The .ctor for <see cref="Logger"/> class.
+        /// </summary>
         public Logger()
         {
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

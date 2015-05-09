@@ -6,16 +6,25 @@
     /// <typeparam name="TNeuron">The type of neuron for this layer.</typeparam>
     public interface ILayer<TNeuron>
     {
+        /// <summary>
+        /// The identifier for this layer.
+        /// </summary>
         int LayerId
         {
             get;
         }
 
+        /// <summary>
+        /// Determines whether this is the first layer.
+        /// </summary>
         bool IsFirst
         {
             get;
         }
 
+        /// <summary>
+        /// Determines whether this is a last layer.
+        /// </summary>
         bool IsLast
         {
             get;
