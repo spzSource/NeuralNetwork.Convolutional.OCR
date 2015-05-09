@@ -13,8 +13,44 @@
         <ScrollViewer
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
-            
-            <StackPanel MinWidth="200">
+
+            <FlowDocument MaxPageWidth="400">
+                <Paragraph>
+                    <Bold>Intro</Bold>
+                </Paragraph>
+                <Paragraph>
+                    Welcome to digits recognition application. Using this app you may recognize a separated handwritten digits.
+                </Paragraph>
+                <Paragraph>
+                    <Bold>
+                        Steps flow
+                    </Bold>
+                </Paragraph>
+                <Paragraph>
+                    The recognition process uses convolution neural network inside. So you should to train network at first before recognition phase.
+                </Paragraph>
+                <Paragraph>
+                    The learning process takes about 48 hours. And after learning phase you may start recognition.
+                </Paragraph>
+                <Paragraph>
+                    <Bold>
+                        Recognition
+                    </Bold>
+                </Paragraph>
+                <List>
+                    <ListItem>
+                        <Paragraph>Open image file with size 28 x 28.</Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>Start recognition process using button.</Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>Save result to the file.</Paragraph>
+                    </ListItem>
+                </List>
+            </FlowDocument>
+
+            <!--<StackPanel MinWidth="200">
                 
                 <TextBlock Text="Network structure" Style="{StaticResource Heading2}" />
                 
@@ -29,7 +65,7 @@
                     Command="{Binding Path=BuildNeuralNetworkGraphCommand}">
                 </Button>
                 
-            </StackPanel>
+            </StackPanel>-->
         </ScrollViewer>
     </Grid>
 </navigation:ModernPage>
