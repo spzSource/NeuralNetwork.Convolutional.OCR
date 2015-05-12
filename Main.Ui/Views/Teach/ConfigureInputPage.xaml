@@ -4,58 +4,73 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-                       xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
-                       xmlns:controls="clr-namespace:DigitR.Ui.Controls"
-                       mc:Ignorable="d" 
+             xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
+             xmlns:controls="clr-namespace:DigitR.Ui.Controls"
+             mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700"
              DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}"
              x:Name="Root">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
-            <StackPanel>
-                <TextBlock Text="Input configuration" Style="{StaticResource Heading2}" />
-                <Grid 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="0,50,0,0">
-                    
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    
-                    <StackPanel
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Column="0"
+            HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+
+            <TextBlock Text="Settings" Style="{StaticResource Header2Custom}" Margin="0,0,0,30" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+                    <Label Width="100" Content="Learning rate: " Target="{Binding ElementName=LearningRateValue}"></Label>
+                    <TextBox Width="200" x:Name="LearningRateValue" Text="0.05"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+                    <Label Width="100" Content="Kernel size: " Target="{Binding ElementName=KernelSizeValue}"></Label>
+                    <TextBox Width="200" x:Name="KernelSizeValue" Text="5"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+                    <Label Width="100" Content="Kernel step: " Target="{Binding ElementName=KernelStepValue}"></Label>
+                    <TextBox Width="200" x:Name="KernelStepValue" Text="2"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Input configuration" Style="{StaticResource Header2Custom}" Margin="0,0,0,30" />
+            <Grid 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel
                         Orientation="Vertical">
-                        
-                        <controls:OpenFileControl
+
+                    <controls:OpenFileControl
                             OpenLabel="Open images:"
                             OpenCommand="{Binding OpenImagesCommand}"
                             Path="{Binding InputImagesPath}">
-                        </controls:OpenFileControl>
+                    </controls:OpenFileControl>
 
-                        <controls:OpenFileControl
+                    <controls:OpenFileControl
                             OpenLabel="Open labels:"
                             OpenCommand="{Binding OpenLabelsCommand}"
                             Path="{Binding InputLabelsPath}">
-                        </controls:OpenFileControl>
-
-                        <!--<Button 
-                            Content="Go to next"
-                            Width="100"
-                            Command="NavigationCommands.NextPage">
-                        </Button>-->
-
-                        <!--<Button 
-                            Content="Go to next"
-                            Width="100"
-                            Command="NavigationCommands.GoToPage"
-                            CommandParameter="Pages/Teach/Steps/StartTeachingPage.xaml"
-                            CommandTarget="{Binding ElementName=Root}">
-                        </Button>-->
-                    </StackPanel>
-
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
+                    </controls:OpenFileControl>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </navigation:ModernPage>

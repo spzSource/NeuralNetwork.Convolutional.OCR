@@ -12,7 +12,6 @@ using DigitR.Ui.Navigation;
 using DigitR.Ui.Utils;
 
 using FirstFloor.ModernUI.Presentation;
-using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace DigitR.Ui.ViewModels.Teach
@@ -27,6 +26,7 @@ namespace DigitR.Ui.ViewModels.Teach
 
         private bool stateLoading;
         private bool networkAlreadyTrained;
+        private bool operationInProgress;
         private bool networkOperationInProgress;
         
         private BitmapSource currentInputPatternImageSource;
@@ -51,6 +51,17 @@ namespace DigitR.Ui.ViewModels.Teach
             ProcessTrainingCommand = new RelayCommand(ProcessTraining);
             LoadNetworkStateCommand = new RelayCommand(LoadNetworkState);
             CancelTrainingCommand = new RelayCommand(CancelTraining);
+
+            SaveStateCommand = new RelayCommand(async state =>
+            {
+                OperationInProgress = true;
+
+                bool result = await neuralNetworkSerializer.SerializeAsync(
+                    context.InputSettings.StateFilePath,
+                    neuralNetworkProcessor.NeuralNetwork);
+
+                OperationInProgress = false;
+            });
         }
 
         public ICommand ProcessTrainingCommand
@@ -69,6 +80,12 @@ namespace DigitR.Ui.ViewModels.Teach
         {
             get;
             private set;
+        }
+
+        public ICommand SaveStateCommand
+        {
+            get;
+            set;
         }
 
         public bool StateLoading
@@ -97,6 +114,19 @@ namespace DigitR.Ui.ViewModels.Teach
             }
         }
 
+        public bool OperationInProgress
+        {
+            get
+            {
+                return operationInProgress;
+            }
+            set
+            {
+                operationInProgress = value;
+                RaisePropertyChanged(() => OperationInProgress);
+            }
+        }
+
         public bool NetworkOperationInProgress
         {
             get
@@ -117,7 +147,7 @@ namespace DigitR.Ui.ViewModels.Teach
 
         private async void LoadNetworkState(object obj)
         {
-            StateLoading = true;
+            OperationInProgress = true;
             try
             {
                 INeuralNetwork<double[]> network =
@@ -127,13 +157,15 @@ namespace DigitR.Ui.ViewModels.Teach
             }
             finally
             {
-                StateLoading = false;
+                OperationInProgress = false;
             }
         }
 
         private async void ProcessTraining(object state)
         {
+            OperationInProgress = true;
             NetworkOperationInProgress = true;
+
             try
             {
                 cancellationTokenSource = new CancellationTokenSource();
@@ -146,9 +178,9 @@ namespace DigitR.Ui.ViewModels.Teach
             }
             finally
             {
+                OperationInProgress = false;
                 NetworkOperationInProgress = false;
             }
-
         }
 
         private void CancelTraining(object state)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.NeuralNetwork.Cnn.View.ViewModel;
@@ -16,10 +15,6 @@ namespace DigitR.Ui.ViewModels.Common
         public WelcomScreenViewModel(
             INeuralNetworkProcessor<INeuralNetwork<double[]>> networkProcessor)
         {
-            if (networkProcessor == null)
-            {
-                throw new ArgumentNullException("networkProcessor");
-            }
             networkGraphViewModel = new NeuralNetworkGraphViewModel();
 
             BuildNeuralNetworkGraphCommand = new RelayCommand(() => 

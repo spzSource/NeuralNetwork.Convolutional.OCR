@@ -5,10 +5,23 @@
         TargetType="Button" 
         BasedOn="{StaticResource {x:Type Button}}">
         
-        <Setter Property="FontSize" Value="16"></Setter>
-        <Setter Property="Margin" Value="10"></Setter>
-        <Setter Property="Width" Value="150"></Setter>
-        <Setter Property="Height" Value="50"></Setter>
-        
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="50"/>
+    </Style>
+    
+    <Style x:Key="Header2Custom"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+    </Style>
+
+    <Style x:Key="Header2Label"
+           TargetType="Label"
+           BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontStyle" Value="Normal"/>
     </Style>
 </ResourceDictionary>

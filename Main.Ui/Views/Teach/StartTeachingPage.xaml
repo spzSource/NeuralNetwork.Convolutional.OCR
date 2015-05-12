@@ -13,78 +13,76 @@
         <mui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </navigation:ModernPage.Resources>
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
-            <StackPanel 
+        <StackPanel 
                 MinWidth="200" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center">
 
-                <Image 
-                    Visibility="{Binding NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Margin="10" 
-                    Height="200" 
-                    Width="200" 
-                    Source="{Binding ProcessedImage}"/>
+            <Image 
+                Visibility="{Binding NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Margin="10" 
+                Height="200" 
+                Width="200" 
+                Source="{Binding ProcessedImage}"/>
 
-                <mui:ModernProgressRing
-                    Visibility="{Binding NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Height="80"
-                    Width="80"
-                    IsActive="{Binding Path=NetworkOperationInProgress}">
-                </mui:ModernProgressRing>
+            <mui:ModernProgressRing
+                Visibility="{Binding OperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Height="80"
+                Width="80"
+                IsActive="{Binding Path=OperationInProgress}">
+            </mui:ModernProgressRing>
 
-                <mui:ModernProgressRing
-                    Visibility="{Binding StateLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Height="80"
-                    Width="80"
-                    IsActive="{Binding Path=StateLoading}">
-                </mui:ModernProgressRing>
+            <Button
+                Visibility="{Binding Path=NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding Path=CancelTrainingCommand}"
+                Content="Cancel training"
+                Style="{StaticResource LargeButtonStyle}">
+            </Button>
+
+            <StackPanel
+                    Visibility="{Binding Path=OperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}">
 
                 <Button
-                    Visibility="{Binding Path=NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding Path=CancelTrainingCommand}"
-                    Content="Cancel training"
-                    Style="{StaticResource LargeButtonStyle}">
+                    Visibility="{Binding Path=OperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}"
+                    Command="{Binding Path=ProcessTrainingCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource LargeButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=NetworkAlreadyTrained}" Value="False">
+                                    <Setter Property="Content" Value="Start training"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=NetworkAlreadyTrained}" Value="True">
+                                    <Setter Property="Content" Value="Restart training"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
                 </Button>
 
-                <StackPanel
-                    Visibility="{Binding Path=NetworkOperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}">
-
+                <StackPanel Visibility="{Binding Path=OperationInProgress, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}">
                     <Button
-                        Visibility="{Binding Path=StateLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}"
-                        Command="{Binding Path=ProcessTrainingCommand}">
-                        <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource LargeButtonStyle}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=NetworkAlreadyTrained}" Value="False">
-                                        <Setter Property="Content" Value="Start training"></Setter>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=NetworkAlreadyTrained}" Value="True">
-                                        <Setter Property="Content" Value="Restart training"></Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                        Visibility="{Binding Path=NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding Path=LoadNetworkStateCommand}"
+                        Content="Load state"
+                        Style="{StaticResource LargeButtonStyle}">
                     </Button>
 
-                    <StackPanel Visibility="{Binding Path=StateLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=inverse}">
-                        <Button
+                    <Button
+                        Content="Save state"
+                        Style="{StaticResource LargeButtonStyle}"
+                        Command="{Binding Path=SaveStateCommand}">
+                    </Button>
 
-                            Visibility="{Binding Path=NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            Command="{Binding Path=LoadNetworkStateCommand}"
-                            Content="Load state"
-                            Style="{StaticResource LargeButtonStyle}">
-                        </Button>
-
-                        <Label
-                            Content="In case restart training a neural network will be fully retrained using specified training data."
-                            Foreground="LightCoral"
-                            Margin="10"
-                            Visibility="{Binding NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        </Label></StackPanel>
+                    <Label
+                        Content="In case restart training a neural network will be fully retrained using specified training data."
+                        Foreground="LightCoral"
+                        Margin="10"
+                        Visibility="{Binding NetworkAlreadyTrained, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    </Label>
                 </StackPanel>
+               
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
     </Grid>
 
 </navigation:ModernPage>

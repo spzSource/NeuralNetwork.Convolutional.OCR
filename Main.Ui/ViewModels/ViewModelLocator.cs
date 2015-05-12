@@ -19,8 +19,10 @@ using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Core.Output;
+
 using DigitR.NeuralNetwork.Cnn.Serializer;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
+
 using DigitR.Ui.Context;
 using DigitR.Ui.Context.Implementation;
 using DigitR.Ui.ViewModels.Common;
@@ -61,12 +63,8 @@ namespace DigitR.Ui.ViewModels
 
             // View-models.
             SimpleIoc.Default.Register<WelcomScreenViewModel>();
-            SimpleIoc.Default.Register<NeuralNetworkSettingsViewModel>();
-
             SimpleIoc.Default.Register<ConfigureInputPageViewModel>();
             SimpleIoc.Default.Register<StartTeachingViewModel>();
-            SimpleIoc.Default.Register<StateSavingViewModel>();
-
             SimpleIoc.Default.Register<ConfigureRecognitionDataViewModel>();
         }
 
@@ -75,14 +73,6 @@ namespace DigitR.Ui.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
-            }
-        }
-
-        public NeuralNetworkSettingsViewModel NeuralNetworkSettingsViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<NeuralNetworkSettingsViewModel>();
             }
         }
 
@@ -99,14 +89,6 @@ namespace DigitR.Ui.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
-            }
-        }
-
-        public StateSavingViewModel StateSavingViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<StateSavingViewModel>();
             }
         }
 

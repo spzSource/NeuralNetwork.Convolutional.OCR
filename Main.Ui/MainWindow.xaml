@@ -20,28 +20,23 @@
     </Window.Resources>
 
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Welcome screen" >
+        <mui:LinkGroup DisplayName="Welcome screen">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Welcome" Source="Views/Common/WelcomeScreen.xaml"/>
-                <mui:Link DisplayName="Settings" Source="Views/Common/NenuralNetworkSettingsView.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         
         <mui:LinkGroup DisplayName="Teaching" >
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Configure input" Source="Views/Teach/ConfigureInputPage.xaml"/>
-                <mui:Link DisplayName="Teaching" Source="Views/Teach/StartTeachingPage.xaml"/>
-                <mui:Link DisplayName="State saving" Source="Views/Teach/StateSavingView.xaml"/>
+                <mui:Link DisplayName="Configuration step" Source="Views/Teach/ConfigureInputPage.xaml"/>
+                <mui:Link DisplayName="Training step" Source="Views/Teach/StartTeachingPage.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Recognition" >
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Recognition data" Source="Views/Recognition/ConfigureRecognitionDataView.xaml"/>
+                <mui:Link DisplayName="Recognition step" Source="Views/Recognition/ConfigureRecognitionDataView.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>
-
-    <Grid Style="{StaticResource ContentRoot}">
-    </Grid>
 </mui:ModernWindow>
