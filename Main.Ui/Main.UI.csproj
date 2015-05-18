@@ -245,6 +245,10 @@
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Ocr\NeuralNetwork.InputProvider.Processing.Ocr.csproj">
+      <Project>{0B898724-6367-4A21-90C9-EBBAD9B88DE5}</Project>
+      <Name>NeuralNetwork.InputProvider.Processing.Ocr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>

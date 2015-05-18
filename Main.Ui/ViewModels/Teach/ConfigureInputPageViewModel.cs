@@ -1,43 +1,40 @@
 ﻿using System;
 using System.Configuration;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 using DigitR.Ui.Context;
 using DigitR.Ui.Navigation;
 
+using FirstFloor.ModernUI.Presentation;
+
 namespace DigitR.Ui.ViewModels.Teach
 {
     public class ConfigureInputPageViewModel : ModernViewModelBase
     {
-        private readonly IApplicationContext context;
-
         private string inputImagesPath;
         private string inputLabelsPath;
 
         public ConfigureInputPageViewModel(IApplicationContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
-            this.context = context;
+            InputImagesPath = ConfigurationManager.AppSettings["InputMnistTrainImagesPath"];
+            InputLabelsPath = ConfigurationManager.AppSettings["InputMnistTrainLabelsPath"];
 
-            inputImagesPath = String.Empty;
-            inputLabelsPath = String.Empty;
+            OpenImagesCommand = new RelayCommand(state =>
+                SetInputImageFilePath(selectedFilePath =>
+                {
+                    InputImagesPath = selectedFilePath;
+                    context.InputSettings.SourcePath = selectedFilePath;
+                }));
 
-            SetInputImageFilePath(selectedFilePath =>
-            {
-                InputImagesPath = selectedFilePath;
-                context.InputSettings.SourcePath = selectedFilePath;
-            });
-            SetInputLabelFilePath(selectedFilePath =>
-            {
-                InputLabelsPath = selectedFilePath;
-                context.InputSettings.LabelPath = selectedFilePath;
-            });
+
+            OpenLabelsCommand = new RelayCommand(state => 
+                SetInputLabelFilePath(selectedFilePath =>
+                {
+                    InputLabelsPath = selectedFilePath;
+                    context.InputSettings.LabelPath = selectedFilePath;
+                }));
         }
-
-        #region Properties
 
         public ICommand OpenImagesCommand
         {
@@ -77,18 +74,22 @@ namespace DigitR.Ui.ViewModels.Teach
             }
         }
 
-        #endregion
-
         private void SetInputImageFilePath(Action<string> setAction)
         {
-            string path = ConfigurationManager.AppSettings["InputMnistTrainImagesPath"];
-            setAction(path);
+            OpenFileDialog openDialog = new OpenFileDialog { Multiselect = false };
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                setAction(openDialog.FileName);
+            }
         }
 
         private void SetInputLabelFilePath(Action<string> setAction)
         {
-            string path = ConfigurationManager.AppSettings["InputMnistTrainLabelsPath"];
-            setAction(path);
+            OpenFileDialog openDialog = new OpenFileDialog { Multiselect = false };
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                setAction(openDialog.FileName);
+            }
         }
     }
 }

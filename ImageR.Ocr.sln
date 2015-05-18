@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main.UI", "Main.Ui\Main.UI.csproj", "{5A9E140B-5BC8-4C0A-BD15-41B9F45AB18F}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork.Serializer", "Core.NeuralNetwork.Serializer\Core.NeuralNetwork.Serializer.csproj", "{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Processing.Bitmap", "NeuralNetwork.InputProvider.Processing.File\NeuralNetwork.InputProvider.Processing.Bitmap.csproj", "{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Processing.Ocr", "Core.Ocr\NeuralNetwork.InputProvider.Processing.Ocr.csproj", "{0B898724-6367-4A21-90C9-EBBAD9B88DE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

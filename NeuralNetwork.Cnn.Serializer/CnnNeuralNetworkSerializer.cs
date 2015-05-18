@@ -36,7 +36,7 @@ namespace DigitR.NeuralNetwork.Cnn.Serializer
                 
                 using (FileStream fileStream = new FileStream(path, FileMode.Open))
                 {
-                    networkInstance = (INeuralNetwork<double[]>) binaryFormatter.Deserialize(fileStream);
+                    networkInstance = (INeuralNetwork<double[]>)binaryFormatter.Deserialize(fileStream);
                 }
 
                 return networkInstance;
