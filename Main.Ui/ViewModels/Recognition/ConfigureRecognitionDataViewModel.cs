@@ -158,7 +158,8 @@ namespace DigitR.Ui.ViewModels.Recognition
         private async void ProcessSourceImage(object state)
         {
             ByteArrayToBitmapConverter byteArrayToBitmapConverter = new ByteArrayToBitmapConverter();
-            Bitmap sourceBitmap = byteArrayToBitmapConverter.ConvertToBitmap((BitmapImage)SelectedImageSource);
+            Bitmap sourceBitmap = byteArrayToBitmapConverter
+                .ConvertToBitmap((BitmapImage)SelectedImageSource);
 
             bool result = await Task.Run(() => 
                 neuranNeuralNetworkProcessor.Process(

@@ -31,15 +31,15 @@ namespace DigitR.NeuralNetwork.InputProvider.Processing.File
         {
             Bitmap resizedBitmap = source.Resize(PatternSize, PatternSize);
 
-            double[] retrieved = new double[resizedBitmap.Height * resizedBitmap.Width];
+            double[] retrieved = new double[source.Height * source.Width];
 
-            for (int heightIndex = 0; heightIndex < resizedBitmap.Height; heightIndex++)
+            for (int heightIndex = 0; heightIndex < source.Height; heightIndex++)
             {
-                for (int widthIndex = 0; widthIndex < resizedBitmap.Width; widthIndex++)
+                for (int widthIndex = 0; widthIndex < source.Width; widthIndex++)
                 {
-                    retrieved[resizedBitmap.Height * heightIndex + widthIndex] =
+                    retrieved[source.Height * heightIndex + widthIndex] =
                         ApplyThreshold(
-                            resizedBitmap.GetPixel(widthIndex, heightIndex));
+                            source.GetPixel(widthIndex, heightIndex));
                 }
             }
 

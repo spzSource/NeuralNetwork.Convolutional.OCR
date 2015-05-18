@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.NeuralNetwork", "Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Training.Mnist", "Core.InputProvider.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj", "{970D5E43-4C7A-4598-AD75-7D9C6E84D411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "Common.Logging\Common.Logging.csproj", "{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Logging", "Common.Logging\Core.Common.Logging.csproj", "{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.OutputProvider.Gui", "NeuralNetwork.OutputProvider.Text\NeuralNetwork.OutputProvider.Gui.csproj", "{AA87413A-B156-4ED9-970B-4027FD7FAB5A}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Processing.Bitmap", "NeuralNetwork.InputProvider.Processing.File\NeuralNetwork.InputProvider.Processing.Bitmap.csproj", "{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider.Processing.Ocr", "Core.Ocr\NeuralNetwork.InputProvider.Processing.Ocr.csproj", "{0B898724-6367-4A21-90C9-EBBAD9B88DE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Image", "Core.Common.Image\Core.Common.Image.csproj", "{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B898724-6367-4A21-90C9-EBBAD9B88DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

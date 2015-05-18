@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using DigitR.Common.Logging;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
 using DigitR.NeuralNetwork.Cnn.View.Elements;

@@ -1,4 +1,6 @@
-﻿using DigitR.Core.InputProvider;
+﻿using Core.Common.Image.Converters;
+
+using DigitR.Core.InputProvider;
 
 namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
