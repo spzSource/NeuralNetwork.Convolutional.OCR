@@ -1,6 +1,7 @@
 ﻿using Core.Common.Image.Converters;
 
 using DigitR.Core.InputProvider;
+using DigitR.Core.InputProvider.Common;
 
 namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
@@ -12,10 +13,9 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
         private const int ExtendedPatternSize = 29;
 
         private readonly byte label;
+        private readonly byte[] source;
         private readonly double[] convertedLabel;
         private readonly double[] convertedSource;
-
-        private byte[] source;
 
         public MnistImagePattern(
             byte label,
@@ -24,43 +24,10 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
             ThresholdConverter imageConverter)
         {
             this.label = label;
-            this.source = ExtendSource(source);
+            this.source = SourceDataExtender.ExtendSource(source, MnistPatternSize, ExtendedPatternSize);
 
             convertedLabel = labelConverter.Convert(this.label);
             convertedSource = imageConverter.Convert(this.source);
-        }
-
-        private byte[] ExtendSource(byte[] sourceForExtend)
-        {
-            source = new byte[ExtendedPatternSize * ExtendedPatternSize];
-
-            for (int rowIndex = 0; rowIndex < ExtendedPatternSize; rowIndex++)
-            {
-                if (rowIndex == 0 || rowIndex == ExtendedPatternSize - 1)
-                {
-                    for (int columnIndex = 0; columnIndex < ExtendedPatternSize; columnIndex++)
-                    {
-                        source[ExtendedPatternSize * rowIndex + columnIndex] = 0;
-                    }
-                }
-                else
-                {
-                    for (int columnIndex = 0; columnIndex < ExtendedPatternSize; columnIndex++)
-                    {
-                        if (columnIndex == 0 || columnIndex == ExtendedPatternSize - 1)
-                        {
-                            source[ExtendedPatternSize * rowIndex + columnIndex] = 0;
-                        }
-                        else
-                        {
-                            source[ExtendedPatternSize * rowIndex + columnIndex] =
-                                sourceForExtend[MnistPatternSize*rowIndex + columnIndex];
-                        }
-                    }
-                }
-            }
-
-            return source;
         }
 
         public int Height

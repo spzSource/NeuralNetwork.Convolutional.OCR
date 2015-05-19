@@ -78,6 +78,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\SourceDataExtender.cs" />
     <Compile Include="IInputProvider.cs" />
     <Compile Include="IInputPattern.cs" />
     <Compile Include="IInputTrainingPattern.cs" />

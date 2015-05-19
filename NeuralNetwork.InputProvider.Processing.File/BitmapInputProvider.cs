@@ -4,6 +4,7 @@ using System.Drawing;
 using Core.Common.Image.Extensions;
 
 using DigitR.Core.InputProvider;
+using DigitR.Core.InputProvider.Common;
 
 namespace DigitR.NeuralNetwork.InputProvider.Processing.File
 {
@@ -31,53 +32,31 @@ namespace DigitR.NeuralNetwork.InputProvider.Processing.File
         {
             Bitmap resizedBitmap = source.Resize(PatternSize, PatternSize);
 
-            double[] retrieved = new double[resizedBitmap.Height * resizedBitmap.Width];
+            double[] binarizedSource = Binarize(resizedBitmap);
+
+            Current = new BitmapInputPattern(
+                SourceDataExtender.ExtendSource(
+                    binarizedSource,
+                    PatternSize,
+                    ExtendedPatternSize));
+
+            return new [] { Current };
+        }
+
+        private double[] Binarize(Bitmap resizedBitmap)
+        {
+            double[] result = new double[resizedBitmap.Height * resizedBitmap.Width];
 
             for (int heightIndex = 0; heightIndex < resizedBitmap.Height; heightIndex++)
             {
                 for (int widthIndex = 0; widthIndex < resizedBitmap.Width; widthIndex++)
                 {
-                    retrieved[resizedBitmap.Height * heightIndex + widthIndex] =
+                    result[resizedBitmap.Height * heightIndex + widthIndex] =
                         ApplyThreshold(
                             resizedBitmap.GetPixel(widthIndex, heightIndex));
                 }
             }
-
-            Current = new BitmapInputPattern(ExtendSource(retrieved));
-            yield return Current;
-        }
-
-        private double[] ExtendSource(double[] sourceForExtend)
-        {
-            double[] extendSource = new double[ExtendedPatternSize * ExtendedPatternSize];
-
-            for (int rowIndex = 0; rowIndex < ExtendedPatternSize; rowIndex++)
-            {
-                if (rowIndex == 0 || rowIndex == ExtendedPatternSize - 1)
-                {
-                    for (int columnIndex = 0; columnIndex < ExtendedPatternSize; columnIndex++)
-                    {
-                        extendSource[ExtendedPatternSize * rowIndex + columnIndex] = 0;
-                    }
-                }
-                else
-                {
-                    for (int columnIndex = 0; columnIndex < ExtendedPatternSize; columnIndex++)
-                    {
-                        if (columnIndex == 0 || columnIndex == ExtendedPatternSize - 1)
-                        {
-                            extendSource[ExtendedPatternSize * rowIndex + columnIndex] = 0;
-                        }
-                        else
-                        {
-                            extendSource[ExtendedPatternSize * rowIndex + columnIndex] =
-                                sourceForExtend[PatternSize * rowIndex + columnIndex];
-                        }
-                    }
-                }
-            }
-
-            return extendSource;
+            return result;
         }
 
         private double ApplyThreshold(Color color)
