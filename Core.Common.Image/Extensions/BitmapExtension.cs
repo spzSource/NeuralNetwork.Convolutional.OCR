@@ -17,9 +17,9 @@ namespace Core.Common.Image.Extensions
         public static Bitmap Resize(this Bitmap source, int width, int height)
         {
             Bitmap result = new Bitmap(width, height);
-            using (Graphics graphics = Graphics.FromImage(source))
+            using (Graphics graphics = Graphics.FromImage(result))
             {
-                graphics.DrawImage(result, 0, 0, width, height);
+                graphics.DrawImage(source, 0, 0, width, height);
             }
             return result;
         }

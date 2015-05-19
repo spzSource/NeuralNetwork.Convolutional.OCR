@@ -60,7 +60,7 @@ namespace DigitR.NeuralNetwork.InputProvider.Processing.File
 
         private double ApplyThreshold(Color color)
         {
-            double result = 0;
+            double result = 0.0;
 
             byte brightness = Brightness(color);
             if (brightness < Threshold)
