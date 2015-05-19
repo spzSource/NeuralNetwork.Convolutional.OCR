@@ -6,15 +6,12 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
     public class MnistImagePattern : IInputTrainingPattern<double[]>
     {
-        private const int MnistPatternSize = 28;
         public const int MnistPatternSizeInBytes = MnistPatternSize * MnistPatternSize;
 
+        private const int MnistPatternSize = 28;
         private const int ExtendedPatternSize = 29;
 
         private readonly byte label;
-        private readonly InputLabelConverter labelConverter;
-        private readonly ThresholdConverter imageConverter;
-
         private readonly double[] convertedLabel;
         private readonly double[] convertedSource;
 
@@ -28,8 +25,6 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
         {
             this.label = label;
             this.source = ExtendSource(source);
-            this.labelConverter = labelConverter;
-            this.imageConverter = imageConverter;
 
             convertedLabel = labelConverter.Convert(this.label);
             convertedSource = imageConverter.Convert(this.source);
@@ -58,7 +53,7 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
                         }
                         else
                         {
-                            source[ExtendedPatternSize*rowIndex + columnIndex] =
+                            source[ExtendedPatternSize * rowIndex + columnIndex] =
                                 sourceForExtend[MnistPatternSize*rowIndex + columnIndex];
                         }
                     }
