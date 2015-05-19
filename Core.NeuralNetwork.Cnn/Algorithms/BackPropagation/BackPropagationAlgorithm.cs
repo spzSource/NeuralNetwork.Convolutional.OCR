@@ -20,6 +20,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             IInputTrainingPattern<double[]>>
     {
         private const double ErrorEps = 0.00001;
+        private const double LearningSpeed = 0.05;
         private const double MinErrorEnergy = 10;
 
         private readonly IReadOnlyCollection<IPropagationStep> algorithmSteps;
@@ -39,8 +40,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
                 {
                     new SetNetworkInputStep(),
                     new ForwardPropagateLayersStep(activationAlgorithm),
-                    new BackPropagateOutputLayerStep(activationAlgorithm),
-                    new BackPropagateHiddenLayersStep(activationAlgorithm),
+                    new BackPropagateOutputLayerStep(LearningSpeed, activationAlgorithm),
+                    new BackPropagateHiddenLayersStep(LearningSpeed, activationAlgorithm),
                     new CommitWeightCorrectionsStep()
                 });
         }
@@ -66,18 +67,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
                 ProcessPattern(multiLayerNeuralNetwork, pattern);
 
-                double[] realOutputs = multiLayerNeuralNetwork.Layers
-                    .First(layer => layer.IsLast).Neurons
-                    .Select(neuron => neuron.Output)
-                    .ToArray();
+                double[] realOutputs = GetOutputSignals(multiLayerNeuralNetwork);
 
-                Log.Current.Info("Desired output = {0}, real output = {1}",
-                    pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element)).ToString(),
-                    realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element)).ToString());
+                LogOutputs(pattern, realOutputs);
 
                 energySum += CalculateErrorEnergy(realOutputs, pattern.Label);
 
                 Log.Current.Info("Energy sum = {0}", energySum);
+
                 ++patternsCount;
             }
 
@@ -103,6 +100,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             }
         }
 
+        private static double[] GetOutputSignals(IMultiLayerNeuralNetwork<double> multiLayerNeuralNetwork)
+        {
+            double[] realOutputs = multiLayerNeuralNetwork.Layers
+                .First(layer => layer.IsLast).Neurons
+                .Select(neuron => neuron.Output)
+                .ToArray();
+            return realOutputs;
+        }
+
         private double CalculateErrorEnergy(double[] realOutput, double[] desiredOuput)
         {
             Contract.Assert(realOutput.Length == desiredOuput.Length, "The length of real and desired outputs does not match.");
@@ -114,6 +120,15 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
             double energy = errorsSum / 2;
 
             return energy;
+        }
+
+        private static void LogOutputs(IInputTrainingPattern<double[]> pattern, double[] realOutputs)
+        {
+            Log.Current.Info("Desired output = {0}, real output = {1}",
+                pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element))
+                    .ToString(),
+                realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element))
+                    .ToString());
         }
     }
 }
