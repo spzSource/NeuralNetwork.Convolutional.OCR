@@ -6,7 +6,7 @@
 
         private int currentValue;
 
-        public ConnectionsCounter(int startValue)
+        public ConnectionsCounter(int startValue = 0)
         {
             this.startValue = startValue;
             

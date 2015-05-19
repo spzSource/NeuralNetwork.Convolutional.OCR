@@ -32,11 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
@@ -78,9 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging\Common.Logging.csproj">
+    <ProjectReference Include="..\Common.Logging\Core.Common.Logging.csproj">
       <Project>{D8BB1F75-69EA-4AB5-94A3-45F1CA874472}</Project>
-      <Name>Common.Logging</Name>
+      <Name>Core.Common.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.Input\Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>

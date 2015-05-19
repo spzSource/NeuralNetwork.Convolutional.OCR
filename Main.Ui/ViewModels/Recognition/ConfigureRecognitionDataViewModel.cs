@@ -7,8 +7,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
+using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.NeuralNetwork.InputProvider.Processing.File;
+using DigitR.NeuralNetwork.InputProvider.Processing.Ocr;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
 using DigitR.Ui.Context;
 using DigitR.Ui.Navigation;
@@ -28,6 +30,7 @@ namespace DigitR.Ui.ViewModels.Recognition
         private bool networkAlreadyTrained;
         private string recognizedValue;
         private ImageSource selectedImageSource;
+        private IInputProvider inputProvider;
 
         public ConfigureRecognitionDataViewModel(
             IApplicationContext context,
@@ -147,13 +150,16 @@ namespace DigitR.Ui.ViewModels.Recognition
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 SelectedImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                inputProvider = new OcrInputProvider(openFileDialog.FileName);
             }
         }
 
         private async void ProcessSourceImage(object state)
         {
             ByteArrayToBitmapConverter byteArrayToBitmapConverter = new ByteArrayToBitmapConverter();
-            Bitmap sourceBitmap = byteArrayToBitmapConverter.ConvertToBitmap((BitmapImage)SelectedImageSource);
+            Bitmap sourceBitmap = byteArrayToBitmapConverter
+                .ConvertToBitmap((BitmapImage)SelectedImageSource);
 
             bool result = await Task.Run(() => 
                 neuranNeuralNetworkProcessor.Process(

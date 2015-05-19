@@ -10,13 +10,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 {
     internal class BackPropagateOutputLayerStep : IPropagationStep
     {
-        private const double LearningSpeed = 0.05;
-
+        private readonly double learningSpeed;
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
 
         public BackPropagateOutputLayerStep(
+            double learningSpeed,
             IActivationAlgorithm<double, double> activationAlgorithm)
         {
+            this.learningSpeed = learningSpeed;
             this.activationAlgorithm = activationAlgorithm;
         }
 
@@ -33,13 +34,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                 Contract.Assert(currentNeuron.Inputs.Count > 0, "Wrong number of inputs.");
 
                 double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
-                double currentLocalGradient = errorSignal * currentNeuron.Output * (1 - currentNeuron.Output);
+                double currentLocalGradient = errorSignal * activationAlgorithm.CalculateFirstDerivative(currentNeuron.Output);
                 
                 currentNeuronInfo.LocalGradient = currentLocalGradient;
 
                 foreach (IConnection<double, double> connection in currentNeuron.Inputs)
                 {
-                    double correction = LearningSpeed * currentLocalGradient * connection.Neuron.Output;
+                    double correction = learningSpeed * currentLocalGradient * connection.Neuron.Output;
                     StoreWeightCorrection(connection, correction);
                 }
             }

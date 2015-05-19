@@ -85,6 +85,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Common.Image\Core.Common.Image.csproj">
+      <Project>{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}</Project>
+      <Name>Core.Common.Image</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Input\Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>Core.NeuralNetwork.InputProvider</Name>

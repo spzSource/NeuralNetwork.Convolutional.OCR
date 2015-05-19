@@ -11,13 +11,14 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
 {
     internal class BackPropagateHiddenLayersStep : IPropagationStep
     {
-        private const double LearningSpeed = 0.05;
-
+        private readonly double learningSpeed;
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
 
         public BackPropagateHiddenLayersStep(
+            double learningSpeed,
             IActivationAlgorithm<double, double> activationAlgorithm)
         {
+            this.learningSpeed = learningSpeed;
             this.activationAlgorithm = activationAlgorithm;
         }
 
@@ -35,12 +36,12 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Impleme
                     double weightedGradientsSum = currentNeuron.Outputs
                         .Sum(connection => connection.Neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LocalGradient * connection.Weight.Value);
 
-                    double localGradient = currentNeuron.Output * (1 - currentNeuron.Output) * weightedGradientsSum;
+                    double localGradient = activationAlgorithm.CalculateFirstDerivative(currentNeuron.Output) * weightedGradientsSum;
                     currentNeuronInfo.LocalGradient = localGradient;
 
                     foreach (IConnection<double, double> connection in currentNeuron.Inputs)
                     {
-                        double weightCorrection = LearningSpeed * localGradient * connection.Neuron.Output;
+                        double weightCorrection = learningSpeed * localGradient * connection.Neuron.Output;
                         StoreWeightCorrection(connection, weightCorrection);
                     }
                 }
