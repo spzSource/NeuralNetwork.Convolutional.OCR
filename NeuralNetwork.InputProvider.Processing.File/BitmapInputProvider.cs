@@ -52,8 +52,7 @@ namespace DigitR.NeuralNetwork.InputProvider.Processing.File
                 for (int widthIndex = 0; widthIndex < resizedBitmap.Width; widthIndex++)
                 {
                     result[resizedBitmap.Height * heightIndex + widthIndex] =
-                        ApplyThreshold(
-                            resizedBitmap.GetPixel(widthIndex, heightIndex));
+                        ApplyThreshold(resizedBitmap.GetPixel(widthIndex, heightIndex));
                 }
             }
             return result;

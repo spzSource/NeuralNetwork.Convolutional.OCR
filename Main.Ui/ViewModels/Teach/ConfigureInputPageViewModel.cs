@@ -20,6 +20,9 @@ namespace DigitR.Ui.ViewModels.Teach
             InputImagesPath = ConfigurationManager.AppSettings["InputMnistTrainImagesPath"];
             InputLabelsPath = ConfigurationManager.AppSettings["InputMnistTrainLabelsPath"];
 
+            context.InputSettings.SourcePath = InputImagesPath;
+            context.InputSettings.LabelPath = InputLabelsPath;
+
             OpenImagesCommand = new RelayCommand(state =>
                 SetInputImageFilePath(selectedFilePath =>
                 {

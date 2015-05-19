@@ -72,8 +72,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
                     .ToArray();
 
                 Log.Current.Info("Desired output = {0}, real output = {1}",
-                    pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" {0}", element)).ToString(),
-                    realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" {0}", element)).ToString());
+                    pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element)).ToString(),
+                    realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element)).ToString());
 
                 energySum += CalculateErrorEnergy(realOutputs, pattern.Label);
 
@@ -107,12 +107,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         {
             Contract.Assert(realOutput.Length == desiredOuput.Length, "The length of real and desired outputs does not match.");
 
-            double errorsSum = 0;
-
-            for (int outputIndex = 0; outputIndex < realOutput.Length; outputIndex++)
-            {
-                errorsSum += Math.Pow(desiredOuput[outputIndex] - realOutput[outputIndex], 2);
-            }
+            double errorsSum = realOutput
+                .Select((realCurrentOutput, outputIndex) => Math.Pow(desiredOuput[outputIndex] - realCurrentOutput, 2))
+                .Sum();
 
             double energy = errorsSum / 2;
 
