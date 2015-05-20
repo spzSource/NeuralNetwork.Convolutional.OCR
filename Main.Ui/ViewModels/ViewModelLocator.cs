@@ -14,6 +14,7 @@ using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
+using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
@@ -57,7 +58,7 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<INeuralNetworkProcessor<INeuralNetwork<double[]>>, CnnNeuralNetworkProcessor>();
             SimpleIoc.Default.Register<INeuralNetworkSerializer<double[]>, CnnNeuralNetworkSerializer>();
 
-            SimpleIoc.Default.Register<IActivationAlgorithm<double, double>, SigmoidActivationAlgorithm>();
+            SimpleIoc.Default.Register<IActivationAlgorithm<double, double>, HyperbolicTgActivationAlgorithm>();
             SimpleIoc.Default.Register<ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>>, BackPropagationAlgorithm>();
             SimpleIoc.Default.Register<IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>>, ForwardPropagationAlgorithm>();
 

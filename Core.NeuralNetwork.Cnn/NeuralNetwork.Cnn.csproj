@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Activation\HyperbolicTgActivationAlgorithm.cs" />
     <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
     <Compile Include="Algorithms\BackPropagation\Common\BackPropagateNeuronInfo.cs" />
     <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
@@ -49,8 +50,8 @@
     <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />
     <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
     <Compile Include="Algorithms\Processing\ForwardPropagationAlgorithm.cs" />
+    <Compile Include="Algorithms\Activation\SigmoidActivationAlgorithm.cs" />
     <Compile Include="Algorithms\WeightsSigning\IWeightSigner.cs" />
-    <Compile Include="Algorithms\SigmoidActivationAlgorithm.cs" />
     <Compile Include="Algorithms\WeightsSigning\Implementation\NormalWeightSigner.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkBuilder.cs" />
