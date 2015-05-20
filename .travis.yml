@@ -1,8 +1,8 @@
 language: csharp
-solution: DigitR.sln
+solution: ImageR.Ocr.sln
 install:
-  - nuget restore DigitR.sln
+  - nuget restore ImageR.Ocr.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release DigitR.sln
+  - xbuild /p:Configuration=Release ImageR.Ocr.sln
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./NeuralNetwork.Cnn.Test/bin/Release/NeuralNetwork.Cnn.Test.dll
