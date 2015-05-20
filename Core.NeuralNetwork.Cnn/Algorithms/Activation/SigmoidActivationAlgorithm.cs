@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 using DigitR.Core.NeuralNetwork.Algorithms;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms
+namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
 {
     public class SigmoidActivationAlgorithm : IActivationAlgorithm<double, double>
     {
