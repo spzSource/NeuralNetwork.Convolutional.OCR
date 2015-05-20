@@ -13,17 +13,14 @@ using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
 using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Core.Output;
-
 using DigitR.NeuralNetwork.Cnn.Serializer;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
-
 using DigitR.Ui.Context;
 using DigitR.Ui.Context.Implementation;
 using DigitR.Ui.ViewModels.Common;

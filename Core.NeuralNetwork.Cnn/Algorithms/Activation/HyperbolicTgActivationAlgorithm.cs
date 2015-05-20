@@ -8,6 +8,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
     {
         private const double A = 1.7159;
         private const double B = 2 / 3.0;
+        private const double Eps = 0.7159;
 
         /// <summary>
         /// Calculates output value using the induced local area value.
@@ -15,7 +16,16 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
         /// <returns>The output value.</returns>
         public double Calculate(double inducedArea)
         {
-            return A * Math.Tanh(B * inducedArea);
+            double outputSignal = A * Math.Tanh(B * inducedArea);
+            if (outputSignal <= -A)
+            {
+                outputSignal += Eps;
+            }
+            else if (outputSignal >= A)
+            {
+                outputSignal -= Eps;
+            }
+            return outputSignal;
         }
 
         /// <summary>
