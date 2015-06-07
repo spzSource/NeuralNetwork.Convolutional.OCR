@@ -8,7 +8,7 @@ using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetworkBuilder : INeuralNetworkBuilder<double>
+    public class CnnNeuralNetworkFactory : INeuralNetworkFactory<double>
     {
         private const int KernelSize = 5;
         private const int SourceSizeForFirstLayer = 29;
@@ -26,7 +26,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private readonly ConnectionsCounter connectionsCounter;
         private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
 
-        public CnnNeuralNetworkBuilder()
+        public CnnNeuralNetworkFactory()
         {
             weightSigner = new NormalWeightSigner();
             biasAssignee = new CnnBiasAssignee();

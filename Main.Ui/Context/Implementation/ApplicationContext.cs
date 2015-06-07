@@ -8,7 +8,7 @@ namespace DigitR.Ui.Context.Implementation
     public class ApplicationContext : IApplicationContext
     {
         public ApplicationContext(
-            INeuralNetworkBuilder<double> networkBuilder)
+            INeuralNetworkFactory<double> networkBuilder)
         {
             InputSettings = new InputSettings();
             NetworkAlreadyTrained = File.Exists(InputSettings.StateFilePath);

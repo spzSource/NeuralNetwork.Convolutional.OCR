@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
 {
@@ -13,10 +14,10 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
                 throw new ArgumentException("The value should be in the range from 0 to 9.");
             }
 
-            double[] converted = new double[Range];
+            double[] converted = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
             
             converted[label] = 1;
-
+            
             return converted;
         }
     }

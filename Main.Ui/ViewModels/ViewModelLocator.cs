@@ -51,7 +51,7 @@ namespace DigitR.Ui.ViewModels
 
             SimpleIoc.Default.Register<IInputProvider, MnistImageInputProvider>();
             SimpleIoc.Default.Register<IOutputProvider, GuiTextOutputProvider>();
-            SimpleIoc.Default.Register<INeuralNetworkBuilder<double>, CnnNeuralNetworkBuilder>();
+            SimpleIoc.Default.Register<INeuralNetworkFactory<double>, CnnNeuralNetworkFactory>();
             SimpleIoc.Default.Register<INeuralNetworkProcessor<INeuralNetwork<double[]>>, CnnNeuralNetworkProcessor>();
             SimpleIoc.Default.Register<INeuralNetworkSerializer<double[]>, CnnNeuralNetworkSerializer>();
 

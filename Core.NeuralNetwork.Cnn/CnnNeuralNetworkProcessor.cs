@@ -16,7 +16,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         private IMultiLayerNeuralNetwork<double> network; 
 
         public CnnNeuralNetworkProcessor(
-            INeuralNetworkBuilder<double> networkBuilder,
+            INeuralNetworkFactory<double> networkBuilder,
             ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm,
             IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm)
         {

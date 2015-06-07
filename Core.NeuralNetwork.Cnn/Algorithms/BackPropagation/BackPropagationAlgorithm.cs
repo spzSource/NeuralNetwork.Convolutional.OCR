@@ -127,9 +127,9 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation
         private static void LogOutputs(IInputTrainingPattern<double[]> pattern, double[] realOutputs)
         {
             Log.Current.Info("Desired output = {0}, real output = {1}",
-                pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element))
+                pattern.Label.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0:N}", Math.Round(element, 3)))
                     .ToString(),
-                realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0}", element))
+                realOutputs.Aggregate(new StringBuilder(), (builder, element) => builder.AppendFormat(" | {0:N}", Math.Round(element, 3)))
                     .ToString());
         }
     }

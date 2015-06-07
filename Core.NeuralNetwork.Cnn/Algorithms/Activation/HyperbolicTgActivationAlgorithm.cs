@@ -7,8 +7,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
     public class HyperbolicTgActivationAlgorithm : IActivationAlgorithm<double, double>
     {
         private const double A = 1.7159;
-        private const double B = 2 / 3.0;
-        private const double Eps = 0.7159;
+        private const double B = 0.66666667;
 
         /// <summary>
         /// Calculates output value using the induced local area value.
@@ -17,13 +16,13 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
         public double Calculate(double inducedArea)
         {
             double outputSignal = A * Math.Tanh(B * inducedArea);
-            if (outputSignal <= -A)
+            if (outputSignal <= -1)
             {
-                outputSignal += Eps;
+                outputSignal = -1;
             }
-            else if (outputSignal >= A)
+            else if (outputSignal >= 1)
             {
-                outputSignal -= Eps;
+                outputSignal = 1;
             }
             return outputSignal;
         }
@@ -35,7 +34,8 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation
         /// <returns>The value of function derrivative.</returns>
         public double CalculateFirstDerivative(double inducedArea)
         {
-            return 1 / (Math.Pow(Math.Cosh(B * inducedArea), 2));
+            return (B / A * (A + inducedArea) * (A - inducedArea));
         }
     }
 }
+            

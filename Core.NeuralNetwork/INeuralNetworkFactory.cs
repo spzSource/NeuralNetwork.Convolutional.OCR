@@ -3,7 +3,7 @@
     /// <summary>
     /// Provides a specific neural network building.
     /// </summary>
-    public interface INeuralNetworkBuilder<TData>
+    public interface INeuralNetworkFactory<TData>
     {
         /// <summary>
         /// Performs building specific neural network instance.

@@ -1,6 +1,7 @@
-﻿namespace DigitR.Core.InputProvider.Common
+﻿using System.Diagnostics.Contracts;
+namespace DigitR.Core.InputProvider.Common
 {
-    public class SourceDataExtender
+    public static class SourceDataExtender
     {
         public static T[] ExtendSource<T>(T[] sourceForExtend, int defaultSize, int desiredSize)
         {

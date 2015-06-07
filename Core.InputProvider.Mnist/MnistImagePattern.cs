@@ -1,4 +1,5 @@
-﻿using Core.Common.Image.Converters;
+﻿using System.Diagnostics.Contracts;
+using Core.Common.Image.Converters;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.InputProvider.Common;

@@ -15,7 +15,7 @@
             
             for (int i = 0; i < source.Length; i++)
             {
-                result[i] = source[i] < threshold ? 0.0 : 1.0;
+                result[i] = source[i] < threshold ? -1.0 : 1.0;
             }
 
             return result;

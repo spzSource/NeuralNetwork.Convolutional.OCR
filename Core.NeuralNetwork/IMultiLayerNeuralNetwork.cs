@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using DigitR.Core.NeuralNetwork.Behaviours;
 using DigitR.Core.NeuralNetwork.Primitives;
 
