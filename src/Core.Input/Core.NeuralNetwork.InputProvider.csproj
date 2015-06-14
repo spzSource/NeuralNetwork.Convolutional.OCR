@@ -83,10 +83,6 @@
     <Compile Include="IInputProvider.cs" />
     <Compile Include="IInputPattern.cs" />
     <Compile Include="IInputTrainingPattern.cs" />
-    <Compile Include="Primitives\IConnection.cs" />
-    <Compile Include="Primitives\ILayer.cs" />
-    <Compile Include="Primitives\INeuron.cs" />
-    <Compile Include="Primitives\IWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
