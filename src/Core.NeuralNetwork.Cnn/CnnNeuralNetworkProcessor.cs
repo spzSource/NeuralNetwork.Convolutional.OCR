@@ -4,35 +4,37 @@ using System.Threading;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
+using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.Output;
 
 namespace DigitR.Core.NeuralNetwork.Cnn
 {
     public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double[]>>
     {
-        private readonly ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm;
         private readonly IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm;
+        private readonly ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm;
 
-        private IMultiLayerNeuralNetwork<double> network; 
+        private IMultiLayerNeuralNetwork<double> network;
 
         public CnnNeuralNetworkProcessor(
-            INeuralNetworkFactory<double> networkBuilder,
+            INeuralNetworkBuilder<double> networkBuilder,
             ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm,
             IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm)
         {
             this.trainingAlgorithm = trainingAlgorithm;
             this.processingAlgorithm = processingAlgorithm;
 
-            network = networkBuilder.Build() as IMultiLayerNeuralNetwork<double>;
+            network = networkBuilder
+                .AddLayer<FirstToSecondConnectionScheme>(new CnnLayer(0, 29 * 29, 6, 5, true, false))
+                .AddLayer<SecondToThirdConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, 50, 5, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(2, 5 * 5 * 50, 0, 0, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(3, 100, 0, 0, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, 0, 0, false, false))
+                .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
         }
-        
-        public INeuralNetwork<double[]> NeuralNetwork
-        {
-            get
-            {
-                return network;
-            }
-        }
+
+        public INeuralNetwork<double[]> NeuralNetwork => network;
 
         public void Initialize(INeuralNetwork<double[]> neuralNetwork)
         {
@@ -53,10 +55,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         public bool Train(IInputProvider trainingInputProvider, CancellationToken cancellationToken)
         {
             bool trained;
-            
+
             do
             {
-                IEnumerable<IInputTrainingPattern<double[]>> patterns = 
+                IEnumerable<IInputTrainingPattern<double[]>> patterns =
                     trainingInputProvider
                         .Retrieve()
                         .Cast<IInputTrainingPattern<double[]>>();

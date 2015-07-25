@@ -198,6 +198,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithm.BackPropagation.csproj">
+      <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
+      <Name>NeuralNetwork.Cnn.Algorithm.BackPropagation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.InputProvider.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj">
       <Project>{970D5E43-4C7A-4598-AD75-7D9C6E84D411}</Project>
       <Name>NeuralNetwork.InputProvider.Training.Mnist</Name>

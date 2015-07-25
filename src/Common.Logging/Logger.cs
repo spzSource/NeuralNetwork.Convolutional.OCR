@@ -12,6 +12,8 @@ namespace DigitR.Common.Logging
     /// </summary>
     public class Logger
     {
+        private const string LoggerNameKey = "LoggerName";
+
         private readonly ILog logger;
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace DigitR.Common.Logging
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             
             string configFilePath = configuration.FilePath;
-            string loggerName = configuration.AppSettings.Settings["LoggerName"].Value;
+            string loggerName = configuration.AppSettings.Settings[LoggerNameKey].Value;
 
             logger = LogManager.GetLogger(loggerName);
             

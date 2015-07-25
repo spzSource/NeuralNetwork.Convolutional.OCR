@@ -35,25 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Activation\HyperbolicTgActivationAlgorithm.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateNeuronInfo.cs" />
-    <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateHiddenLayersStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateOutputLayerStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\ForwardPropagateLayersStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\CommitWeightCorrectionsStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\SetNetworkInputStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\IPropagationStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\WeightCorrectionApplier.cs" />
-    <Compile Include="Algorithms\Extensions\ConnectionExtensions.cs" />
-    <Compile Include="Algorithms\Extensions\NetworkExtensions.cs" />
-    <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />
-    <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
-    <Compile Include="Algorithms\Processing\ForwardPropagationAlgorithm.cs" />
-    <Compile Include="Algorithms\Activation\SigmoidActivationAlgorithm.cs" />
-    <Compile Include="Algorithms\WeightsSigning\IWeightSigner.cs" />
-    <Compile Include="Algorithms\WeightsSigning\Implementation\NormalWeightSigner.cs" />
     <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkFactory.cs" />
     <Compile Include="CnnNeuralNetworkProcessor.cs" />
@@ -90,6 +71,10 @@
     <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithm.BackPropagation.csproj">
+      <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
+      <Name>NeuralNetwork.Cnn.Algorithm.BackPropagation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

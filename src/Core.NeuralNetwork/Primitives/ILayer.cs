@@ -39,13 +39,9 @@
         }
 
         /// <summary>
-        /// Performs calculation for each of neurons in this layer.
-        /// </summary>
-        void Calculate();
-
-        /// <summary>
         /// Connects this layer to layer passed as parameter.
         /// </summary>
-        void ConnectToLayer(ILayer<TNeuron> layer, IConnectionScheme<TNeuron> connectionScheme);
+        void ConnectToLayer<TScheme>(ILayer<TNeuron> layer)
+            where TScheme : IConnectionScheme<TNeuron>, new();
     }
 }

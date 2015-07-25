@@ -1,4 +1,8 @@
-﻿namespace DigitR.Core.NeuralNetwork
+﻿using System.Collections.Generic;
+
+using DigitR.Core.NeuralNetwork.Primitives;
+
+namespace DigitR.Core.NeuralNetwork
 {
     /// <summary>
     /// Provides a specific neural network building.
@@ -9,6 +13,6 @@
         /// Performs building specific neural network instance.
         /// </summary>
         /// <returns>The instance of specific neural network.</returns>
-        INeuralNetwork<TData[]> Build();
+        INeuralNetwork<TData[]> Create(IReadOnlyCollection<ILayer<INeuron<TData>>> layers);
     }
 }

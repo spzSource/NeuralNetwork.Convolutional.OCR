@@ -18,7 +18,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         {
             if (layers == null)
             {
-                throw new ArgumentNullException("layers");
+                throw new ArgumentNullException(nameof(layers));
             }
             this.layers = layers;
         }
@@ -26,13 +26,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
         /// <summary>
         /// All layers.
         /// </summary>
-        public IReadOnlyCollection<ILayer<INeuron<double>>> Layers
-        {
-            get
-            {
-                return layers;
-            }
-        }
+        public IReadOnlyCollection<ILayer<INeuron<double>>> Layers => layers;
 
         public bool ProcessTraining(
             IEnumerable<IInputTrainingPattern<double[]>> patterns,

@@ -1,7 +1,7 @@
 ﻿using System;
 
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
 {
@@ -14,7 +14,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
         {
             if (weightSigner == null)
             {
-                throw new ArgumentNullException("weightSigner");
+                throw new ArgumentNullException(nameof(weightSigner));
             }
             this.weightSigner = weightSigner;
         }

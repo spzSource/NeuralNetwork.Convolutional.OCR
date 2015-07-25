@@ -1,25 +1,16 @@
-﻿using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
+﻿using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
+
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
     internal class FullyConnectedScheme : IConnectionScheme<INeuron<double>>
     {
-        private readonly IWeightSigner<double> weightSigner;
-        private readonly ConnectionsCounter connectionsCounter;
-        private readonly IBiasAssignee biasAssignee;
-
-        public FullyConnectedScheme(
-            IWeightSigner<double> weightSigner,
-            ConnectionsCounter connectionsCounter,
-            IBiasAssignee biasAssignee)
-        {
-            this.weightSigner = weightSigner;
-            this.connectionsCounter = connectionsCounter;
-            this.biasAssignee = biasAssignee;
-        }
+        private readonly IWeightSigner<double> weightSigner = new NormalWeightSigner();
+        private readonly IBiasAssignee biasAssignee = new CnnBiasAssignee();
 
         public void Apply(ILayer<INeuron<double>> leftLayer, ILayer<INeuron<double>> rightLayer)
         {
@@ -40,8 +31,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                     currentLeftNeuron.Outputs.Add(new CnnConnection(
                         currentRightNeuron,
                         commonWeight));
-
-                    connectionsCounter.Increment();
                 }
             }
         }

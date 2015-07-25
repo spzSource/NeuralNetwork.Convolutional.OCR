@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators
@@ -27,7 +27,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
         {
             if (sourceNeurons == null)
             {
-                throw new ArgumentNullException("sourceNeurons");
+                throw new ArgumentNullException(nameof(sourceNeurons));
             }
             this.source2DSize = source2DSize;
             this.sourceNeurons = sourceNeurons;
@@ -76,40 +76,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumera
         private IList<INeuron<double>> GetCurrentKernel()
         {
             IList<INeuron<double>> neurons = new List<INeuron<double>>();
-
-            #region Old code
-
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI, currentKernelCenterJ]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 1, currentKernelCenterJ]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 2, currentKernelCenterJ]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 1, currentKernelCenterJ]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 2, currentKernelCenterJ]);
-
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 1, currentKernelCenterJ + 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 2, currentKernelCenterJ + 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI, currentKernelCenterJ + 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 1, currentKernelCenterJ + 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 2, currentKernelCenterJ + 1]);
-
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 1, currentKernelCenterJ + 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 2, currentKernelCenterJ + 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI, currentKernelCenterJ + 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 1, currentKernelCenterJ + 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 2, currentKernelCenterJ + 2]);
-
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 1, currentKernelCenterJ - 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 2, currentKernelCenterJ - 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI, currentKernelCenterJ - 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 1, currentKernelCenterJ - 1]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 2, currentKernelCenterJ - 1]);
-
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 1, currentKernelCenterJ - 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI - 2, currentKernelCenterJ - 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI, currentKernelCenterJ - 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 1, currentKernelCenterJ - 2]);
-            //neurons.Add(sourceNeurons2D[currentKernelCenterI + 2, currentKernelCenterJ - 2]);
-
-            #endregion
 
             for (int i = -step; i <= step; i++)
             {

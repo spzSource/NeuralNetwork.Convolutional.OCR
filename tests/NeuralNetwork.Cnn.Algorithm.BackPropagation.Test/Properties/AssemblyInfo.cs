@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NeuralNetwork.Cnn.Serializer")]
+[assembly: AssemblyTitle("NeuralNetwork.Cnn.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NeuralNetwork.Cnn.Serializer")]
+[assembly: AssemblyProduct("NeuralNetwork.Cnn.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("05327d64-0fa2-428f-9e3d-6641f6a15598")]
+[assembly: Guid("50d0f16d-442c-4341-a906-1a21bb12b276")]
 
 // Version information for an assembly consists of the following four values:
 //

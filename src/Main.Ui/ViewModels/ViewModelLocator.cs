@@ -13,9 +13,6 @@ using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Cnn;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Activation;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.BackPropagation;
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Core.Output;
@@ -30,16 +27,12 @@ using DigitR.Ui.ViewModels.Teach;
 using GalaSoft.MvvmLight.Ioc;
 
 using Microsoft.Practices.ServiceLocation;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing;
 
 namespace DigitR.Ui.ViewModels
 {
-    /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class ViewModelLocator
     {
         static ViewModelLocator()

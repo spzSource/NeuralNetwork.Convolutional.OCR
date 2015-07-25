@@ -1,46 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
 
-using DigitR.Core.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
 using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation;
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
     internal class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
     {
         private const int Step = 2;
+        private const int KernelSize = 5;
+        private const int FeatureMapCount = 6;
+        private const int SourceSizeForFirstLayer = 29;
 
-        private readonly int source2DSize;
-        private readonly int featureMapCount;
-        private readonly int kernelSize;
-        private readonly NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter;
-        private readonly IWeightSigner<double> weightSigner;
-        private readonly ConnectionsCounter connectionsCounter;
-        private readonly IBiasAssignee biasAssignee;
-
-        public FirstToSecondConnectionScheme(
-            int source2DSize,
-            int featureMapCount,
-            int kernelSize,
-            NeuronsPerFeatureMapCounter neuronsPerFeatureMapCounter,
-            IWeightSigner<double> weightSigner,
-            ConnectionsCounter connectionsCounter,
-            IBiasAssignee biasAssignee)
-        {
-            this.source2DSize = source2DSize;
-            this.featureMapCount = featureMapCount;
-            this.kernelSize = kernelSize;
-            this.neuronsPerFeatureMapCounter = neuronsPerFeatureMapCounter;
-            this.weightSigner = weightSigner;
-            this.connectionsCounter = connectionsCounter;
-            this.biasAssignee = biasAssignee;
-        }
-
+        private readonly IWeightSigner<double> weightSigner = new NormalWeightSigner();
+        private readonly IBiasAssignee biasAssignee = new CnnBiasAssignee();
+        
         public void Apply(
             ILayer<INeuron<double>> leftLayer,
             ILayer<INeuron<double>> rightLayer)
@@ -49,19 +28,19 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 
             int rightLayerNeuronIndex = 0;
 
-            for (int featureMapIndex = 0; featureMapIndex < featureMapCount; featureMapIndex++)
+            for (int featureMapIndex = 0; featureMapIndex < FeatureMapCount; featureMapIndex++)
             {
                 FeatureMap<INeuron<double>> featureMap = new FeatureMap<INeuron<double>>();
 
                 FeatureMapEnumerator featureMapEnumerator = new FeatureMapEnumerator(
                     Step,
-                    kernelSize,
-                    source2DSize,
+                    KernelSize,
+                    SourceSizeForFirstLayer,
                     new ReadOnlyCollection<INeuron<double>>(leftLayer.Neurons));
 
 
                 CnnWeight biasWeight = featureMapWeightsCreator.CreateWeight();
-                CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(kernelSize * kernelSize);
+                CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(KernelSize * KernelSize);
 
                 while (featureMapEnumerator.MoveNext())
                 {
@@ -82,8 +61,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                             new CnnConnection(
                                 currentRightNeuron,
                                 weights[kernelNeuronIndex]));
-
-                        connectionsCounter.Increment();
                     }
 
                     ++rightLayerNeuronIndex;
@@ -92,17 +69,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                 }
 
                 ((CnnLayer)rightLayer).AddFeatureMap(featureMap);
-
-                #region 
-
-                int expectedCount = neuronsPerFeatureMapCounter.Count(source2DSize, kernelSize, Step);
-
-                Contract.Assert(expectedCount == featureMap.Neurons.Count,
-                    String.Format(
-                        "Connection scheme {{first-to-second}}. Wrong number of neuron inputs. Possible wrong implementation of enumeartor (type: {0}).",
-                        featureMapEnumerator.GetType().Name));
-
-                #endregion
             }
         }
     }
