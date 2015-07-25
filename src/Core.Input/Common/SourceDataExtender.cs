@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-namespace DigitR.Core.InputProvider.Common
+﻿namespace DigitR.Core.InputProvider.Common
 {
     public static class SourceDataExtender
     {

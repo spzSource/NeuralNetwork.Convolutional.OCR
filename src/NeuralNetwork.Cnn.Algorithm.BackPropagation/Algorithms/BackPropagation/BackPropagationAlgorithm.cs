@@ -14,6 +14,8 @@ using DigitR.Core.NeuralNetwork.Algorithms;
 using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps;
 using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation;
 
+using static System.Double;
+
 namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
 {
     public class BackPropagationAlgorithm
@@ -35,7 +37,7 @@ namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
             IActivationAlgorithm<double, double> activationAlgorithm)
         {
             prevErrorEnergy = 0;
-            currentErrorEnergy = Double.MaxValue;
+            currentErrorEnergy = MaxValue;
 
             algorithmSteps = new ReadOnlyCollection<IPropagationStep>(
                 new List<IPropagationStep>

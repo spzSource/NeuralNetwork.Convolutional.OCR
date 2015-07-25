@@ -30,7 +30,7 @@ namespace DigitR.Core.NeuralNetwork.Cnn
                 .AddLayer<SecondToThirdConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, 50, 5, false, false))
                 .AddLayer<FullyConnectedScheme>(new CnnLayer(2, 5 * 5 * 50, 0, 0, false, false))
                 .AddLayer<FullyConnectedScheme>(new CnnLayer(3, 100, 0, 0, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, 0, 0, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, 0, 0, false, true))
                 .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
         }
 

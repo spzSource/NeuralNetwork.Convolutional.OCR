@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using Core.Common.Image.Converters;
+﻿using Core.Common.Image.Converters;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.InputProvider.Common;
@@ -13,70 +12,29 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
         private const int MnistPatternSize = 28;
         private const int ExtendedPatternSize = 29;
 
-        private readonly byte label;
-        private readonly byte[] source;
-        private readonly double[] convertedLabel;
-        private readonly double[] convertedSource;
-
         public MnistImagePattern(
             byte label,
             byte[] source,
             InputLabelConverter labelConverter,
             ThresholdConverter imageConverter)
         {
-            this.label = label;
-            this.source = SourceDataExtender.ExtendSource(source, MnistPatternSize, ExtendedPatternSize);
+            InnerLabel = label;
+            InnerSource = SourceDataExtender.ExtendSource(source, MnistPatternSize, ExtendedPatternSize);
 
-            convertedLabel = labelConverter.Convert(this.label);
-            convertedSource = imageConverter.Convert(this.source);
+            Label = labelConverter.Convert(this.InnerLabel);
+            Source = imageConverter.Convert(this.InnerSource);
         }
 
-        public int Height
-        {
-            get
-            {
-                return ExtendedPatternSize;
-            }
-        }
+        public int Height => ExtendedPatternSize;
 
-        public int Weight
-        {
-            get
-            {
-                return ExtendedPatternSize;
-            }
-        }
+        public int Weight => ExtendedPatternSize;
 
-        public double[] Label
-        {
-            get
-            {
-                return convertedLabel;
-            }
-        }
+        public double[] Label { get; }
 
-        public double[] Source
-        {
-            get
-            {
-                return convertedSource;
-            }
-        }
+        public double[] Source { get; }
 
-        public byte InnerLabel
-        {
-            get
-            {
-                return label;
-            }
-        }
+        public byte InnerLabel { get; }
 
-        public byte[] InnerSource
-        {
-            get
-            {
-                return source;
-            }
-        }
+        public byte[] InnerSource { get; }
     }
 }

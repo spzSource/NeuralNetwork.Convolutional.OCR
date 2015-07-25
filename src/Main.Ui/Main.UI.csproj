@@ -222,10 +222,6 @@
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Ocr\NeuralNetwork.InputProvider.Processing.Ocr.csproj">
-      <Project>{0B898724-6367-4A21-90C9-EBBAD9B88DE5}</Project>
-      <Name>NeuralNetwork.InputProvider.Processing.Ocr</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>
@@ -233,10 +229,6 @@
     <ProjectReference Include="..\NeuralNetwork.Cnn.Serializer\NeuralNetwork.Cnn.Serializer.csproj">
       <Project>{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}</Project>
       <Name>NeuralNetwork.Cnn.Serializer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.Cnn.View\NeuralNetwork.Cnn.View.csproj">
-      <Project>{12F2527C-EE0B-4CF6-823B-ED49795D18DF}</Project>
-      <Name>NeuralNetwork.Cnn.View</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeuralNetwork.InputProvider.Processing.File\NeuralNetwork.InputProvider.Processing.Bitmap.csproj">
       <Project>{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}</Project>
