@@ -24,7 +24,7 @@ namespace DigitR.NeuralNetwork.Cnn.Primitives
             IsFirst = isFirst;
             IsLast = isLast;
 
-            Neurons = new INeuron<double>[sourceSize * sourceSize];
+            Neurons = new INeuron<double>[sourceSize];
 
             for (int neuronIndex = 0; neuronIndex < Neurons.Length; neuronIndex++)
             {

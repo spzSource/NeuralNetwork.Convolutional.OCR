@@ -47,6 +47,7 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<INeuralNetworkFactory<double>, CnnNeuralNetworkFactory>();
             SimpleIoc.Default.Register<INeuralNetworkProcessor<INeuralNetwork<double[]>>, CnnNeuralNetworkProcessor>();
             SimpleIoc.Default.Register<INeuralNetworkSerializer<double[]>, CnnNeuralNetworkSerializer>();
+            SimpleIoc.Default.Register<INeuralNetworkBuilder<double>, NeuralNetworkBuilder<double>>();
 
             SimpleIoc.Default.Register<IActivationAlgorithm<double, double>, HyperbolicTgActivationAlgorithm>();
             SimpleIoc.Default.Register<ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>>, BackPropagationAlgorithm>();
@@ -59,10 +60,17 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<ConfigureRecognitionDataViewModel>();
         }
 
-        public WelcomScreenViewModel WelcomScreenViewModel => ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
-        public ConfigureInputPageViewModel ConfigureInputPageViewModel => ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
-        public StartTeachingViewModel StartTeachingViewModel => ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
-        public ConfigureRecognitionDataViewModel ConfigureRecognitionDataViewModel => ServiceLocator.Current.GetInstance<ConfigureRecognitionDataViewModel>();
+        public WelcomScreenViewModel WelcomScreenViewModel => 
+            ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
+
+        public StartTeachingViewModel StartTeachingViewModel => 
+            ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
+
+        public ConfigureInputPageViewModel ConfigureInputPageViewModel => 
+            ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
+
+        public ConfigureRecognitionDataViewModel ConfigureRecognitionDataViewModel => 
+            ServiceLocator.Current.GetInstance<ConfigureRecognitionDataViewModel>();
 
         /// <summary>
         /// Cleans up all the resources.

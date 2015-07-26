@@ -22,13 +22,13 @@ namespace DigitR.Ui.ViewModels.Teach
         private readonly INeuralNetworkSerializer<double[]> neuralNetworkSerializer;
         private readonly INeuralNetworkProcessor<INeuralNetwork<double[]>> neuralNetworkProcessor;
         private readonly ByteArrayToBitmapConverter byteArrayToBitmapConverter;
-        private readonly IInputProvider trainingInputProvider;
-
+        
         private bool stateLoading;
         private bool networkAlreadyTrained;
         private bool operationInProgress;
         private bool networkOperationInProgress;
-        
+
+        private IInputProvider trainingInputProvider;
         private BitmapSource currentInputPatternImageSource;
         private CancellationTokenSource cancellationTokenSource;
 
@@ -143,6 +143,11 @@ namespace DigitR.Ui.ViewModels.Teach
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             NetworkAlreadyTrained = context.NetworkAlreadyTrained;
+
+            trainingInputProvider = new MnistImageInputProvider(
+                context.InputSettings.LabelPath,
+                context.InputSettings.SourcePath,
+                NewInputTrainingPatternRetrievedCallback);
         }
 
         private async void LoadNetworkState(object obj)
