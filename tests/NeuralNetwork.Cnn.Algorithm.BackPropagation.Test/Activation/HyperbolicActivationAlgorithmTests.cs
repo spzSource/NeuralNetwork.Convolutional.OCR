@@ -5,7 +5,7 @@ using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
 
 using Xunit;
 
-namespace NeuralNetwork.Cnn.Test
+namespace NeuralNetwork.Cnn.Test.Activation
 {
     public class HyperbolicActivationAlgorithmTests
     {
