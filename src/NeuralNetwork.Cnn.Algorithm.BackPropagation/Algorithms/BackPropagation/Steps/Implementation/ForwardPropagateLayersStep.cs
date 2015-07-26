@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation
 {
     internal class ForwardPropagateLayersStep : IPropagationStep
     {

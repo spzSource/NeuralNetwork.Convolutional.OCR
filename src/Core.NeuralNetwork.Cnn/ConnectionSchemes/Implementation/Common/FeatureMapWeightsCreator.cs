@@ -1,9 +1,9 @@
 ﻿using System;
 
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
 {
     internal class FeatureMapWeightsCreator
     {

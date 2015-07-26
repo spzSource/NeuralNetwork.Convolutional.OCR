@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
+namespace DigitR.NeuralNetwork.Cnn.Primitives
 {
     [Serializable]
     [DebuggerDisplay("Neuron = {NeuronId}, Output = {Output}, isBias = {IsBiasNeuron}")]

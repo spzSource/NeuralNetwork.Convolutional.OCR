@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn
+namespace DigitR.NeuralNetwork.Cnn
 {
     public class CnnNeuralNetworkFactory : INeuralNetworkFactory<double>
     {

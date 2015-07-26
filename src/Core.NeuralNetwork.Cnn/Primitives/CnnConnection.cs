@@ -1,8 +1,9 @@
 ﻿using System;
-using DigitR.Core.NeuralNetwork.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
+using DigitR.Core.NeuralNetwork.Primitives;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common;
+
+namespace DigitR.NeuralNetwork.Cnn.Primitives
 {
     [Serializable]
     public class CnnConnection : IConnection<double, double>

@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Linq;
+
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing
 {
     public class ForwardPropagationAlgorithm : 
         IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>>

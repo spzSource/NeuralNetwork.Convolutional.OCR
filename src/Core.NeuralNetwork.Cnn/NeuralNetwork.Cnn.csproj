@@ -7,8 +7,8 @@
     <ProjectGuid>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core.NeuralNetwork.Cnn</RootNamespace>
-    <AssemblyName>DigitR.Core.NeuralNetwork.Cnn</AssemblyName>
+    <RootNamespace>DigitR.NeuralNetwork.Cnn</RootNamespace>
+    <AssemblyName>DigitR.NeuralNetwork.Cnn</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

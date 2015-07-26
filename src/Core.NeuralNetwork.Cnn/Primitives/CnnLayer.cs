@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
+namespace DigitR.NeuralNetwork.Cnn.Primitives
 {
     [Serializable]
     [DebuggerDisplay("Layer-{LayerId}")]

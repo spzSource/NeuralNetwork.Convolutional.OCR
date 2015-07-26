@@ -1,7 +1,7 @@
 ﻿using System;
 
 using DigitR.Core.NeuralNetwork.Algorithms;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
 
 using Xunit;
 

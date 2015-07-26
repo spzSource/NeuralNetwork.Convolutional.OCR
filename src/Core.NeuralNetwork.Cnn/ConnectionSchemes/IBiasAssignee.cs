@@ -1,6 +1,6 @@
 ﻿using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
 {
     internal interface IBiasAssignee
     {

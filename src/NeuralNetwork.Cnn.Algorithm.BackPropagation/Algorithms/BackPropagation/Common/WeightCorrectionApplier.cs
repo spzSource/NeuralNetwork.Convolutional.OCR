@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics.Contracts;
-using DigitR.Core.NeuralNetwork.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common
+using DigitR.Core.NeuralNetwork.Primitives;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
+
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common
 {
     internal class WeightCorrectionApplier
     {

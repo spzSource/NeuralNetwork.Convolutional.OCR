@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.NeuralNetwork.Primitives;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
+using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
 {
     internal class FeatureMapConnector
     {

@@ -10,13 +10,10 @@ using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation;
 
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation;
-
-using static System.Double;
-
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
 {
     public class BackPropagationAlgorithm
         : ITrainingAlgorithm<
@@ -37,7 +34,7 @@ namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
             IActivationAlgorithm<double, double> activationAlgorithm)
         {
             prevErrorEnergy = 0;
-            currentErrorEnergy = MaxValue;
+            currentErrorEnergy = Double.MaxValue;
 
             algorithmSteps = new ReadOnlyCollection<IPropagationStep>(
                 new List<IPropagationStep>

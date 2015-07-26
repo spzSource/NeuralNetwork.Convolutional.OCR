@@ -1,4 +1,4 @@
-﻿namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
+﻿namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
 {
     public class ConnectionsCounter
     {

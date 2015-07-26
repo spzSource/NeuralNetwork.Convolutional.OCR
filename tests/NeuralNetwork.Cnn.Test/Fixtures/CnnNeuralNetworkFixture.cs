@@ -1,7 +1,7 @@
 ﻿using DigitR.Core.NeuralNetwork;
-using DigitR.Core.NeuralNetwork.Cnn;
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+using DigitR.NeuralNetwork.Cnn;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
+using DigitR.NeuralNetwork.Cnn.Primitives;
 
 namespace NeuralNetwork.Cnn.Test.Fixtures
 {
@@ -19,8 +19,8 @@ namespace NeuralNetwork.Cnn.Test.Fixtures
 
                     neuralNetwork = builder
                         .AddInputLayer(new CnnLayer(0, 3, true, false))
-                        .AddLayer<FullyConnectedScheme>(new CnnLayer(0, 5, false, false))
-                        .AddLayer<FullyConnectedScheme>(new CnnLayer(0, 2, false, true))
+                        .AddLayer<FullyConnectedScheme>(new CnnLayer(1, 5, false, false))
+                        .AddLayer<FullyConnectedScheme>(new CnnLayer(2, 2, false, true))
                         .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
                 }
                 return neuralNetwork;

@@ -5,7 +5,7 @@ using System.Linq;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms
 {
     public class ForwardOutputAlgorithm : IOutputAlgorithm<double, IConnection<double, double>>
     {

@@ -3,12 +3,13 @@ using System.Linq;
 using System.Threading;
 
 using DigitR.Core.InputProvider;
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
 using DigitR.Core.Output;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
+using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn
+namespace DigitR.NeuralNetwork.Cnn
 {
     public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double[]>>
     {

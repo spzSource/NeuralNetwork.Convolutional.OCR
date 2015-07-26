@@ -1,7 +1,8 @@
 ﻿using System;
+
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation
 {
     public class NormalWeightSigner : IWeightSigner<double>
     {

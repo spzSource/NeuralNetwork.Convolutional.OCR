@@ -1,7 +1,8 @@
 ﻿using System;
+
 using DigitR.Core.NeuralNetwork.Algorithms;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation
 {
     public class HyperbolicTgActivationAlgorithm : IActivationAlgorithm<double, double>
     {

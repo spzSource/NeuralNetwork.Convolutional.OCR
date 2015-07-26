@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
-using DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
-using DigitR.Core.NeuralNetwork.Cnn.Primitives;
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
+using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
     public class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
     {

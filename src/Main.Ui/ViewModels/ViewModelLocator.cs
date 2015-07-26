@@ -12,10 +12,13 @@
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.Core.NeuralNetwork.Cnn;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
 using DigitR.Core.NeuralNetwork.Serializer;
 using DigitR.Core.Output;
+using DigitR.NeuralNetwork.Cnn;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation;
+using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing;
 using DigitR.NeuralNetwork.Cnn.Serializer;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
 using DigitR.Ui.Context;
@@ -27,9 +30,6 @@ using DigitR.Ui.ViewModels.Teach;
 using GalaSoft.MvvmLight.Ioc;
 
 using Microsoft.Practices.ServiceLocation;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation;
-using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing;
 
 namespace DigitR.Ui.ViewModels
 {
@@ -59,37 +59,10 @@ namespace DigitR.Ui.ViewModels
             SimpleIoc.Default.Register<ConfigureRecognitionDataViewModel>();
         }
 
-        public WelcomScreenViewModel WelcomScreenViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
-            }
-        }
-
-        public ConfigureInputPageViewModel ConfigureInputPageViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
-            }
-        }
-
-        public StartTeachingViewModel StartTeachingViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
-            }
-        }
-
-        public ConfigureRecognitionDataViewModel ConfigureRecognitionDataViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ConfigureRecognitionDataViewModel>();
-            }
-        }
+        public WelcomScreenViewModel WelcomScreenViewModel => ServiceLocator.Current.GetInstance<WelcomScreenViewModel>();
+        public ConfigureInputPageViewModel ConfigureInputPageViewModel => ServiceLocator.Current.GetInstance<ConfigureInputPageViewModel>();
+        public StartTeachingViewModel StartTeachingViewModel => ServiceLocator.Current.GetInstance<StartTeachingViewModel>();
+        public ConfigureRecognitionDataViewModel ConfigureRecognitionDataViewModel => ServiceLocator.Current.GetInstance<ConfigureRecognitionDataViewModel>();
 
         /// <summary>
         /// Cleans up all the resources.

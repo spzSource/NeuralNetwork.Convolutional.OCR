@@ -1,6 +1,6 @@
 ﻿using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions
+namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions
 {
     public static class ConnectionExtensions
     {
