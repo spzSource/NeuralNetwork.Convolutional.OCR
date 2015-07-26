@@ -9,6 +9,9 @@ namespace NeuralNetwork.Cnn.Test.Activation
 {
     public class HyperbolicActivationAlgorithmTests
     {
+        private readonly IActivationAlgorithm<double, double> hyperbolicAlgorithm =
+            new HyperbolicTgActivationAlgorithm();
+
         [Theory]
         [InlineData(1, 1)]
         [InlineData(-1, -1)]
@@ -17,9 +20,6 @@ namespace NeuralNetwork.Cnn.Test.Activation
         [InlineData(100, 1)]
         public void CheckAntiSymmetricQualityTest(double inducedLocalArea, double expectedSignal)
         {
-            IActivationAlgorithm<double, double> hyperbolicAlgorithm =
-                new HyperbolicTgActivationAlgorithm();
-
             double realSignal = hyperbolicAlgorithm.Calculate(inducedLocalArea);
 
             Assert.True(Math.Abs(expectedSignal - realSignal) <= 0.00001,
@@ -37,9 +37,6 @@ namespace NeuralNetwork.Cnn.Test.Activation
         [InlineData(-10, 0, -1)]
         public void CheckPositiveInternalPointsTest(double inducedLocalArea, double highBound, double lowBound)
         {
-            IActivationAlgorithm<double, double> hyperbolicAlgorithm =
-                new HyperbolicTgActivationAlgorithm();
-
             double realSignal = hyperbolicAlgorithm.Calculate(inducedLocalArea);
 
             Assert.True(realSignal <= highBound);

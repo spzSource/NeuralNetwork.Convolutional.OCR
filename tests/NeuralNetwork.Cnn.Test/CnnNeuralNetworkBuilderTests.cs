@@ -12,13 +12,9 @@ namespace Core.NeuralNetwork.Test
 {
     public class CnnNeuralNetworkBuilderTests
     {
-        private readonly INeuralNetworkBuilder<double> networkBuilder;
-
-        public CnnNeuralNetworkBuilderTests()
-        {
-            networkBuilder = new NeuralNetworkBuilder<double>();
-        }
-
+        private readonly INeuralNetworkBuilder<double> networkBuilder = 
+            new NeuralNetworkBuilder<double>();
+        
         [Fact]
         public void CnnNeuralNetworkStructureTest()
         {
