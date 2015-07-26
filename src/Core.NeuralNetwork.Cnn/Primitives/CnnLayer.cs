@@ -16,14 +16,10 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         public CnnLayer(
             int layerId, 
             int sourceSize, 
-            int feautureMapCount, 
-            int kernelSize, 
             bool isFirst, 
             bool isLast)
         {
             LayerId = layerId;
-            FeautureMapCount = feautureMapCount;
-            KernelSize = kernelSize;
             IsFirst = isFirst;
             IsLast = isLast;
 
@@ -48,14 +44,6 @@ namespace DigitR.Core.NeuralNetwork.Cnn.Primitives
         {
             get;
         }
-
-        public int FeautureMapCount
-        {
-            get;
-            set;
-        }
-
-        public int KernelSize { get; set; }
 
         public bool IsFirst
         {

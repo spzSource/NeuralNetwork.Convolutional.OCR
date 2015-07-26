@@ -10,7 +10,7 @@ using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Impl
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
-    internal class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
+    public class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
     {
         private const int Step = 2;
         private const int KernelSize = 5;

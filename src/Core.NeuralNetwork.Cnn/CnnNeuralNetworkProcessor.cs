@@ -26,11 +26,11 @@ namespace DigitR.Core.NeuralNetwork.Cnn
             this.processingAlgorithm = processingAlgorithm;
 
             network = networkBuilder
-                .AddLayer<FirstToSecondConnectionScheme>(new CnnLayer(0, 29 * 29, 6, 5, true, false))
-                .AddLayer<SecondToThirdConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, 50, 5, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(2, 5 * 5 * 50, 0, 0, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(3, 100, 0, 0, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, 0, 0, false, true))
+                .AddInputLayer(new CnnLayer(0, 29 * 29, true, false))
+                .AddLayer<FirstToSecondConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, false, false))
+                .AddLayer<SecondToThirdConnectionScheme>(new CnnLayer(2, 5 * 5 * 50, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(3, 100, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, false, true))
                 .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
         }
 

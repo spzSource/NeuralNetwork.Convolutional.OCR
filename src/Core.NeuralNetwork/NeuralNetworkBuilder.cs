@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -10,13 +11,25 @@ namespace DigitR.Core.NeuralNetwork
     {
         private readonly IList<ILayer<INeuron<TData>>> layers = new List<ILayer<INeuron<TData>>>();
 
+        public INeuralNetworkBuilder<TData> AddInputLayer(ILayer<INeuron<TData>> layer)
+        {
+            if (layers.Count > 0)
+            {
+                throw new Exception("Input layer should be added first.");
+            }
+
+            layers.Add(layer);
+
+            return this;
+        }
+
         public INeuralNetworkBuilder<TData> AddLayer<TScheme>(ILayer<INeuron<TData>> layer)
             where TScheme : IConnectionScheme<INeuron<TData>>, new()
         {
-            ILayer<INeuron<TData>> previousLayer = layers.Last();
+            ILayer<INeuron<TData>> previousLayer = layers.LastOrDefault();
 
-            previousLayer.ConnectToLayer<TScheme>(layer);
-            
+            previousLayer?.ConnectToLayer<TScheme>(layer);
+
             layers.Add(layer);
 
             return this;

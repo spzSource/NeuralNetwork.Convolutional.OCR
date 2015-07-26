@@ -7,7 +7,7 @@ using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Impl
 
 namespace DigitR.Core.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
-    internal class FullyConnectedScheme : IConnectionScheme<INeuron<double>>
+    public class FullyConnectedScheme : IConnectionScheme<INeuron<double>>
     {
         private readonly IWeightSigner<double> weightSigner = new NormalWeightSigner();
         private readonly IBiasAssignee biasAssignee = new CnnBiasAssignee();

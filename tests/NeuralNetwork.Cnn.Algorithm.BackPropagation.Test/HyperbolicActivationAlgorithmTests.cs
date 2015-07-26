@@ -2,18 +2,19 @@
 
 using DigitR.Core.NeuralNetwork.Algorithms;
 using NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation;
-using NUnit.Framework;
+
+using Xunit;
 
 namespace NeuralNetwork.Cnn.Test
 {
-    [TestFixture]
     public class HyperbolicActivationAlgorithmTests
     {
-        [TestCase(1, 1)]
-        [TestCase(-1, -1)]
-        [TestCase(0, 0)]
-        [TestCase(-100, -1)]
-        [TestCase(100, 1)]
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(-1, -1)]
+        [InlineData(0, 0)]
+        [InlineData(-100, -1)]
+        [InlineData(100, 1)]
         public void CheckAntiSymmetricQualityTest(double inducedLocalArea, double expectedSignal)
         {
             IActivationAlgorithm<double, double> hyperbolicAlgorithm =
@@ -21,18 +22,19 @@ namespace NeuralNetwork.Cnn.Test
 
             double realSignal = hyperbolicAlgorithm.Calculate(inducedLocalArea);
 
-            Assert.LessOrEqual(Math.Abs(expectedSignal - realSignal), 0.00001,
+            Assert.True(Math.Abs(expectedSignal - realSignal) <= 0.00001,
                 "The values of expected and real signal must be equals.");
         }
 
-        [TestCase(0.1, 1, 0)]
-        [TestCase(0.5, 1, 0)]
-        [TestCase(5, 1, 0)]
-        [TestCase(10, 1, 0)]
-        [TestCase(-0.1, 0, -1)]
-        [TestCase(-0.5, 0, -1)]
-        [TestCase(-5, 0, -1)]
-        [TestCase(-10, 0, -1)]
+        [Theory]
+        [InlineData(0.1, 1, 0)]
+        [InlineData(0.5, 1, 0)]
+        [InlineData(5, 1, 0)]
+        [InlineData(10, 1, 0)]
+        [InlineData(-0.1, 0, -1)]
+        [InlineData(-0.5, 0, -1)]
+        [InlineData(-5, 0, -1)]
+        [InlineData(-10, 0, -1)]
         public void CheckPositiveInternalPointsTest(double inducedLocalArea, double highBound, double lowBound)
         {
             IActivationAlgorithm<double, double> hyperbolicAlgorithm =
@@ -40,8 +42,8 @@ namespace NeuralNetwork.Cnn.Test
 
             double realSignal = hyperbolicAlgorithm.Calculate(inducedLocalArea);
 
-            Assert.LessOrEqual(realSignal, highBound);
-            Assert.GreaterOrEqual(realSignal, lowBound);
+            Assert.True(realSignal <= highBound);
+            Assert.True(realSignal >= lowBound);
         }
     }
 }

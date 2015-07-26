@@ -1,10 +1,9 @@
-﻿<navigation:ModernPage x:Class="DigitR.Ui.Views.Common.WelcomeScreen"
+﻿<navigation:ModernPage 
+             x:Class="DigitR.Ui.Views.Common.WelcomeScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-             xmlns:control="clr-namespace:DigitR.NeuralNetwork.Cnn.View.Control;assembly=DigitR.NeuralNetwork.Cnn.View"
              xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700"
@@ -49,23 +48,6 @@
                     </ListItem>
                 </List>
             </FlowDocument>
-
-            <!--<StackPanel MinWidth="200">
-                
-                <TextBlock Text="Network structure" Style="{StaticResource Heading2}" />
-                
-                <control:NeuralNetworkGraphControl
-                    Height="700"
-                    Width="1000"
-                    DataContext="{Binding Path=NeuralNetworkGraphViewModel}">
-                </control:NeuralNetworkGraphControl>
-                
-                <Button
-                    Content="View"
-                    Command="{Binding Path=BuildNeuralNetworkGraphCommand}">
-                </Button>
-                
-            </StackPanel>-->
         </ScrollViewer>
     </Grid>
 </navigation:ModernPage>
