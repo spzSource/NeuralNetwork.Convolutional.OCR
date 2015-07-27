@@ -52,13 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\HyperbolicActivationAlgorithmTests.cs" />
+    <Compile Include="Processing\ForwardPropagationAlgorithmTests.cs" />
+    <Compile Include="Processing\Mock\InputPatternMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activation\SigmoidActivationAlgorithmTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithm.BackPropagation.csproj">
+    <ProjectReference Include="..\..\src\Core.Input\Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Core.NeuralNetwork.Cnn\NeuralNetwork.Cnn.csproj">
+      <Project>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</Project>
+      <Name>NeuralNetwork.Cnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithms.csproj">
       <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
-      <Name>NeuralNetwork.Cnn.Algorithm.BackPropagation</Name>
+      <Name>NeuralNetwork.Cnn.Algorithms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>

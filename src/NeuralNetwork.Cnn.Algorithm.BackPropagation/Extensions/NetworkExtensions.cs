@@ -4,7 +4,7 @@ using System.Linq;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.Extensions
 {
     public static class NetworkExtensions
     {

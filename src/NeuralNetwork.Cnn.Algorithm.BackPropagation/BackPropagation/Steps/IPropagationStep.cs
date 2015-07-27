@@ -1,7 +1,7 @@
 ﻿using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps
 {
     internal interface IPropagationStep
     {

@@ -10,10 +10,10 @@ using DigitR.Common.Logging;
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps;
+using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation
 {
     public class BackPropagationAlgorithm
         : ITrainingAlgorithm<

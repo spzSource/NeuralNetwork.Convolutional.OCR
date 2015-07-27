@@ -1,9 +1,9 @@
 ﻿using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
+using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Steps.Implementation
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation
 {
     internal class SetNetworkInputStep : IPropagationStep
     {

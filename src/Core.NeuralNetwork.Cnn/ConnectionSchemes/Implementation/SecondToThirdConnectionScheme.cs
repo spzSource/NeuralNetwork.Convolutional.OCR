@@ -2,8 +2,8 @@
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
 using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
 using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
 using DigitR.NeuralNetwork.Cnn.Primitives;

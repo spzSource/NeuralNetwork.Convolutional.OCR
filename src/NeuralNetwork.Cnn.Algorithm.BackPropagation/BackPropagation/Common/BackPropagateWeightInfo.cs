@@ -1,4 +1,4 @@
-﻿namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common
+﻿namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common
 {
     public class BackPropagateWeightInfo
     {

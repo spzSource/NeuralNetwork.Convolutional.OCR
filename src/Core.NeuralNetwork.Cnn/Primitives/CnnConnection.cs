@@ -1,7 +1,7 @@
 ﻿using System;
 
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.BackPropagation.Common;
+using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 
 namespace DigitR.NeuralNetwork.Cnn.Primitives
 {

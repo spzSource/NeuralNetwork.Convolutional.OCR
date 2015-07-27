@@ -10,13 +10,13 @@ using Xunit;
 
 namespace Core.NeuralNetwork.Test
 {
-    public class CnnNeuralNetworkBuilderTests
+    public class NeuralNetworkBuilderTests
     {
         private readonly INeuralNetworkBuilder<double> networkBuilder = 
             new NeuralNetworkBuilder<double>();
         
         [Fact]
-        public void CnnNeuralNetworkStructureTest()
+        public void NeuralNetworkStructureTest()
         {
             var neuralNetwork = networkBuilder
                 .AddInputLayer(new CnnLayer(0, 3, true, false))
@@ -36,7 +36,7 @@ namespace Core.NeuralNetwork.Test
         }
 
         [Fact]
-        public void CnnNeuralNetworkHiddenLayerPositionTest()
+        public void NeuralNetworkHiddenLayerPositionTest()
         {
             Exception exception = Assert.Throws<Exception>(
                 () => networkBuilder.AddLayer<FullyConnectedScheme>(new CnnLayer(0, 3, false, false)));

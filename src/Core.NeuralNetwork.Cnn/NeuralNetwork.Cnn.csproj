@@ -72,9 +72,9 @@
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithm.BackPropagation.csproj">
+    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithms.csproj">
       <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
-      <Name>NeuralNetwork.Cnn.Algorithm.BackPropagation</Name>
+      <Name>NeuralNetwork.Cnn.Algorithms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.WeightsSigning;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common

@@ -1,13 +1,14 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Extensions;
+using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processing
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.Processing
 {
     public class ForwardPropagationAlgorithm : 
         IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>>
@@ -24,15 +25,15 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processi
             INeuralNetwork<double[]> network, 
             IInputPattern<double[]> inputPattern)
         {
-            double[] outputSignals = null;
-
             IMultiLayerNeuralNetwork<double> multiLayerNeuralNetwork = (IMultiLayerNeuralNetwork<double>)network;
 
             ILayer<INeuron<double>> inputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsFirst);
             ILayer<INeuron<double>> outputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsLast);
 
-            Contract.Assert(inputPattern.Source.Length == inputLayer.Neurons.Length,
-                "The input image should has the same size as number of neural network inputs.");
+            if (inputPattern.Source.Length != inputLayer.Neurons.Length)
+            {
+                throw new ArgumentException("The input pattern should has the same size as number of neural network inputs.");
+            }
 
             for (int neuronIndex = 0; neuronIndex < inputLayer.Neurons.Length; neuronIndex++)
             {
@@ -50,9 +51,7 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Processi
                 }
             }
 
-            outputSignals = outputLayer.Neurons.Select(neuron => neuron.Output).ToArray();
-
-            return outputSignals;
+            return outputLayer.Neurons.Select(neuron => neuron.Output).ToArray();
         }
     }
 }

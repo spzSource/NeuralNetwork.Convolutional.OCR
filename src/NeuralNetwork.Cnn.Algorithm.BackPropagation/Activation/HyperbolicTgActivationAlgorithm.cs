@@ -2,7 +2,7 @@
 
 using DigitR.Core.NeuralNetwork.Algorithms;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation.Algorithms.Activation
+namespace DigitR.NeuralNetwork.Cnn.Algorithms.Activation
 {
     public class HyperbolicTgActivationAlgorithm : IActivationAlgorithm<double, double>
     {

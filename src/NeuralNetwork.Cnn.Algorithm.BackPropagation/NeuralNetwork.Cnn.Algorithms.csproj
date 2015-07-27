@@ -7,8 +7,8 @@
     <ProjectGuid>{369AC71F-DF68-48A6-B495-858374E56B9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation</RootNamespace>
-    <AssemblyName>DigitR.NeuralNetwork.Cnn.Algorithm.BackPropagation</AssemblyName>
+    <RootNamespace>DigitR.NeuralNetwork.Cnn.Algorithms</RootNamespace>
+    <AssemblyName>DigitR.NeuralNetwork.Cnn.Algorithms</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,25 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Activation\HyperbolicTgActivationAlgorithm.cs" />
-    <Compile Include="Algorithms\Activation\SigmoidActivationAlgorithm.cs" />
-    <Compile Include="Algorithms\BackPropagation\BackPropagationAlgorithm.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateNeuronInfo.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\BackPropagateWeightInfo.cs" />
-    <Compile Include="Algorithms\BackPropagation\Common\WeightCorrectionApplier.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateHiddenLayersStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\BackPropagateOutputLayerStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\CommitWeightCorrectionsStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\ForwardPropagateLayersStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\Implementation\SetNetworkInputStep.cs" />
-    <Compile Include="Algorithms\BackPropagation\Steps\IPropagationStep.cs" />
-    <Compile Include="Algorithms\Extensions\ConnectionExtensions.cs" />
-    <Compile Include="Algorithms\Extensions\NetworkExtensions.cs" />
-    <Compile Include="Algorithms\Extensions\NeuronExtensions.cs" />
-    <Compile Include="Algorithms\ForwardOutputAlgorithm.cs" />
-    <Compile Include="Algorithms\Processing\ForwardPropagationAlgorithm.cs" />
-    <Compile Include="Algorithms\WeightsSigning\Implementation\NormalWeightSigner.cs" />
-    <Compile Include="Algorithms\WeightsSigning\IWeightSigner.cs" />
+    <Compile Include="Activation\HyperbolicTgActivationAlgorithm.cs" />
+    <Compile Include="Activation\SigmoidActivationAlgorithm.cs" />
+    <Compile Include="BackPropagation\BackPropagationAlgorithm.cs" />
+    <Compile Include="BackPropagation\Common\BackPropagateNeuronInfo.cs" />
+    <Compile Include="BackPropagation\Common\BackPropagateWeightInfo.cs" />
+    <Compile Include="BackPropagation\Steps\Implementation\BackPropagateHiddenLayersStep.cs" />
+    <Compile Include="BackPropagation\Steps\Implementation\BackPropagateOutputLayerStep.cs" />
+    <Compile Include="BackPropagation\Steps\Implementation\CommitWeightCorrectionsStep.cs" />
+    <Compile Include="BackPropagation\Steps\Implementation\ForwardPropagateLayersStep.cs" />
+    <Compile Include="BackPropagation\Steps\Implementation\SetNetworkInputStep.cs" />
+    <Compile Include="BackPropagation\Steps\IPropagationStep.cs" />
+    <Compile Include="Extensions\NetworkExtensions.cs" />
+    <Compile Include="Extensions\NeuronExtensions.cs" />
+    <Compile Include="Processing\ForwardPropagationAlgorithm.cs" />
+    <Compile Include="WeightsSigning\Implementation\NormalWeightSigner.cs" />
+    <Compile Include="WeightsSigning\IWeightSigner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
