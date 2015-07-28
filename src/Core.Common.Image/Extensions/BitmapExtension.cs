@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Core.Common.Image.Extensions
+namespace DigitR.Core.Common.Image.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="Bitmap"/> class type.

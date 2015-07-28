@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 
-using DigitR.Core.InputProvider;
-using DigitR.Core.Output;
+using DigitR.Core.NeuralNetwork.InputProvider;
+using DigitR.Core.NeuralNetwork.OutputProvider;
 
 namespace DigitR.Core.NeuralNetwork
 {

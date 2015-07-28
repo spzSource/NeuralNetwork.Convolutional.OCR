@@ -1,4 +1,4 @@
-﻿namespace Core.Common.Image.Converters
+﻿namespace DigitR.Core.Common.Image.Converters
 {
     public class ThresholdConverter
     {

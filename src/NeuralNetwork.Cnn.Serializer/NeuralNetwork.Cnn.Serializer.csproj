@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DigitR.NeuralNetwork.Cnn.Serializer</RootNamespace>
-    <AssemblyName>DigitR.NeuralNetwork.Cnn.Serializer</AssemblyName>
+    <AssemblyName>NeuralNetwork.Cnn.Serializer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

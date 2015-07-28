@@ -1,5 +1,5 @@
-﻿using DigitR.Core.InputProvider;
-using DigitR.Core.NeuralNetwork.Algorithms;
+﻿using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.InputProvider;
 
 namespace DigitR.Core.NeuralNetwork
 {

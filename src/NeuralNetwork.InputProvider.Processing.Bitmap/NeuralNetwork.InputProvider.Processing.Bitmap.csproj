@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C00B7060-A56F-4F4B-AC01-F6BBD2E1595D}</ProjectGuid>
+    <ProjectGuid>{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitR.Core.NeuralNetwork.Serializer</RootNamespace>
-    <AssemblyName>Core.NeuralNetwork.Serializer</AssemblyName>
+    <RootNamespace>DigitR.NeuralNetwork.InputProvider.Processing.Bitmap</RootNamespace>
+    <AssemblyName>NeuralNetwork.InputProvider.Processing.Bitmap</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,15 +33,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INeuralNetworkSerializer.cs" />
+    <Compile Include="BitmapInputPattern.cs" />
+    <Compile Include="BitmapInputProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.NeuralNetwork\Core.NeuralNetwork.csproj">
-      <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
-      <Name>Core.NeuralNetwork</Name>
+    <ProjectReference Include="..\Core.Common.Image\Core.Common.Image.csproj">
+      <Project>{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}</Project>
+      <Name>Core.Common.Image</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.NeuralNetwork.InputProvider\Core.NeuralNetwork.InputProvider.csproj">
+      <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
+      <Name>Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

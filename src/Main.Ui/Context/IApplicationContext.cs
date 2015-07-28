@@ -1,4 +1,4 @@
-﻿using DigitR.Core.InputProvider;
+﻿using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Ui.Context.Implementation;
 
 namespace DigitR.Ui.Context

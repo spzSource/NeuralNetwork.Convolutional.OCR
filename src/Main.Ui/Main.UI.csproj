@@ -198,19 +198,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithms.csproj">
+    <ProjectReference Include="..\NeuralNetwork.Cnn.Algorithms\NeuralNetwork.Cnn.Algorithms.csproj">
       <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
       <Name>NeuralNetwork.Cnn.Algorithms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.InputProvider.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj">
+    <ProjectReference Include="..\NeuralNetwork.InputProvider.Training.Mnist\NeuralNetwork.InputProvider.Training.Mnist.csproj">
       <Project>{970D5E43-4C7A-4598-AD75-7D9C6E84D411}</Project>
       <Name>NeuralNetwork.InputProvider.Training.Mnist</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Input\Core.NeuralNetwork.InputProvider.csproj">
+    <ProjectReference Include="..\Core.NeuralNetwork.InputProvider\Core.NeuralNetwork.InputProvider.csproj">
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.NeuralNetwork.Cnn\NeuralNetwork.Cnn.csproj">
+    <ProjectReference Include="..\NeuralNetwork.Cnn\NeuralNetwork.Cnn.csproj">
       <Project>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</Project>
       <Name>NeuralNetwork.Cnn</Name>
     </ProjectReference>
@@ -222,7 +222,7 @@
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Output\Core.NeuralNetwork.OutputProvider.csproj">
+    <ProjectReference Include="..\Core.NeuralNetwork.OutputProvider\Core.NeuralNetwork.OutputProvider.csproj">
       <Project>{2CD80329-D61C-4D31-A5E0-51D24A544748}</Project>
       <Name>Core.NeuralNetwork.OutputProvider</Name>
     </ProjectReference>
@@ -230,11 +230,11 @@
       <Project>{84043B3E-FF9E-47F5-AB26-AE57F8D2585D}</Project>
       <Name>NeuralNetwork.Cnn.Serializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.InputProvider.Processing.File\NeuralNetwork.InputProvider.Processing.Bitmap.csproj">
+    <ProjectReference Include="..\NeuralNetwork.InputProvider.Processing.Bitmap\NeuralNetwork.InputProvider.Processing.Bitmap.csproj">
       <Project>{8DA109BB-4E0B-4DB7-A6DB-1B2FE6490505}</Project>
       <Name>NeuralNetwork.InputProvider.Processing.Bitmap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.OutputProvider.Text\NeuralNetwork.OutputProvider.Gui.csproj">
+    <ProjectReference Include="..\NeuralNetwork.OutputProvider.Gui\NeuralNetwork.OutputProvider.Gui.csproj">
       <Project>{AA87413A-B156-4ED9-970B-4027FD7FAB5A}</Project>
       <Name>NeuralNetwork.OutputProvider.Gui</Name>
     </ProjectReference>

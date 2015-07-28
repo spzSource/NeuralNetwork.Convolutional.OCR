@@ -9,12 +9,12 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
-using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist;
+using DigitR.Core.NeuralNetwork.OutputProvider;
 using DigitR.Core.NeuralNetwork.Serializer;
-using DigitR.Core.Output;
 using DigitR.NeuralNetwork.Cnn;
 using DigitR.NeuralNetwork.Cnn.Algorithms.Activation;
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation;

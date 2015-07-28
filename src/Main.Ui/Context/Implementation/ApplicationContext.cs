@@ -1,7 +1,7 @@
 ﻿using System.IO;
 
-using DigitR.Core.InputProvider;
 using DigitR.Core.NeuralNetwork;
+using DigitR.Core.NeuralNetwork.InputProvider;
 
 namespace DigitR.Ui.Context.Implementation
 {
@@ -17,7 +17,6 @@ namespace DigitR.Ui.Context.Implementation
         public InputSettings InputSettings
         {
             get;
-            private set;
         }
 
         public IInputProvider CurrentTrainingInputProvider

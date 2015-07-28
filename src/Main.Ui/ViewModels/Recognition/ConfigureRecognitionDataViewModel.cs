@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using DigitR.Core.NeuralNetwork;
-using DigitR.NeuralNetwork.InputProvider.Processing.File;
+using DigitR.NeuralNetwork.InputProvider.Processing.Bitmap;
 using DigitR.NeuralNetwork.OutputProvider.Gui;
 using DigitR.Ui.Context;
 using DigitR.Ui.Navigation;

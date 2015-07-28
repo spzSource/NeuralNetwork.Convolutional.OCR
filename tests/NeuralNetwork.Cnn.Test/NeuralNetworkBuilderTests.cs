@@ -8,7 +8,7 @@ using DigitR.NeuralNetwork.Cnn.Primitives;
 
 using Xunit;
 
-namespace Core.NeuralNetwork.Test
+namespace Tests.Core.NeuralNetwork.Test
 {
     public class NeuralNetworkBuilderTests
     {
