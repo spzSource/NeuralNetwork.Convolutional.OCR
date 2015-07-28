@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.InputProvider
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Image", "src\Core.Common.Image\Core.Common.Image.csproj", "{68DC4019-9E19-40A3-9FC4-1E563BCF4D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn.Algorithm.BackPropagation.Test", "tests\NeuralNetwork.Cnn.Algorithm.BackPropagation.Test\NeuralNetwork.Cnn.Algorithm.BackPropagation.Test.csproj", "{B6A8C661-3984-46F3-AD2A-683659B0A6FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn.Algorithms.Test", "tests\NeuralNetwork.Cnn.Algorithm.BackPropagation.Test\NeuralNetwork.Cnn.Algorithms.Test.csproj", "{B6A8C661-3984-46F3-AD2A-683659B0A6FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Cnn.Algorithms", "src\NeuralNetwork.Cnn.Algorithm.BackPropagation\NeuralNetwork.Cnn.Algorithms.csproj", "{369AC71F-DF68-48A6-B495-858374E56B9E}"
 EndProject

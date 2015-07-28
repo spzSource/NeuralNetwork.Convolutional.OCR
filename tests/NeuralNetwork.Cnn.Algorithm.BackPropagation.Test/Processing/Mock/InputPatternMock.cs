@@ -1,6 +1,6 @@
 ﻿using DigitR.Core.InputProvider;
 
-namespace NeuralNetwork.Cnn.Test.Processing.Mock
+namespace NeuralNetwork.Cnn.Algorithms.Test.Processing.Mock
 {
     public class InputPatternMock : IInputPattern<double[]>
     {

@@ -5,7 +5,7 @@ using DigitR.NeuralNetwork.Cnn.Algorithms.Activation;
 
 using Xunit;
 
-namespace NeuralNetwork.Cnn.Test.Activation
+namespace NeuralNetwork.Cnn.Algorithms.Test.Activation
 {
     public class SigmoidActivationAlgorithmTests
     {
