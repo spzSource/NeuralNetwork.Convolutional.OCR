@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
 using DigitR.Core.NeuralNetwork.Behaviours;
-using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork
@@ -16,7 +15,7 @@ namespace DigitR.Core.NeuralNetwork
         /// <summary>
         /// All layers.
         /// </summary>
-        IReadOnlyCollection<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>> Layers
+        IReadOnlyCollection<ILayer<INeuron<TData>>> Layers
         {
             get;
         }

@@ -4,14 +4,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork;
-using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.NeuralNetwork.Cnn.Primitives
 {
     [Serializable]
     [DebuggerDisplay("Layer-{LayerId}")]
-    public class CnnLayer : ILayer<INeuron<double>, IConnectionFactory<double, double>>
+    public class CnnLayer : ILayer<INeuron<double>>
     {
         private readonly IList<FeatureMap<INeuron<double>>> innerFeatureMaps;
 
@@ -35,14 +34,13 @@ namespace DigitR.NeuralNetwork.Cnn.Primitives
             innerFeatureMaps = new List<FeatureMap<INeuron<double>>>();
         }
 
-        public IReadOnlyList<FeatureMap<INeuron<double>>> FeatureMaps => 
-            new ReadOnlyCollection<FeatureMap<INeuron<double>>>(innerFeatureMaps);
+        public IReadOnlyList<FeatureMap<INeuron<double>>> FeatureMaps => new ReadOnlyCollection<FeatureMap<INeuron<double>>>(innerFeatureMaps);
 
         public INeuron<double>[] Neurons
         {
             get;
         }
-        
+
         public int LayerId
         {
             get;
@@ -63,11 +61,10 @@ namespace DigitR.NeuralNetwork.Cnn.Primitives
             innerFeatureMaps.Add(featureMap);
         }
 
-        public void ConnectToLayer(
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> layer, 
-            IConnectionScheme<INeuron<double>, IConnectionFactory<double, double>> connectionScheme)
+        public void ConnectToLayer<TScheme>(ILayer<INeuron<double>> layer)
+            where TScheme : IConnectionScheme<INeuron<double>>, new()
         {
-            connectionScheme.Apply(this, layer);
+            new TScheme().Apply(this, layer);
         }
     }
 }

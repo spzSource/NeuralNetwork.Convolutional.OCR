@@ -1,37 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
-using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
 
 namespace DigitR.Core.NeuralNetwork
 {
     public class NeuralNetworkBuilder<TData> : INeuralNetworkBuilder<TData>
     {
-        private readonly IList<KeyValuePair<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>>> layersData = 
-            new List<KeyValuePair<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>>>();
+        private readonly IList<ILayer<INeuron<TData>>> networkLayers = new List<ILayer<INeuron<TData>>>();
 
-        public INeuralNetworkBuilder<TData> AddInputLayer(ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> layer)
+        public INeuralNetworkBuilder<TData> AddInputLayer(ILayer<INeuron<TData>> layer)
         {
-            if (layersData.Count > 0)
+            if (networkLayers.Count > 0)
             {
                 throw new Exception("Input layer should be added first.");
             }
 
-            layersData.Add(new KeyValuePair<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>>(layer, null));
+            networkLayers.Add(layer);
 
             return this;
         }
 
-        public INeuralNetworkBuilder<TData> AddLayer<TScheme>(ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> layer)
-            where TScheme : IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>, new()
+        public INeuralNetworkBuilder<TData> AddLayer<TScheme>(ILayer<INeuron<TData>> layer)
+            where TScheme : IConnectionScheme<INeuron<TData>>, new()
         {
-            if (layersData.Count == 0)
+            if (networkLayers.Count == 0)
             {
                 throw new Exception("At first need to add a input layer.");
             }
 
-            layersData.Add(new KeyValuePair<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>>(layer, new TScheme()));
+            networkLayers.LastOrDefault()?.ConnectToLayer<TScheme>(layer);
+            networkLayers.Add(layer);
 
             return this;
         }
@@ -41,7 +42,7 @@ namespace DigitR.Core.NeuralNetwork
         {
             INeuralNetworkFactory<TData> factory = new TNeuralNetworkFactory();
 
-            return factory.Create(layersData);
+            return factory.Create(new ReadOnlyCollection<ILayer<INeuron<TData>>>(networkLayers));
         }  
     }
 }

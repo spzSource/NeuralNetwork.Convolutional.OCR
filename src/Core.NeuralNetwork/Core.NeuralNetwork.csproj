@@ -40,16 +40,12 @@
     <Compile Include="Algorithms\IProcessingAlgorithm.cs" />
     <Compile Include="Algorithms\ITrainingAlgorithm.cs" />
     <Compile Include="Behaviours\ITrainable.cs" />
-    <Compile Include="Factories\IConnectionFactory.cs" />
-    <Compile Include="Factories\INeuronFactory.cs" />
     <Compile Include="IConnectionScheme.cs" />
-    <Compile Include="ConnectionSchemes\FullyConnectedScheme.cs" />
     <Compile Include="IMultiLayerNeuralNetwork.cs" />
     <Compile Include="INeuralNetworkBuilder.cs" />
     <Compile Include="INeuralNetworkFactory.cs" />
     <Compile Include="INeuralNetworkProcessor.cs" />
     <Compile Include="INeuralNetwork.cs" />
-    <Compile Include="Factories\IWeightFactory.cs" />
     <Compile Include="NeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
     <Compile Include="Primitives\ILayer.cs" />

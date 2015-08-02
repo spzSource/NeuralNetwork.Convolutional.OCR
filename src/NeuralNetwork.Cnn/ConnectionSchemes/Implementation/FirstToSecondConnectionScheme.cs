@@ -2,37 +2,31 @@
 using System.Collections.ObjectModel;
 
 using DigitR.Core.NeuralNetwork;
-using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
-using DigitR.NeuralNetwork.Cnn.Factories;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
 {
-    public class CnnFirstToSecondConnectionScheme 
-        : IConnectionScheme<
-            INeuron<double>, 
-            IConnectionFactory<double, double>>
+    public class FirstToSecondConnectionScheme : IConnectionScheme<INeuron<double>>
     {
         private const int Step = 2;
         private const int KernelSize = 5;
         private const int FeatureMapCount = 6;
         private const int SourceSizeForFirstLayer = 29;
 
-        private readonly IWeightFactory<double> weightFactory = new CnnWeightFactory(new NormalWeightSigner());
-
-        private IConnectionFactory<double, double> connectionFactory;
-
-        public void SetConnectionFactory(IConnectionFactory<double, double> factory)
-        {
-            connectionFactory = factory;
-        }
-
+        private readonly IWeightSigner<double> weightSigner = new NormalWeightSigner();
+        private readonly IBiasAssignee biasAssignee = new CnnBiasAssignee();
+        
         public void Apply(
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> leftLayer,
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> rightLayer)
+            ILayer<INeuron<double>> leftLayer,
+            ILayer<INeuron<double>> rightLayer)
         {
+            FeatureMapWeightsCreator featureMapWeightsCreator = new FeatureMapWeightsCreator(weightSigner);
+
             int rightLayerNeuronIndex = 0;
 
             for (int featureMapIndex = 0; featureMapIndex < FeatureMapCount; featureMapIndex++)
@@ -46,7 +40,8 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
                     new ReadOnlyCollection<INeuron<double>>(leftLayer.Neurons));
 
 
-                IWeight<double>[] weights = weightFactory.CreateMany(KernelSize * KernelSize);
+                CnnWeight biasWeight = featureMapWeightsCreator.CreateWeight();
+                CnnWeight[] weights = featureMapWeightsCreator.CreateWeights(KernelSize * KernelSize);
 
                 while (featureMapEnumerator.MoveNext())
                 {
@@ -54,15 +49,17 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
 
                     IReadOnlyList<INeuron<double>> kernelNeurons = featureMapEnumerator.Current;
 
+                    biasAssignee.Assign(currentRightNeuron, biasWeight);
+                    
                     for (int kernelNeuronIndex = 0; kernelNeuronIndex < kernelNeurons.Count; kernelNeuronIndex++)
                     {
                         currentRightNeuron.Inputs.Add(
-                            connectionFactory.CreateWithWeight(
-                                kernelNeurons[kernelNeuronIndex], 
+                            new CnnConnection(
+                                kernelNeurons[kernelNeuronIndex],
                                 weights[kernelNeuronIndex]));
 
                         kernelNeurons[kernelNeuronIndex].Outputs.Add(
-                            connectionFactory.CreateWithWeight(
+                            new CnnConnection(
                                 currentRightNeuron,
                                 weights[kernelNeuronIndex]));
                     }

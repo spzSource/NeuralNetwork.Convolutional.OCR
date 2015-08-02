@@ -4,7 +4,6 @@ using System.Linq;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
-using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
 using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
@@ -28,8 +27,8 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.Processing
         {
             IMultiLayerNeuralNetwork<double> multiLayerNeuralNetwork = (IMultiLayerNeuralNetwork<double>)network;
 
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> inputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsFirst);
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> outputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsLast);
+            ILayer<INeuron<double>> inputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsFirst);
+            ILayer<INeuron<double>> outputLayer = multiLayerNeuralNetwork.GetLayer(layer => layer.IsLast);
 
             if (inputPattern.Source.Length != inputLayer.Neurons.Length)
             {
@@ -41,7 +40,7 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.Processing
                 inputLayer.Neurons[neuronIndex].Output = inputPattern.Source[neuronIndex];
             }
 
-            foreach (ILayer<INeuron<double>, IConnectionFactory<double, double>> layer in multiLayerNeuralNetwork.Layers.Where(layer => !layer.IsFirst))
+            foreach (ILayer<INeuron<double>> layer in multiLayerNeuralNetwork.Layers.Where(layer => !layer.IsFirst))
             {
                 foreach (INeuron<double> neuron in layer.Neurons)
                 {

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators
 {
     internal class FeatureMapEnumerator : IEnumerator<IReadOnlyList<INeuron<double>>>
     {

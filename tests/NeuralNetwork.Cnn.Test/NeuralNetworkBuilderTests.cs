@@ -2,8 +2,8 @@
 using System.Linq;
 
 using DigitR.Core.NeuralNetwork;
-using DigitR.Core.NeuralNetwork.ConnectionSchemes;
 using DigitR.NeuralNetwork.Cnn;
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
 using Xunit;
@@ -20,8 +20,8 @@ namespace Tests.Core.NeuralNetwork.Test
         {
             var neuralNetwork = networkBuilder
                 .AddInputLayer(new CnnLayer(0, 3, true, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 5, false, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(2, 2, false, true))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(1, 5, false, false))
+                .AddLayer<FullyConnectedScheme>(new CnnLayer(2, 2, false, true))
                 .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
 
             Assert.NotNull(neuralNetwork);
@@ -39,7 +39,7 @@ namespace Tests.Core.NeuralNetwork.Test
         public void NeuralNetworkHiddenLayerPositionTest()
         {
             Exception exception = Assert.Throws<Exception>(
-                () => networkBuilder.AddLayer<FullyConnectedScheme<double>>(new CnnLayer(0, 3, false, false)));
+                () => networkBuilder.AddLayer<FullyConnectedScheme>(new CnnLayer(0, 3, false, false)));
 
             Assert.Equal("At first need to add a input layer.", exception.Message);
         }

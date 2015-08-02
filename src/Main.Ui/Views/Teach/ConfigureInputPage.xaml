@@ -7,7 +7,7 @@
              xmlns:navigation="clr-namespace:DigitR.Ui.Navigation"
              xmlns:controls="clr-namespace:DigitR.Ui.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="1000"
+             d:DesignHeight="400" d:DesignWidth="700"
              DataContext="{Binding ConfigureInputPageViewModel, Source={StaticResource Locator}}"
              x:Name="Root">
     <Grid Style="{StaticResource ContentRoot}">
