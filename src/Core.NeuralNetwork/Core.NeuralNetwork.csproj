@@ -50,6 +50,7 @@
     <Compile Include="INeuralNetworkProcessor.cs" />
     <Compile Include="INeuralNetwork.cs" />
     <Compile Include="Factories\IWeightFactory.cs" />
+    <Compile Include="IWeightSigner.cs" />
     <Compile Include="NeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
     <Compile Include="Primitives\ILayer.cs" />

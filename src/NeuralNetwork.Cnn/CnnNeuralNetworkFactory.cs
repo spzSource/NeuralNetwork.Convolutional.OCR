@@ -5,7 +5,7 @@ using System.Linq;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Factories;
-using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Factories;
 
 using LayerConfiguration = System.Collections.Generic.KeyValuePair<
@@ -29,7 +29,7 @@ namespace DigitR.NeuralNetwork.Cnn
                 new CnnWeightFactory(
                     new NormalWeightSigner()));
 
-        public INeuralNetwork<double[]> Create(
+        public INeuralNetwork<double> Create(
             IList<LayerConfiguration> layersData)
         {
             if (layersData.Count == 0)

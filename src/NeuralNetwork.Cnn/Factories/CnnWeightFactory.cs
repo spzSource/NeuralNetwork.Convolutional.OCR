@@ -1,9 +1,8 @@
 ﻿using System;
 
+using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
-
-using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.NeuralNetwork.Cnn.Factories

@@ -11,7 +11,7 @@ namespace DigitR.Core.NeuralNetwork
     /// </summary>
     /// <typeparam name="TData"></typeparam>
     public interface IMultiLayerNeuralNetwork<TData>
-        : INeuralNetwork<TData[]>, ITrainable<TData[]>
+        : INeuralNetwork<TData>, ITrainable<TData>
     {
         /// <summary>
         /// All layers.

@@ -36,7 +36,7 @@ namespace DigitR.Core.NeuralNetwork
             return this;
         }
 
-        public INeuralNetwork<TData[]> Build<TNeuralNetworkFactory>()
+        public INeuralNetwork<TData> Build<TNeuralNetworkFactory>()
             where TNeuralNetworkFactory : INeuralNetworkFactory<TData>, new()
         {
             INeuralNetworkFactory<TData> factory = new TNeuralNetworkFactory();
