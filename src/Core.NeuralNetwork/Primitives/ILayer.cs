@@ -1,10 +1,13 @@
-﻿namespace DigitR.Core.NeuralNetwork.Primitives
+﻿using DigitR.Core.NeuralNetwork.Factories;
+
+namespace DigitR.Core.NeuralNetwork.Primitives
 {
     /// <summary>
     /// The layer for specific neural network.
     /// </summary>
     /// <typeparam name="TNeuron">The type of neuron for this layer.</typeparam>
-    public interface ILayer<TNeuron>
+    /// <typeparam name="TConnectionFactory"></typeparam>
+    public interface ILayer<TNeuron, TConnectionFactory>
     {
         /// <summary>
         /// The identifier for this layer.
@@ -41,7 +44,8 @@
         /// <summary>
         /// Connects this layer to layer passed as parameter.
         /// </summary>
-        void ConnectToLayer<TScheme>(ILayer<TNeuron> layer)
-            where TScheme : IConnectionScheme<TNeuron>, new();
+        void ConnectToLayer(
+            ILayer<TNeuron, TConnectionFactory> layer, 
+            IConnectionScheme<TNeuron, TConnectionFactory> connectionScheme);
     }
 }

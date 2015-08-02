@@ -1,16 +1,18 @@
 ﻿using System;
 
+using DigitR.Core.NeuralNetwork.Factories;
+using DigitR.Core.NeuralNetwork.Primitives;
+
 using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
+namespace DigitR.NeuralNetwork.Cnn.Factories
 {
-    internal class FeatureMapWeightsCreator
+    public class CnnWeightFactory : IWeightFactory<double>
     {
         private readonly IWeightSigner<double> weightSigner;
 
-        public FeatureMapWeightsCreator(
-            IWeightSigner<double> weightSigner)
+        public CnnWeightFactory(IWeightSigner<double> weightSigner)
         {
             if (weightSigner == null)
             {
@@ -19,9 +21,18 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
             this.weightSigner = weightSigner;
         }
 
-        public CnnWeight[] CreateWeights(int weightsCount)
+        public IWeight<double> Create()
         {
-            CnnWeight[] weights = new CnnWeight[weightsCount];
+            CnnWeight newWeight = new CnnWeight { AdditionalInfo = null, Value = 0.0 };
+
+            weightSigner.Sign(newWeight);
+
+            return newWeight;
+        }
+
+        public IWeight<double>[] CreateMany(int weightsCount)
+        {
+            IWeight<double>[] weights = new IWeight<double>[weightsCount];
 
             for (int weightIndex = 0; weightIndex < weights.Length; weightIndex++)
             {
@@ -33,15 +44,6 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common
             }
 
             return weights;
-        }
-
-        public CnnWeight CreateWeight()
-        {
-            CnnWeight newWeight = new CnnWeight { AdditionalInfo = null, Value = 0.0 };
-
-            weightSigner.Sign(newWeight);
-            
-            return newWeight;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
 
@@ -12,10 +13,10 @@ namespace DigitR.NeuralNetwork.Cnn
     [Serializable]
     public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double>
     {
-        private readonly IReadOnlyCollection<ILayer<INeuron<double>>> layers;
+        private readonly IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> layers;
 
         public CnnNeuralNetwork(
-            IReadOnlyCollection<ILayer<INeuron<double>>> layers)
+            IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> layers)
         {
             if (layers == null)
             {
@@ -27,7 +28,7 @@ namespace DigitR.NeuralNetwork.Cnn
         /// <summary>
         /// All layers.
         /// </summary>
-        public IReadOnlyCollection<ILayer<INeuron<double>>> Layers => layers;
+        public IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> Layers => layers;
 
         public bool ProcessTraining(
             IEnumerable<IInputTrainingPattern<double[]>> patterns,

@@ -4,9 +4,11 @@ using System.Threading;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
+using DigitR.Core.NeuralNetwork.ConnectionSchemes;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.OutputProvider;
-using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation;
+
+using DigitR.NeuralNetwork.Cnn.ConnectionSchemes;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.NeuralNetwork.Cnn
@@ -28,10 +30,10 @@ namespace DigitR.NeuralNetwork.Cnn
 
             network = networkBuilder
                 .AddInputLayer(new CnnLayer(0, 29 * 29, true, false))
-                .AddLayer<FirstToSecondConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, false, false))
-                .AddLayer<SecondToThirdConnectionScheme>(new CnnLayer(2, 5 * 5 * 50, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(3, 100, false, false))
-                .AddLayer<FullyConnectedScheme>(new CnnLayer(4, 10, false, true))
+                .AddLayer<CnnFirstToSecondConnectionScheme>(new CnnLayer(1, 13 * 13 * 6, false, false))
+                .AddLayer<CnnSecondToThirdConnectionScheme>(new CnnLayer(2, 5 * 5 * 50, false, false))
+                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(3, 100, false, false))
+                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(4, 10, false, true))
                 .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
         }
 
