@@ -15,8 +15,8 @@ namespace DigitR.Core.NeuralNetwork
         /// <param name="inputPattern">The input pattern for determine.</param>
         /// <param name="processingAlgorithm"></param>
         /// <returns>The result successful flag.</returns>
-        TData Process(
-            IInputPattern<TData> inputPattern, 
-            IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm);
+        TData[] Process(
+            IInputPattern<TData[]> inputPattern, 
+            IProcessingAlgorithm<INeuralNetwork<TData>, IInputPattern<TData[]>> processingAlgorithm);
     }
 }

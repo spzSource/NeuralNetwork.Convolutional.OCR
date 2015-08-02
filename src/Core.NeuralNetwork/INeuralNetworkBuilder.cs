@@ -30,7 +30,7 @@ namespace DigitR.Core.NeuralNetwork
         /// </summary>
         /// <typeparam name="TNeuralNetworkFactory">The factory for <see cref="INeuralNetwork{TData}"/> creation.</typeparam>
         /// <returns>The implementation of <see cref="INeuralNetwork{TData}"/></returns>
-        INeuralNetwork<TData[]> Build<TNeuralNetworkFactory>()
+        INeuralNetwork<TData> Build<TNeuralNetworkFactory>()
             where TNeuralNetworkFactory : INeuralNetworkFactory<TData>, new();
     }
 }

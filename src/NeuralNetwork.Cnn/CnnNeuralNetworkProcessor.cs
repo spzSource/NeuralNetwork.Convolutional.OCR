@@ -13,17 +13,17 @@ using DigitR.NeuralNetwork.Cnn.Primitives;
 
 namespace DigitR.NeuralNetwork.Cnn
 {
-    public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double[]>>
+    public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double>>
     {
-        private readonly IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm;
-        private readonly ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm;
+        private readonly IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm;
+        private readonly ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm;
 
         private IMultiLayerNeuralNetwork<double> network;
 
         public CnnNeuralNetworkProcessor(
             INeuralNetworkBuilder<double> networkBuilder,
-            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm,
-            IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm)
+            ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm,
+            IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm)
         {
             this.trainingAlgorithm = trainingAlgorithm;
             this.processingAlgorithm = processingAlgorithm;
@@ -37,9 +37,9 @@ namespace DigitR.NeuralNetwork.Cnn
                 .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
         }
 
-        public INeuralNetwork<double[]> NeuralNetwork => network;
+        public INeuralNetwork<double> NeuralNetwork => network;
 
-        public void Initialize(INeuralNetwork<double[]> neuralNetwork)
+        public void Initialize(INeuralNetwork<double> neuralNetwork)
         {
             network = neuralNetwork as IMultiLayerNeuralNetwork<double>;
         }

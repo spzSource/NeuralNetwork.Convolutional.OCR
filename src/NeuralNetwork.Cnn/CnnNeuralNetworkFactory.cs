@@ -29,7 +29,7 @@ namespace DigitR.NeuralNetwork.Cnn
                 new CnnWeightFactory(
                     new NormalWeightSigner()));
 
-        public INeuralNetwork<double[]> Create(
+        public INeuralNetwork<double> Create(
             IList<LayerConfiguration> layersData)
         {
             if (layersData.Count == 0)

@@ -14,7 +14,7 @@ namespace DigitR.Core.NeuralNetwork
         /// Performs building specific neural network instance.
         /// </summary>
         /// <returns>The instance of specific neural network.</returns>
-        INeuralNetwork<TData[]> Create(
+        INeuralNetwork<TData> Create(
             IList<KeyValuePair<
                 ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, 
                 IConnectionFactory<TData, TData>>>> layersData);

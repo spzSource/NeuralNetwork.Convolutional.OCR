@@ -32,7 +32,7 @@ namespace DigitR.NeuralNetwork.Cnn
 
         public bool ProcessTraining(
             IEnumerable<IInputTrainingPattern<double[]>> patterns,
-            ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>> trainingAlgorithm,
+            ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm,
             CancellationToken cancellationToken)
         {
             return trainingAlgorithm.ProcessTraining(this, patterns, cancellationToken);
@@ -47,7 +47,7 @@ namespace DigitR.NeuralNetwork.Cnn
         /// <returns>The result successful flag.</returns>
         public double[] Process(
             IInputPattern<double[]> inputPattern,
-            IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>> processingAlgorithm)
+            IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm)
         {
             return processingAlgorithm.Process(this, inputPattern);
         }

@@ -30,7 +30,7 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing
         [Fact]
         public void InputsSourceAndInputNeuronsNumbersMismatchTest()
         {
-            INeuralNetwork<double[]> neuralNetwork = networkBuilder
+            INeuralNetwork<double> neuralNetwork = networkBuilder
                 .AddInputLayer(new CnnLayer(0, inputPatternMock.Source.Length + 1, true, false))
                 .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 2, false, true))
                 .Build<CnnNeuralNetworkFactory>();
@@ -42,7 +42,7 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing
         [Fact]
         public void MissingOutputLayerTest()
         {
-            INeuralNetwork<double[]> neuralNetwork = networkBuilder
+            INeuralNetwork<double> neuralNetwork = networkBuilder
                 .AddInputLayer(new CnnLayer(0, 3, true, false))
                 .Build<CnnNeuralNetworkFactory>();
 

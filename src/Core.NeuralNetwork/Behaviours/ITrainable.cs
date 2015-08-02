@@ -20,8 +20,8 @@ namespace DigitR.Core.NeuralNetwork.Behaviours
         /// <param name="cancellationToken">The <see cref="CancellationTokenSource"/> for cancel training process if required.</param>
         /// <returns>The flag that indicates the training status for current instance of neural network.</returns>
         bool ProcessTraining(
-            IEnumerable<IInputTrainingPattern<TData>> patterns,
-            ITrainingAlgorithm<INeuralNetwork<TData>, IInputTrainingPattern<TData>> trainingAlgorithm,
+            IEnumerable<IInputTrainingPattern<TData[]>> patterns,
+            ITrainingAlgorithm<INeuralNetwork<TData>, IInputTrainingPattern<TData[]>> trainingAlgorithm,
             CancellationToken cancellationToken);
     }
 }
