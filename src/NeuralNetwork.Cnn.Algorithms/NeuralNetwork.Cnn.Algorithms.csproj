@@ -55,8 +55,7 @@
     <Compile Include="Extensions\NetworkExtensions.cs" />
     <Compile Include="Extensions\NeuronExtensions.cs" />
     <Compile Include="Processing\ForwardPropagationAlgorithm.cs" />
-    <Compile Include="WeightsSigning\Implementation\NormalWeightSigner.cs" />
-    <Compile Include="WeightsSigning\IWeightSigner.cs" />
+    <Compile Include="WeightsSigning\NormalWeightSigner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

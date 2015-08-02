@@ -12,7 +12,8 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
             IMultiLayerNeuralNetwork<double> network, 
             IInputTrainingPattern<double[]> pattern)
         {
-            ILayer<INeuron<double>, IConnectionFactory<double, double>> inputLayer = network.GetLayer(layer => layer.IsFirst);
+            ILayer<INeuron<double>, IConnectionFactory<double, double>> inputLayer = 
+                network.GetLayer(layer => layer.IsFirst);
 
             for (int neuronIndex = 0; neuronIndex < inputLayer.Neurons.Length; neuronIndex++)
             {

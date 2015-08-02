@@ -1,6 +1,6 @@
 ﻿using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning
+namespace DigitR.Core.NeuralNetwork
 {
     public interface IWeightSigner<TValue>
     {

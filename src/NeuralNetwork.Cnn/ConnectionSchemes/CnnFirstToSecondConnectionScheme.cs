@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Factories;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 

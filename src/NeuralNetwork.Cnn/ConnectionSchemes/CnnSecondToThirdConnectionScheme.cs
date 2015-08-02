@@ -3,8 +3,7 @@
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
-
-using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
+using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 using DigitR.NeuralNetwork.Cnn.Factories;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
@@ -21,7 +20,7 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
         private const int SourceSizeForSecondLayer = 13;
 
         private IConnectionFactory<double, double> connectionFactory; 
-        private IWeightFactory<double> weightFactory = new CnnWeightFactory(new NormalWeightSigner()); 
+        private readonly IWeightFactory<double> weightFactory = new CnnWeightFactory(new NormalWeightSigner()); 
 
         public void SetConnectionFactory(IConnectionFactory<double, double> factory)
         {

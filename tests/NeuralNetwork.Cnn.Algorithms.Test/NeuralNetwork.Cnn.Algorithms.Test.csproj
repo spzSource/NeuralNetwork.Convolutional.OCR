@@ -52,10 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\HyperbolicActivationAlgorithmTests.cs" />
+    <Compile Include="BackPropagation\Mock\InputTrainingPatternMock.cs" />
+    <Compile Include="BackPropagation\SetNetworkInputStepTests.cs" />
     <Compile Include="Processing\ForwardPropagationAlgorithmTests.cs" />
     <Compile Include="Processing\Mock\InputPatternMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activation\SigmoidActivationAlgorithmTests.cs" />
+    <Compile Include="WeightSigning\Mock\WeightMock.cs" />
+    <Compile Include="WeightSigning\NormalWeightSignerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core.NeuralNetwork.InputProvider\Core.NeuralNetwork.InputProvider.csproj">
