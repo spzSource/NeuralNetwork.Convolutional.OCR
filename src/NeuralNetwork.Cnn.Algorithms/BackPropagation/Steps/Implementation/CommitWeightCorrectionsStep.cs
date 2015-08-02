@@ -1,4 +1,5 @@
 ﻿using DigitR.Core.NeuralNetwork;
+using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
@@ -9,7 +10,7 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
     {
         public void Process(IMultiLayerNeuralNetwork<double> network, IInputTrainingPattern<double[]> pattern)
         {
-            foreach (ILayer<INeuron<double>> layer in network.Layers)
+            foreach (ILayer<INeuron<double>, IConnectionFactory<double, double>> layer in network.Layers)
             {
                 foreach (INeuron<double> neuron in layer.Neurons)
                 {
@@ -21,7 +22,7 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
                 }
             }
 
-            foreach (ILayer<INeuron<double>> layer in network.Layers)
+            foreach (ILayer<INeuron<double>, IConnectionFactory<double, double>> layer in network.Layers)
             {
                 foreach (INeuron<double> neuron in layer.Neurons)
                 {

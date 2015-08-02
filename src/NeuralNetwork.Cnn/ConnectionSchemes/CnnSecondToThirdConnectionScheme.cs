@@ -1,49 +1,48 @@
 ﻿using System.Collections.Generic;
 
 using DigitR.Core.NeuralNetwork;
+using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
+
 using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning.Implementation;
-using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Common;
-using DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation.Enumerators;
+using DigitR.NeuralNetwork.Cnn.Factories;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
+namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes
 {
-    public class SecondToThirdConnectionScheme : IConnectionScheme<INeuron<double>>
+    public class CnnSecondToThirdConnectionScheme : 
+        IConnectionScheme<
+            INeuron<double>, 
+            IConnectionFactory<double, double>>
     {
         private const int Step = 2;
         private const int KernelSize = 5;
         private const int FeatureMapCount = 50;
         private const int SourceSizeForSecondLayer = 13;
 
-        private readonly IWeightSigner<double> weightSigner = new NormalWeightSigner();
-        private readonly IBiasAssignee biasAssignee = new CnnBiasAssignee();
+        private IConnectionFactory<double, double> connectionFactory; 
+        private IWeightFactory<double> weightFactory = new CnnWeightFactory(new NormalWeightSigner()); 
 
-        public void Apply(
-            ILayer<INeuron<double>> leftLayer,
-            ILayer<INeuron<double>> rightLayer)
+        public void SetConnectionFactory(IConnectionFactory<double, double> factory)
+        {
+            connectionFactory = factory;
+        }
+
+        public void Apply(ILayer<INeuron<double>, IConnectionFactory<double, double>> leftLayer, ILayer<INeuron<double>, IConnectionFactory<double, double>> rightLayer)
         {
             int rightLayerNeuronIndex = 0;
-
-            ConnectionsCounter innerConnectionsCounter = new ConnectionsCounter();
 
             for (int featureMapIndex = 0; featureMapIndex < FeatureMapCount; featureMapIndex++)
             {
                 CnnLayer cnnLeftLayer = (CnnLayer)leftLayer;
 
-                FeatureMapWeightsCreator weightsCreator = new FeatureMapWeightsCreator(weightSigner);
-
-                CnnWeight[] biasWeights = weightsCreator.CreateWeights(FeatureMapCount);
-                CnnWeight[][] weights = CreateWeights(cnnLeftLayer, weightsCreator);
+                IWeight<double>[][] weights = CreateWeights(cnnLeftLayer, weightFactory);
 
                 FeatureMapEnumerator[] featureMapEnumerators = CreateFeatureMapEnumerators(cnnLeftLayer);
 
                 while (MoveNext(featureMapEnumerators))
                 {
                     INeuron<double> currentRightNeuron = rightLayer.Neurons[rightLayerNeuronIndex];
-
-                    biasAssignee.Assign(currentRightNeuron, biasWeights[featureMapIndex]);
 
                     for (int enumeratorIndex = 0; enumeratorIndex < cnnLeftLayer.FeatureMaps.Count; enumeratorIndex++)
                     {
@@ -60,8 +59,6 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
                                 new CnnConnection(
                                     currentRightNeuron,
                                     weights[enumeratorIndex][kernelNeuronIndex]));
-
-                            innerConnectionsCounter.Increment();
                         }
                     }
                     ++rightLayerNeuronIndex;
@@ -85,13 +82,13 @@ namespace DigitR.NeuralNetwork.Cnn.ConnectionSchemes.Implementation
             return featureMapEnumerators;
         }
 
-        private CnnWeight[][] CreateWeights(CnnLayer cnnLeftLayer, FeatureMapWeightsCreator weightsCreator)
+        private IWeight<double>[][] CreateWeights(CnnLayer cnnLeftLayer, IWeightFactory<double> weightFactory)
         {
-            CnnWeight[][] weights = new CnnWeight[cnnLeftLayer.FeatureMaps.Count][];
+            IWeight<double>[][] weights = new IWeight<double>[cnnLeftLayer.FeatureMaps.Count][];
 
             for (int weightIndex = 0; weightIndex < cnnLeftLayer.FeatureMaps.Count; weightIndex++)
             {
-                weights[weightIndex] = weightsCreator.CreateWeights(KernelSize * KernelSize);
+                weights[weightIndex] = weightFactory.CreateMany(KernelSize * KernelSize);
             }
 
             return weights;

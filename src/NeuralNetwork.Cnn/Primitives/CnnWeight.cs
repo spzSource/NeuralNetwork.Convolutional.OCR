@@ -2,12 +2,11 @@
 using System.Diagnostics;
 
 using DigitR.Core.NeuralNetwork.Primitives;
-using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 
 namespace DigitR.NeuralNetwork.Cnn.Primitives
 {
     [Serializable]
-    [DebuggerDisplay("Value = {Value}, Correction = {Info.WeightCorrection}")]
+    [DebuggerDisplay("Value = {Value}")]
     public class CnnWeight : IWeight<double>
     {
         public double Value
@@ -25,15 +24,6 @@ namespace DigitR.NeuralNetwork.Cnn.Primitives
         public TInfo GetInfo<TInfo>()
         {
             return (TInfo)AdditionalInfo;
-        }
-
-        // NOTE: for debug only. Should be removed.
-        public BackPropagateWeightInfo Info
-        {
-            get
-            {
-                return GetInfo<BackPropagateWeightInfo>();
-            }
         }
     }
 }
