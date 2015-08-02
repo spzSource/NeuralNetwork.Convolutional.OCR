@@ -27,9 +27,9 @@ namespace Tests.Core.NeuralNetwork.Test
             Assert.NotNull(neuralNetwork);
 
             Assert.Equal(neuralNetwork.Layers.Count, 3);
-            Assert.Equal(neuralNetwork.Layers.ElementAt(0).Neurons.Count(), 3);
-            Assert.Equal(neuralNetwork.Layers.ElementAt(1).Neurons.Count(), 5);
-            Assert.Equal(neuralNetwork.Layers.ElementAt(2).Neurons.Count(), 2);
+            Assert.Equal(neuralNetwork.Layers.ElementAt(0).Neurons.Count(), 9);
+            Assert.Equal(neuralNetwork.Layers.ElementAt(1).Neurons.Count(), 25);
+            Assert.Equal(neuralNetwork.Layers.ElementAt(2).Neurons.Count(), 4);
 
             Assert.Contains(neuralNetwork.Layers, layer => layer.IsFirst);
             Assert.Contains(neuralNetwork.Layers, layer => layer.IsLast);
