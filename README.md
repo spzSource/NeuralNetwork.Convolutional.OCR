@@ -1,4 +1,4 @@
-# NeuralNetwork.Convolutional.OCR
+# NeuralNetwork.Convolutional.OCR [![Build status](https://ci.appveyor.com/api/projects/status/qmsystqp5rsntkep?svg=true)](https://ci.appveyor.com/project/spzSource/neuralnetwork-convolutional-ocr)
 Prototype for recognition of handwritten digits.
 
 Repo includes following components:
