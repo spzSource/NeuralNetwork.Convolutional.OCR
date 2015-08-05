@@ -15,7 +15,7 @@ namespace DigitR.NeuralNetwork.Cnn
 {
     public class CnnNeuralNetworkProcessor : INeuralNetworkProcessor<INeuralNetwork<double>>
     {
-        private readonly IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm;
+        private readonly IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>, double> processingAlgorithm;
         private readonly ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm;
 
         private IMultiLayerNeuralNetwork<double> network;
@@ -23,7 +23,7 @@ namespace DigitR.NeuralNetwork.Cnn
         public CnnNeuralNetworkProcessor(
             INeuralNetworkBuilder<double> networkBuilder,
             ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm,
-            IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm)
+            IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>, double> processingAlgorithm)
         {
             this.trainingAlgorithm = trainingAlgorithm;
             this.processingAlgorithm = processingAlgorithm;

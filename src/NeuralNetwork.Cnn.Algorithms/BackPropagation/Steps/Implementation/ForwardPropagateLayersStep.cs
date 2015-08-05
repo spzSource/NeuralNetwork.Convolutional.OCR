@@ -6,6 +6,7 @@ using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
+
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 
 namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation

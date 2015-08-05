@@ -58,10 +58,5 @@ namespace DigitR.Core.NeuralNetwork.Primitives
             get;
             set;
         }
-
-        /// <summary>
-        /// Performs output calculation for this neuron.
-        /// </summary>
-        void CalculateOutput();
     }
 }

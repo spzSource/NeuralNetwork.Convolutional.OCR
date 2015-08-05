@@ -21,7 +21,7 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.BackPropagation
            new NeuralNetworkBuilder<double>();
 
         [Fact]
-        public void StepProcessingTest()
+        public void SetNetworkInputStepProcessingTest()
         {
             InputTrainingPatternMock patternMock =
                 new InputTrainingPatternMock

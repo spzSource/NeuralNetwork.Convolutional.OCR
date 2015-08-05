@@ -17,6 +17,6 @@ namespace DigitR.Core.NeuralNetwork
         /// <returns>The result successful flag.</returns>
         TData[] Process(
             IInputPattern<TData[]> inputPattern, 
-            IProcessingAlgorithm<INeuralNetwork<TData>, IInputPattern<TData[]>> processingAlgorithm);
+            IProcessingAlgorithm<INeuralNetwork<TData>, IInputPattern<TData[]>, TData> processingAlgorithm);
     }
 }

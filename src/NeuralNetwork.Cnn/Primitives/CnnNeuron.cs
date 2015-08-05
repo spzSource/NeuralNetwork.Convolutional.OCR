@@ -91,12 +91,5 @@ namespace DigitR.NeuralNetwork.Cnn.Primitives
             get;
             set;
         }
-
-        /// <summary>
-        /// Performs output calculation for this neuron.
-        /// </summary>
-        public void CalculateOutput()
-        {
-        }
     }
 }

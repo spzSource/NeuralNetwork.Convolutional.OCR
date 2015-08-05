@@ -35,7 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CnnNeuralNetwork.cs" />
     <Compile Include="CnnNeuralNetworkFactory.cs" />
     <Compile Include="CnnNeuralNetworkProcessor.cs" />
     <Compile Include="Factories\CnnConnectionFactory.cs" />

@@ -18,5 +18,13 @@ namespace DigitR.Core.NeuralNetwork
             IList<KeyValuePair<
                 ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>, IConnectionScheme<INeuron<TData>, 
                 IConnectionFactory<TData, TData>>>> layersData);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ILayersConfigurator<TData, TData> LayersConfigurator
+        {
+            get;
+        }
     }
 }

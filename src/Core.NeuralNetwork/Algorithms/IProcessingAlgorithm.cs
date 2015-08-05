@@ -6,7 +6,8 @@
     /// </summary>
     /// <typeparam name="TNeuralNetwork">The type of neural network implementation.</typeparam>
     /// <typeparam name="TPattern">The type of patterns that uses for specified neural network implementation.</typeparam>
-    public interface IProcessingAlgorithm<in TNeuralNetwork, in TPattern>
+    /// <typeparam name="TOutput"></typeparam>
+    public interface IProcessingAlgorithm<in TNeuralNetwork, in TPattern, TOutput>
     {
         /// <summary>
         /// Executes processing using specified <see cref="TNeuralNetwork"/> and <see cref="TPattern"/> classes.
@@ -14,7 +15,7 @@
         /// <param name="network">The instance of <see cref="TNeuralNetwork"/> class.</param>
         /// <param name="inputPattern">The pattern (<see cref="TPattern"/>) for recognition.</param>
         /// <returns>The array of output signals.</returns>
-        double[] Process(
+        TOutput[] Process(
             TNeuralNetwork network,
             TPattern inputPattern);
     }

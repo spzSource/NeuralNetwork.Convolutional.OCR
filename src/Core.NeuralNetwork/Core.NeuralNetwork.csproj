@@ -44,6 +44,7 @@
     <Compile Include="Factories\INeuronFactory.cs" />
     <Compile Include="IConnectionScheme.cs" />
     <Compile Include="ConnectionSchemes\FullyConnectedScheme.cs" />
+    <Compile Include="ILayersConfigurator.cs" />
     <Compile Include="IMultiLayerNeuralNetwork.cs" />
     <Compile Include="INeuralNetworkBuilder.cs" />
     <Compile Include="INeuralNetworkFactory.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="INeuralNetwork.cs" />
     <Compile Include="Factories\IWeightFactory.cs" />
     <Compile Include="IWeightSigner.cs" />
+    <Compile Include="DefaultLayersConfigurator.cs" />
+    <Compile Include="MultiLayerNeuralNetwork.cs" />
     <Compile Include="NeuralNetworkBuilder.cs" />
     <Compile Include="Primitives\IConnection.cs" />
     <Compile Include="Primitives\ILayer.cs" />

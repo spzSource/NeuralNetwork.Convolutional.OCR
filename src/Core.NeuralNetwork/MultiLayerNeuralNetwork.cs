@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Threading;
 
-using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace DigitR.NeuralNetwork.Cnn
+namespace DigitR.Core.NeuralNetwork
 {
-    [Serializable]
-    public class CnnNeuralNetwork : IMultiLayerNeuralNetwork<double>
+    public class MultiLayerNeuralNetwork<TData> : IMultiLayerNeuralNetwork<TData>
     {
-        private readonly IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> layers;
+        private readonly IReadOnlyCollection<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>> layers;
 
-        public CnnNeuralNetwork(
-            IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> layers)
+        public MultiLayerNeuralNetwork(
+            IReadOnlyCollection<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>> layers)
         {
             if (layers == null)
             {
@@ -28,11 +26,11 @@ namespace DigitR.NeuralNetwork.Cnn
         /// <summary>
         /// All layers.
         /// </summary>
-        public IReadOnlyCollection<ILayer<INeuron<double>, IConnectionFactory<double, double>>> Layers => layers;
+        public IReadOnlyCollection<ILayer<INeuron<TData>, IConnectionFactory<TData, TData>>> Layers => layers;
 
         public bool ProcessTraining(
-            IEnumerable<IInputTrainingPattern<double[]>> patterns,
-            ITrainingAlgorithm<INeuralNetwork<double>, IInputTrainingPattern<double[]>> trainingAlgorithm,
+            IEnumerable<IInputTrainingPattern<TData[]>> patterns,
+            ITrainingAlgorithm<INeuralNetwork<TData>, IInputTrainingPattern<TData[]>> trainingAlgorithm,
             CancellationToken cancellationToken)
         {
             return trainingAlgorithm.ProcessTraining(this, patterns, cancellationToken);
@@ -45,9 +43,9 @@ namespace DigitR.NeuralNetwork.Cnn
         /// <param name="inputPattern">The input pattern for determine.</param>
         /// <param name="processingAlgorithm"></param>
         /// <returns>The result successful flag.</returns>
-        public double[] Process(
-            IInputPattern<double[]> inputPattern,
-            IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>> processingAlgorithm)
+        public TData[] Process(
+            IInputPattern<TData[]> inputPattern,
+            IProcessingAlgorithm<INeuralNetwork<TData>, IInputPattern<TData[]>, TData> processingAlgorithm)
         {
             return processingAlgorithm.Process(this, inputPattern);
         }

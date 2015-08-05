@@ -51,7 +51,7 @@ namespace DigitR.Ui.ViewModels
 
             SimpleIoc.Default.Register<IActivationAlgorithm<double, double>, HyperbolicTgActivationAlgorithm>();
             SimpleIoc.Default.Register<ITrainingAlgorithm<INeuralNetwork<double[]>, IInputTrainingPattern<double[]>>, BackPropagationAlgorithm>();
-            SimpleIoc.Default.Register<IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>>, ForwardPropagationAlgorithm>();
+            SimpleIoc.Default.Register<IProcessingAlgorithm<INeuralNetwork<double[]>, IInputPattern<double[]>, double>, ForwardPropagationAlgorithm>();
 
             // View-models.
             SimpleIoc.Default.Register<WelcomScreenViewModel>();

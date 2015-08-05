@@ -11,7 +11,7 @@ using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
 namespace DigitR.NeuralNetwork.Cnn.Algorithms.Processing
 {
     public class ForwardPropagationAlgorithm : 
-        IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>>
+        IProcessingAlgorithm<INeuralNetwork<double>, IInputPattern<double[]>, double>
     {
         private readonly IActivationAlgorithm<double, double> activationAlgorithm;
 
