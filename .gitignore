@@ -231,3 +231,8 @@ $RECYCLE.BIN/
 *.lnk
 .settings/launch.json
 .settings/settings.json
+/tests/output/xunit.core.xml
+/tests/output/xunit.assert.xml
+/tests/output/xunit.abstractions.xml
+/tests/output/NSubstitute.xml
+/tests/output/log4net.xml
