@@ -11,6 +11,8 @@ using DigitR.NeuralNetwork.Cnn.Algorithms.Processing;
 using DigitR.NeuralNetwork.Cnn.Primitives;
 
 using Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing.Mock;
+using Tests.NeuralNetwork.Mock.Mock;
+using Tests.NeuralNetwork.Mock.Mock.Primitives;
 
 using Xunit;
 
@@ -31,9 +33,9 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing
         public void InputsSourceAndInputNeuronsNumbersMismatchTest()
         {
             INeuralNetwork<double> neuralNetwork = networkBuilder
-                .AddInputLayer(new CnnLayer(0, inputPatternMock.Source.Length + 1, true, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 2, false, true))
-                .Build<CnnNeuralNetworkFactory>();
+                .AddInputLayer(new LayerMock(0, inputPatternMock.Source.Length + 1, true, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(1, 2, false, true))
+                .Build<NeuralNetworkFactoryMock>();
 
             Assert.NotNull(neuralNetwork);
             Assert.Throws<ArgumentException>(() => processingAlgorithm.Process(neuralNetwork, inputPatternMock));
@@ -43,8 +45,8 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing
         public void MissingOutputLayerTest()
         {
             INeuralNetwork<double> neuralNetwork = networkBuilder
-                .AddInputLayer(new CnnLayer(0, 3, true, false))
-                .Build<CnnNeuralNetworkFactory>();
+                .AddInputLayer(new LayerMock(0, 3, true, false))
+                .Build<NeuralNetworkFactoryMock>();
 
             Assert.NotNull(neuralNetwork);
             Exception exception = Assert.Throws<Exception>(
@@ -58,10 +60,10 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing
         public void ForwardPropagationQualityTest()
         {
             IMultiLayerNeuralNetwork<double> neuralNetwork = networkBuilder
-                .AddInputLayer(new CnnLayer(0, 3, true, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 5, false, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(2, 2, false, true))
-                .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
+                .AddInputLayer(new LayerMock(0, 3, true, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(1, 5, false, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(2, 2, false, true))
+                .Build<NeuralNetworkFactoryMock>() as IMultiLayerNeuralNetwork<double>;
 
             processingAlgorithm.Process(neuralNetwork, inputPatternMock);
 

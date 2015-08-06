@@ -1,9 +1,9 @@
 ﻿using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-using NeuralNetwork.Mock.Mock.Primitives;
+using Tests.NeuralNetwork.Mock.Mock.Primitives;
 
-namespace NeuralNetwork.Mock.Mock.Factories
+namespace Tests.NeuralNetwork.Mock.Mock.Factories
 {
     public class ConnectionFactoryMock : IConnectionFactory<double, double>
     {

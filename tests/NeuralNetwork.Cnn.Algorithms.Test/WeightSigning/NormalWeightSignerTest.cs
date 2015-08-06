@@ -2,7 +2,7 @@
 using DigitR.Core.NeuralNetwork.Primitives;
 using DigitR.NeuralNetwork.Cnn.Algorithms.WeightsSigning;
 
-using Tests.NeuralNetwork.Cnn.Algorithms.Test.WeightSigning.Mock;
+using Tests.NeuralNetwork.Mock.Mock.Primitives;
 
 using Xunit;
 

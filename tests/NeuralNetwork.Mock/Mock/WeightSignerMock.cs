@@ -1,7 +1,7 @@
 ﻿using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace NeuralNetwork.Mock.Mock
+namespace Tests.NeuralNetwork.Mock.Mock
 {
     public class WeightSignerMock : IWeightSigner<double>
     {

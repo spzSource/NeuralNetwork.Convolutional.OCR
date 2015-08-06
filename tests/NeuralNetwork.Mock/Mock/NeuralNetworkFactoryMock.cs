@@ -5,13 +5,13 @@ using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.Primitives;
 
-using NeuralNetwork.Mock.Mock.Factories;
+using Tests.NeuralNetwork.Mock.Mock.Factories;
 
 using LayerType = DigitR.Core.NeuralNetwork.Primitives.ILayer<
     DigitR.Core.NeuralNetwork.Primitives.INeuron<double>,
     DigitR.Core.NeuralNetwork.Factories.IConnectionFactory<double, double>>;
 
-namespace NeuralNetwork.Mock.Mock
+namespace Tests.NeuralNetwork.Mock.Mock
 {
     public class NeuralNetworkFactoryMock : INeuralNetworkFactory<double>
     {

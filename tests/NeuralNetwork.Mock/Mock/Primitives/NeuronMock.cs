@@ -2,7 +2,7 @@
 
 using DigitR.Core.NeuralNetwork.Primitives;
 
-namespace NeuralNetwork.Mock.Mock.Primitives
+namespace Tests.NeuralNetwork.Mock.Mock.Primitives
 {
     public class NeuronMock : INeuron<double>
     {

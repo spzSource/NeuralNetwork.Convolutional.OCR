@@ -2,13 +2,13 @@
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.ConnectionSchemes;
-using DigitR.NeuralNetwork.Cnn;
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps;
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementation;
 using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
-using DigitR.NeuralNetwork.Cnn.Primitives;
 
 using Tests.NeuralNetwork.Cnn.Algorithms.Test.BackPropagation.Mock;
+using Tests.NeuralNetwork.Mock.Mock;
+using Tests.NeuralNetwork.Mock.Mock.Primitives;
 
 using Xunit;
 
@@ -30,9 +30,9 @@ namespace Tests.NeuralNetwork.Cnn.Algorithms.Test.BackPropagation
                 };
 
             IMultiLayerNeuralNetwork<double> neuralNetwork = networkBuilder
-                .AddInputLayer(new CnnLayer(0, patternMock.Source.Length, true, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 2, false, true))
-                .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
+                .AddInputLayer(new LayerMock(0, patternMock.Source.Length, true, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(1, 2, false, true))
+                .Build<NeuralNetworkFactoryMock>() as IMultiLayerNeuralNetwork<double>;
 
             testableStep.Process(neuralNetwork, patternMock);
 

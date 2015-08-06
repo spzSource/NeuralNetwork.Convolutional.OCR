@@ -72,6 +72,10 @@
       <Project>{9B7196B6-9887-44FD-8B5A-1D16A8D6683A}</Project>
       <Name>Core.NeuralNetwork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NeuralNetwork.Mock\NeuralNetwork.Mock.Test.csproj">
+      <Project>{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}</Project>
+      <Name>NeuralNetwork.Mock.Test</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

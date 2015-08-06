@@ -3,8 +3,9 @@ using System.Linq;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.ConnectionSchemes;
-using DigitR.NeuralNetwork.Cnn;
-using DigitR.NeuralNetwork.Cnn.Primitives;
+
+using Tests.NeuralNetwork.Mock.Mock;
+using Tests.NeuralNetwork.Mock.Mock.Primitives;
 
 using Xunit;
 
@@ -19,10 +20,10 @@ namespace Tests.Core.NeuralNetwork.Test
         public void NeuralNetworkStructureTest()
         {
             var neuralNetwork = networkBuilder
-                .AddInputLayer(new CnnLayer(0, 3, true, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(1, 5, false, false))
-                .AddLayer<FullyConnectedScheme<double>>(new CnnLayer(2, 2, false, true))
-                .Build<CnnNeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
+                .AddInputLayer(new LayerMock(0, 3, true, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(1, 5, false, false))
+                .AddLayer<FullyConnectedScheme<double>>(new LayerMock(2, 2, false, true))
+                .Build<NeuralNetworkFactoryMock>() as IMultiLayerNeuralNetwork<double>;
 
             Assert.NotNull(neuralNetwork);
 
@@ -39,7 +40,7 @@ namespace Tests.Core.NeuralNetwork.Test
         public void NeuralNetworkHiddenLayerPositionTest()
         {
             Exception exception = Assert.Throws<Exception>(
-                () => networkBuilder.AddLayer<FullyConnectedScheme<double>>(new CnnLayer(0, 3, false, false)));
+                () => networkBuilder.AddLayer<FullyConnectedScheme<double>>(new LayerMock(0, 3, false, false)));
 
             Assert.Equal("At first need to add a input layer.", exception.Message);
         }
