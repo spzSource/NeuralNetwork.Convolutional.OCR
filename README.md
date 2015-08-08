@@ -55,7 +55,7 @@ public class FullyConnectedScheme<TData>
 ```
 
 ### 4. Configure NN using connection schemes and specific factory.
-The example, specified below, shows how to create a neural network with three layers thats connected using FullyConnectedScheme scheme.
+The example, specified below, shows how to create a neural network with three layers that connected using FullyConnectedScheme scheme.
 ```cs
 IMultiLayerNeuralNetwork<double> neuralNetwork = networkBuilder
     .AddInputLayer(new Layer(0, 3, true, false))
