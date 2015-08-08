@@ -15,8 +15,9 @@ namespace Tests.NeuralNetwork.Mock.Mock
 {
     public class NeuralNetworkFactoryMock : INeuralNetworkFactory<double>
     {
-        private readonly IConnectionFactory<double, double> connectionFactory = new ConnectionFactoryMock(
-            new WeightFactoryMock(new WeightSignerMock(1.0)));
+        private readonly IConnectionFactory<double, double> connectionFactory = 
+            new ConnectionFactoryMock(
+                new WeightFactoryMock(new WeightSignerMock(1.0)));
 
         private DefaultLayersConfigurator<double, double> layersConfigurator;
 
