@@ -1,4 +1,4 @@
-# NeuralNetwork.Convolutional.OCR [![Build status](https://ci.appveyor.com/api/projects/status/qmsystqp5rsntkep?svg=true)](https://ci.appveyor.com/project/spzSource/neuralnetwork-convolutional-ocr) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/spzSource/neuralnetwork.convolutional.ocr/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+# NeuralNetwork.Convolutional.OCR [![Build status](https://ci.appveyor.com/api/projects/status/qmsystqp5rsntkep?svg=true)](https://ci.appveyor.com/project/spzSource/neuralnetwork-convolutional-ocr)
 Prototype for recognition of handwritten digits.
 
 Repo includes following components:
