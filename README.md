@@ -28,30 +28,30 @@ And if you want to connect layers using any specific logic - just create a speci
 
 For example, scheme to connect each neurons with each other (fully-connected layers), specified below:
 ```cs
-  public class FullyConnectedScheme<TData> 
-    : IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>
-  {
-      private IConnectionFactory<TData, TData> connectionFactory;
+public class FullyConnectedScheme<TData> 
+  : IConnectionScheme<INeuron<TData>, IConnectionFactory<TData, TData>>
+{
+    private IConnectionFactory<TData, TData> connectionFactory;
 
-      public void SetConnectionFactory(IConnectionFactory<TData, TData> factory)
-      {
-          connectionFactory = factory;
-      }
+    public void SetConnectionFactory(IConnectionFactory<TData, TData> factory)
+    {
+        connectionFactory = factory;
+    }
 
-      public void Apply(
-          ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> leftLayer, 
-          ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> rightLayer)
-      {
-          foreach (INeuron<TData> currentRightNeuron in rightLayer.Neurons)
-          {
-              foreach (INeuron<TData> currentLeftNeuron in leftLayer.Neurons)
-              {
-                  currentRightNeuron.Inputs.Add(connectionFactory.Create(currentLeftNeuron));
-                  currentLeftNeuron.Outputs.Add(connectionFactory.Create(currentRightNeuron));
-              }
-          }
-      }
-  }
+    public void Apply(
+        ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> leftLayer, 
+        ILayer<INeuron<TData>, IConnectionFactory<TData, TData>> rightLayer)
+    {
+        foreach (INeuron<TData> currentRightNeuron in rightLayer.Neurons)
+        {
+            foreach (INeuron<TData> currentLeftNeuron in leftLayer.Neurons)
+            {
+                currentRightNeuron.Inputs.Add(connectionFactory.Create(currentLeftNeuron));
+                currentLeftNeuron.Outputs.Add(connectionFactory.Create(currentRightNeuron));
+            }
+        }
+    }
+}
 ```
 
 ### 4. Configure NN using connection schemes and specific factory.
