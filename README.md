@@ -63,3 +63,7 @@ IMultiLayerNeuralNetwork<double> neuralNetwork = networkBuilder
     .AddLayer<FullyConnectedScheme<double>>(new Layer(2, 2, false, true))
     .Build<NeuralNetworkFactory>() as IMultiLayerNeuralNetwork<double>;
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/spzSource/neuralnetwork.convolutional.ocr/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
