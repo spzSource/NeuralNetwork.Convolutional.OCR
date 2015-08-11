@@ -5,6 +5,7 @@ using DigitR.Core.NeuralNetwork.Algorithms;
 using DigitR.Core.NeuralNetwork.Factories;
 using DigitR.Core.NeuralNetwork.InputProvider;
 using DigitR.Core.NeuralNetwork.Primitives;
+
 using DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Common;
 using DigitR.NeuralNetwork.Cnn.Algorithms.Extensions;
 
@@ -30,7 +31,7 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
             for (int neuronIndex = 0; neuronIndex < outputLayer.Neurons.Length; neuronIndex++)
             {
                 INeuron<double> currentNeuron = outputLayer.Neurons[neuronIndex];
-                BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
+                BackPropagateNeuronInfo currentNeuronInfo = currentNeuron.GetNeuronInfo<BackPropagateNeuronInfo>();
 
                 Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
                 Contract.Assert(currentNeuron.Inputs.Count > 0, "Wrong number of inputs.");

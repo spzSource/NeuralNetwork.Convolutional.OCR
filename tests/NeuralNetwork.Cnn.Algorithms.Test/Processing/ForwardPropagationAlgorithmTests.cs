@@ -5,10 +5,9 @@ using System.Linq;
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.ConnectionSchemes;
 using DigitR.Core.NeuralNetwork.InputProvider;
-using DigitR.NeuralNetwork.Cnn;
+
 using DigitR.NeuralNetwork.Cnn.Algorithms.Activation;
 using DigitR.NeuralNetwork.Cnn.Algorithms.Processing;
-using DigitR.NeuralNetwork.Cnn.Primitives;
 
 using Tests.NeuralNetwork.Cnn.Algorithms.Test.Processing.Mock;
 using Tests.NeuralNetwork.Mock.Mock;
