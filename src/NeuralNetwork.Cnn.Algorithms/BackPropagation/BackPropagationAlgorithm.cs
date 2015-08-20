@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -114,7 +113,10 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation
 
         private double CalculateErrorEnergy(double[] realOutput, double[] desiredOuput)
         {
-            Contract.Assert(realOutput.Length == desiredOuput.Length, "The length of real and desired outputs does not match.");
+            if (realOutput.Length != desiredOuput.Length)
+            {
+                throw new Exception("The length of real and desired outputs does not match.");
+            }
 
             double errorsSum = realOutput
                 .Select((realCurrentOutput, outputIndex) => Math.Pow(desiredOuput[outputIndex] - realCurrentOutput, 2))

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
 
 using DigitR.Core.NeuralNetwork;
 using DigitR.Core.NeuralNetwork.Algorithms;
@@ -33,8 +33,14 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
                 INeuron<double> currentNeuron = outputLayer.Neurons[neuronIndex];
                 BackPropagateNeuronInfo currentNeuronInfo = currentNeuron.GetNeuronInfo<BackPropagateNeuronInfo>();
 
-                Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
-                Contract.Assert(currentNeuron.Inputs.Count > 0, "Wrong number of inputs.");
+                if (!double.IsNaN(currentNeuronInfo.LocalGradient))
+                {
+                    throw new Exception("Local gradient is null.");
+                }
+                if (currentNeuron.Outputs.Count == 0)
+                {
+                    throw new Exception("Wrong number of inputs.");
+                }
 
                 double errorSignal = pattern.Label[neuronIndex] - currentNeuron.Output;
                 double currentLocalGradient = errorSignal * activationAlgorithm.CalculateFirstDerivative(currentNeuron.Output);

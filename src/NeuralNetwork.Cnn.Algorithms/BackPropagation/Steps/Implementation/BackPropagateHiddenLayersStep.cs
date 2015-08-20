@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
 using System.Linq;
 
 using DigitR.Core.NeuralNetwork;
@@ -32,8 +32,14 @@ namespace DigitR.NeuralNetwork.Cnn.Algorithms.BackPropagation.Steps.Implementati
                 {
                     BackPropagateNeuronInfo currentNeuronInfo = (BackPropagateNeuronInfo)currentNeuron.AdditionalInfo;
 
-                    Contract.Assert(double.IsNaN(currentNeuronInfo.LocalGradient));
-                    Contract.Assert(currentNeuron.Outputs.Count > 0, "Wrong number of inputs.");
+                    if (!double.IsNaN(currentNeuronInfo.LocalGradient))
+                    {
+                        throw new Exception("Local gradient is null.");
+                    }
+                    if (currentNeuron.Outputs.Count == 0)
+                    {
+                        throw new Exception("Wrong number of inputs.");
+                    }
                     
                     double weightedGradientsSum = currentNeuron.Outputs
                         .Sum(connection => connection.Neuron.GetNeuronInfo<BackPropagateNeuronInfo>().LocalGradient * connection.Weight.Value);

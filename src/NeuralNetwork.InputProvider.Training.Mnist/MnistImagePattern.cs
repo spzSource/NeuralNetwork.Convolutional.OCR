@@ -19,8 +19,8 @@ namespace DigitR.Core.NeuralNetwork.InputProvider.Training.Mnist
             InnerLabel = label;
             InnerSource = SourceDataExtender.ExtendSource(source, MnistPatternSize, ExtendedPatternSize);
 
-            Label = labelConverter.Convert(this.InnerLabel);
-            Source = imageConverter.Convert(this.InnerSource);
+            Label = labelConverter.Convert(InnerLabel);
+            Source = imageConverter.Convert(InnerSource);
         }
 
         public int Height => ExtendedPatternSize;

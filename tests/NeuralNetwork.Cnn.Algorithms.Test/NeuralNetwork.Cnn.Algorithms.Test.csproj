@@ -71,10 +71,6 @@
       <Project>{76ABC8AD-EF75-4C78-91B3-5E95962C9F8B}</Project>
       <Name>Core.NeuralNetwork.InputProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\NeuralNetwork.Cnn\NeuralNetwork.Cnn.csproj">
-      <Project>{B0F8B8B2-6F81-46E8-A108-968DE58AB0F3}</Project>
-      <Name>NeuralNetwork.Cnn</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\NeuralNetwork.Cnn.Algorithms\NeuralNetwork.Cnn.Algorithms.csproj">
       <Project>{369ac71f-df68-48a6-b495-858374e56b9e}</Project>
       <Name>NeuralNetwork.Cnn.Algorithms</Name>
