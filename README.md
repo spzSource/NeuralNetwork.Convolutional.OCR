@@ -8,13 +8,13 @@ Repo includes following components:
 
 ## Usage
 ### 1. Builder for your neural network
-You may to create your own builder with specific logic for your NN. Or simply use existing builder named NeuralNetworkBuilder.
+You may create your own builder with specific logic for your NN. Or simply use existing builder named NeuralNetworkBuilder.
 ```cs
   INeuralNetworkBuilder<double> networkBuilder = new NeuralNetworkBuilder<double>();
 ```
 
 ### 2. Factory to create specific instance of NN.
-By default the factory for convolutional NN already exists.
+By default the the library has already the default implementation of factory for NN.
 ```cs
 public class SpecificNeuralNetworkFactory : INeuralNetworkFactory<double>
 {
@@ -23,7 +23,7 @@ public class SpecificNeuralNetworkFactory : INeuralNetworkFactory<double>
 ```
 
 ### 3. Connection schemes.
-Additionally, you may configure a different schemes of connections between layers in case multi-layer NN.
+Additionally, you can configure different schemes of connections between layers in case multi-layer NN.
 And if you want to connect layers using any specific logic - just create a specific implementation of  IConnectionScheme interface.
 
 For example, scheme to connect each neurons with each other (fully-connected layers), specified below:
@@ -55,7 +55,7 @@ public class FullyConnectedScheme<TData>
 ```
 
 ### 4. Configure NN using connection schemes and specific factory.
-The example, specified below, shows how to create a neural network with three layers that connected using FullyConnectedScheme scheme.
+The example, specified below, shows how to create a neural network with three layers which connected using FullyConnectedScheme scheme.
 ```cs
 IMultiLayerNeuralNetwork<double> neuralNetwork = networkBuilder
     .AddInputLayer(new Layer(0, 3, true, false))
